@@ -1,0 +1,10 @@
+## Generate Bundle 
+php app/console generate:bundle
+
+
+## Generate Controller
+php app/console generate:controller
+php app/console generate:controller --no-interaction --controller=AcmeBlogBundle:Post
+
+## copy from bundle to web folder css & js
+app/console assets:install
