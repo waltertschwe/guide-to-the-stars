@@ -20,13 +20,18 @@ if (isset($_SERVER['HTTP_CLIENT_IP'])
  * 
  */
 
-$loader = require_once __DIR__.'/../app/bootstrap.php.cache';
+##$loader = require_once __DIR__.'/../app/bootstrap.php.cache';
+## wts 9/3/2014 disable caching
+$loader = require_once __DIR__.'/../app/autoload.php';
+require_once __DIR__.'/../app/AppKernel.php';
+
 Debug::enable();
 
 require_once __DIR__.'/../app/AppKernel.php';
 
 $kernel = new AppKernel('dev', true);
-$kernel->loadClassCache();
+## wts 9/3/2014 disable caching
+//$kernel->loadClassCache();
 $request = Request::createFromGlobals();
 $response = $kernel->handle($request);
 $response->send();

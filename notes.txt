@@ -8,3 +8,22 @@ php app/console generate:controller --no-interaction --controller=AcmeBlogBundle
 
 ## copy from bundle to web folder css & js
 app/console assets:install
+
+## doctrine
+php app/console doctrine:database:drop --force
+php app/console doctrine:database:create
+
+## doctrine build entity
+php app/console doctrine:generate:entity
+
+## generate entities
+php app/console doctrine:generate:entities Entertainment/Bundle/GuideToTheStarsBundle/Entity/Entity
+
+## generate entities for all known in bundle
+php app/console doctrine:generate:entities GuideToTheStarsBundle 
+
+## Build the database for all known entities
+php app/console doctrine:schema:update --force
+
+## CACHE CLEAR
+php app/console cache:clear --env=prod

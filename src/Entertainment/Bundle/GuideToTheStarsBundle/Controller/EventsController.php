@@ -7,6 +7,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
 use Symfony\Component\HttpFoundation\Response;
+use Entertainment\Bundle\GuideToTheStarsBundle\Entity\Event;
 
 class EventsController extends Controller
 {
@@ -24,13 +25,30 @@ class EventsController extends Controller
         );
     }
     
-    
     /**
      * @Route("/events/create")
      */
     public function createAction() {
         
-        return new Response('Create');
+        $request = $this->get('request');
+        if ($request->getMethod() == 'POST') {
+            $event = new Event();
+            $eventName = $request->request->get('event_name');
+            $eventDescription = $request->get('event_description');
+            $eventShortName = str_replace(' ', '_', $eventName);
+            
+            $event->setEventName($eventName);
+            $event->setEventDescription($eventDescription);
+            $event->setEventShortName($eventShortName);
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($event);
+            $em->flush();
+        }
+        
+        
+        return $this->render(
+            'EntertainmentGuideToTheStarsBundle:Events:create.html.twig'           
+        );
     }
     
     /**
@@ -41,20 +59,5 @@ class EventsController extends Controller
         return new Response('Create');
     }
     
-    
-    /**
-     * @Route("/events/test")
-     */
-    public function testAction()
-    {
-        $limit = 5;
-        $number = rand(1, $limit);
-
-        return $this->render(
-            'EntertainmentGuideToTheStarsBundle:Events:test.html.twig',
-            array('number' => $number)
-        );
-    }
-    
-    
+   
 }
