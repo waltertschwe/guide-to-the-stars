@@ -1,5 +1,5 @@
 body {
-  padding-top: 50px;
+  padding-top: 40px;
 }
 
 #example th {
@@ -35,12 +35,22 @@ body {
   background-color: #000; /* background color will be black for all browsers */
   background-image: none;
   background-repeat: no-repeat;
-  filter: none;
   min-height:10px !important;
   font-size:10px;
+  height:35px;
   
 }
-.navbar-fixed-top {
-   min-height:10px !important;
-   font-size:10px;
+
+.navbar-brand{
+    font-size:14px !important;
+    padding-bottom:5px !important;
+    padding-top:5px !important;
 }
+
+/*Change our top level link padding*/
+.navbar-nav > li > a {
+	font-size:14px !important;
+    padding-top: 8px !important;
+    padding-bottom: 5px !important;
+}
+
