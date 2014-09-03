@@ -18,10 +18,15 @@ class EventsController extends Controller
     public function indexAction()
     {
          $data = array();
+         
+         $repository = $this->getDoctrine()
+             ->getRepository('EntertainmentGuideToTheStarsBundle:Event');
+             
+         $events = $repository->findAll();
         
          return $this->render(
             'EntertainmentGuideToTheStarsBundle:Events:index.html.twig',
-            array('data' => $data)
+            array('events' => $events)
         );
     }
     
@@ -56,6 +61,18 @@ class EventsController extends Controller
      */
     public function updateAction() {
         
+        /*
+        $product = $this->getDoctrine()
+        ->getRepository('AcmeStoreBundle:Product')
+        ->find($id);
+
+        if (!$product) {
+            throw $this->createNotFoundException(
+                'No product found for id '.$id
+            );
+        }
+        
+        */
         return new Response('Create');
     }
     

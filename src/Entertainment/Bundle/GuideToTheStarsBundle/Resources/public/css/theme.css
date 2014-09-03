@@ -1,0 +1,43 @@
+body {
+  padding-top: 50px;
+}
+
+#example th {
+	text-align:center;
+}
+
+.update-event {
+	margin-top: 20px;
+	padding-left: 200px;
+}
+
+.event-text {
+	padding-bottom: 10px;
+}
+
+.bracket-padding {
+	padding: 5px
+}
+
+.progress-padding {
+	padding: 25px
+}
+
+.progress-title-padding {
+	padding-left: 16px;
+}
+
+.bracket-button-padding {
+	padding-left: 60px;
+}
+
+.navbar {
+  background-color: #000; /* background color will be black for all browsers */
+  background-image: none;
+  background-repeat: no-repeat;
+  filter: none;
+}
+
+.navbar-xs .navbar-primary .navbar { min-height:28px; height: 28px; }
+.navbar-xs .navbar-primary .navbar .navbar-brand{ padding: 0px 12px;font-size: 16px;line-height: 28px; }
+.navbar-xs .navbar-primary .navbar .navbar-nav > li > a {  padding-top: 0px; padding-bottom: 0px; line-height: 28px; }
