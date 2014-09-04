@@ -1,0 +1,12 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+<!-- Fixed navbar -->
+    Number: {{ number }}
+    {% block stylesheets %}
+    	{{ parent() }}
+    	<!-- add on extra stylesheets for the page -->
+    	
+	{% endblock %}
+{% endblock %}
+ 

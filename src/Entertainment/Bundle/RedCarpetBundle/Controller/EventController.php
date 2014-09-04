@@ -1,6 +1,6 @@
 <?php
 
-namespace Entertainment\Bundle\GuideToTheStarsBundle\Controller;
+namespace Entertainment\Bundle\RedCarpetBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -9,7 +9,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Response;
 use Entertainment\Bundle\RedCarpetBundle\Entity\Event;
 
-class EventsController extends Controller
+class EventController extends Controller
 {
     
     /**
@@ -17,15 +17,16 @@ class EventsController extends Controller
      */
     public function indexAction()
     {
-         $data = array();
+        
+         $events = array();
          
          $repository = $this->getDoctrine()
-             ->getRepository('RedCarpetBundle:Event');
+             ->getRepository('EntertainmentRedCarpetBundle:Event');
              
          $events = $repository->findAll();
         
          return $this->render(
-            'RedCarpetBundle:Events:index.html.twig',
+            'EntertainmentRedCarpetBundle:Event:index.html.twig',
             array('events' => $events)
         );
     }
@@ -52,7 +53,7 @@ class EventsController extends Controller
         
         
         return $this->render(
-            'RedCarpetBundle:Events:create.html.twig'           
+            'RedCarpetBundle:Event:create.html.twig'           
         );
     }
     

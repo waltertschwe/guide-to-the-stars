@@ -1,0 +1,48 @@
+{
+    "event_name": "2014GoldenGlobes",
+    "other_name": "2014 Golden Globe Awards",
+    "event_shortname": "2014goldenglobes",
+    "pid": "20768373",
+    "is_lite": "true",
+    "ad_size": "small-sponsored",
+    "has_fan_cam": "false",
+    "has_live_stream": "false",
+    "has_arrivals": "true",
+    "has_external_content": "true",
+    "feeds": {
+        "this_just_in": "/people/feeds/json/1,,20651065,00.json",
+        "featured_tout": "/people/feeds/json/1,,20656574,00.json",
+        "latest_news": "/people/feeds/json/1,,20656573,00.json",
+        "share_this": "/people/feeds/json/1,,20656576,00.json",
+        "cover_it_news": "/people/feeds/json/1,,20663416,00.json",
+        "arrivals_tout_json": "/people/feeds/json/1,,20658073,00.json",
+        "additional_touts": "",
+        "latest_headlines": "/people/feeds/json/1,,20764380,00.json"
+    },
+    "share_this_fb": "Get complete Golden Globes coverage at PEOPLE.com!",
+    "cover_it_live": {
+        "livestream_id": "fc494a6aea",
+        "cover_it_title": "Tweet with @peoplemag",
+        "cover_it_hash_tag": "PeopleGlobes"
+    },
+    "misc_poll": {
+        "polls_article": "2014GoldenGlobes_misc",
+        "poll_share_fb": "",
+        "mobile_poll_share_fb": ""
+    },
+    "arrivals": {
+        "arrivals_copy": "Do You Love This Golden Globes Look?",
+        "arrivals_mobile_copy": "Do You Love This Look?",
+        "arrivals_share_fb": "See the arrivals and cast your vote!",
+        "arrivals_share_twitter": "Vote for the best dresses at the Golden Globe Awards as the stars arrive!",
+        "arrivals_polls_article": "2014GoldenGlobes_arrivals",
+        "arrivals_pid": "20772604",
+        "mobile_arrivals_pid": "20772604",
+        "hp_arrivals_has_ads": "true",
+        "full_arrivals_has_ads": "true",
+        "mobile_arrivals_has_ads": "true",
+        "arrivals_ad_zone": "/redcarpet/goldenglobes/arrivals",
+        "arrivals_ad_subj": "goldenglobes",
+        "arrivals_ad_counter": "6"
+    }
+}

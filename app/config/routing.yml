@@ -1,3 +1,8 @@
+entertainment_red_carpet:
+    resource: "@EntertainmentRedCarpetBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
 entertainment_guide_to_the_stars:
     resource: "@EntertainmentGuideToTheStarsBundle/Controller/"
     type:     annotation

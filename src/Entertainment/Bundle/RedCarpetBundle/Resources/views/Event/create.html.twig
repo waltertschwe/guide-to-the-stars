@@ -4,16 +4,17 @@
 <div class="container">
 	<p></p>
 	<div class="update-event">
-		<a href="index.php" class="btn btn-info btn-mini"><span class="glyphicon glyphicon-arrow-left"></span>  Back to View All Stars</a> &nbsp;&nbsp;
+		<a href="index.php" class="btn btn-info btn-mini"><span class="glyphicon glyphicon-arrow-left"></span>  Back to View All Events</a> &nbsp;&nbsp;
 	<div class="event-text">
-		<h1>Star Creation</h1>
+		<h1>Create Event</h1>
 	</div>
 	</div>
 </div>
+IN RED CARPET BUNDLE
 <div class="container">
 <form method="post" action="create" class="form-horizontal" role="form">
 		<div class="form-group">
-			<label for="event_name" class="col-sm-2 control-label">Name</label>
+			<label for="event_name" class="col-sm-2 control-label">Event Name</label>
 			<div class="col-xs-4">
 				<input class="form-control input-lg" type="text" name="event_name" id="event_name" size="36" required="required"/>
 			</div>
@@ -21,19 +22,7 @@
 		<div class="form-group">
 			<label for="event_description" class="col-sm-2 control-label">Description</label>
 			<div class="col-xs-4">
-				 <textarea class="ckeditor" cols="80" id="editor1" name="editor1" rows="10"></textarea>
-				 <script>
-				// Replace the <textarea id="editor"> with an CKEditor
-				// instance, using default configurations.
-				CKEDITOR.replace( 'editor1', {
-					uiColor: '#14B8C4',
-					toolbar: [
-						[ 'Bold', 'Italic', '-', 'NumberedList', 'BulletedList', '-', 'Link', 'Unlink' ],
-						[ 'FontSize', 'TextColor', 'BGColor' ]
-					]
-				});
-	
-			</script>
+				 <textarea class="form-control" id="description" name="event_description" size="36" required="required"></textarea>
 			</div>
 		</div>
 		<div class="form-group">
