@@ -1,0 +1,41 @@
+{% extends '::base.html.twig' %}
+{% block body %}
+{{ include('::nav.html.twig') }}
+<div class="container">
+<div class="page-header">
+    <h1>Guide To The Stars</h1>
+</div>
+<div class="well">
+<p>
+<a class="btn-custom btn-lg" href="create" role="button"><span class="glyphicon glyphicon-star"></span>&nbsp;&nbsp;Create Star</a>
+</p>
+</div>
+<div class="container">
+<table cellpadding="0" cellspacing="0" border="0" class="display" id="example">
+<thead>
+	<tr>
+		<!-- <th>ID</th> -->
+		<th>Event Name</th>
+		<th>Event Description</th>
+		<th>Actions</th>
+	</tr>
+</thead>
+<tbody>
+{% for star in stars %}
+<tr class="gradeC">
+	<td class="center">{{ event.eventName }}</td>
+	<td class="center">{{ event.eventDescription }}</td>
+	<td class="center">Actions</td>
+</tr>
+{% endfor %}
+</tbody>
+	<tfoot>
+		<tr>			
+			<th>Event Name</th>
+			<th>Event Description</th>
+			<th>Actions</th>   
+		</tr>
+	</tfoot>
+</table>
+</div>
+{% endblock %}
