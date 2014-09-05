@@ -35,13 +35,6 @@ class Event
      */
     private $eventShortName;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="eventDescription", type="string", length=255)
-     */
-    private $eventDescription;
-
 
     /**
      * Get id
@@ -50,7 +43,7 @@ class Event
      */
     public function getId()
     {
-        return $this->id;
+        return $this->event_id;
     }
 
     /**
@@ -99,26 +92,4 @@ class Event
         return $this->eventShortName;
     }
 
-    /**
-     * Set eventDescription
-     *
-     * @param string $eventDescription
-     * @return Event
-     */
-    public function setEventDescription($eventDescription)
-    {
-        $this->eventDescription = $eventDescription;
-
-        return $this;
-    }
-
-    /**
-     * Get eventDescription
-     *
-     * @return string 
-     */
-    public function getEventDescription()
-    {
-        return $this->eventDescription;
-    }
 }

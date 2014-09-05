@@ -19,7 +19,7 @@ class EventController extends Controller
     {
         
          $events = array();
-         
+          
          $repository = $this->getDoctrine()
              ->getRepository('EntertainmentRedCarpetBundle:Event');
              
@@ -40,11 +40,9 @@ class EventController extends Controller
         if ($request->getMethod() == 'POST') {
             $event = new Event();
             $eventName = $request->request->get('event_name');
-            $eventDescription = $request->get('event_description');
             $eventShortName = str_replace(' ', '_', $eventName);
             
             $event->setEventName($eventName);
-            $event->setEventDescription($eventDescription);
             $event->setEventShortName($eventShortName);
             $em = $this->getDoctrine()->getManager();
             $em->persist($event);
@@ -53,28 +51,40 @@ class EventController extends Controller
         
         
         return $this->render(
-            'RedCarpetBundle:Event:create.html.twig'           
+            'EntertainmentRedCarpetBundle:Event:create.html.twig'           
         );
     }
     
     /**
-     * @Route("/events/update")
+     * @Route("/events/update/{eventId}")
      */
-    public function updateAction() {
+    public function updateAction($eventId) {
         
-        /*
-        $product = $this->getDoctrine()
-        ->getRepository('AcmeStoreBundle:Product')
-        ->find($id);
+        
+        $events = $this->getDoctrine()
+        ->getRepository('EntertainmentRedCarpetBundle:Event')
+        ->find($eventId);
 
-        if (!$product) {
+        if (!$eventId) {
             throw $this->createNotFoundException(
-                'No product found for id '.$id
+                'No event id found '.$id
             );
         }
         
-        */
-        return new Response('Create');
+        
+        return new Response('Update');
     }
+    
+    /**
+     * @Route("/events/dashboard/{eventId}")
+     */
+    public function dashboard($eventId) {
+       
+       
+       return $this->render(
+            'EntertainmentRedCarpetBundle:Event:dashboard.html.twig'           
+        );
+    }   
+    
      
 }
