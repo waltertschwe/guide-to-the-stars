@@ -1,0 +1,24 @@
+{% extends '::base.html.twig' %}
+{% block body %}
+{{ include('::nav.html.twig') }}
+<div class="container">
+<div class="page-header">
+	<h1>Event Config - <font color="blue"><a href="event-index.php?event_id=141">2013 CMT</a></font></h1>
+</div>
+</div>
+<form class="form-horizontal" method="post" action="" role="form">
+<div class="form-group">
+	<label class="col-sm-2 control-label">Site State</label>
+	<div class="col-xs-2">
+        <select class="form-control" name="is-lite" id="is-lite" size="1">
+             <option value="0" selected="selected" disabled="disabled">Please choose</option>
+             <option value="1" selected="selected">Yes</option>
+             <option value="2" >No</option>
+        </select>
+    </div>
+</div>
+
+
+</form>
+
+{% endblock %}

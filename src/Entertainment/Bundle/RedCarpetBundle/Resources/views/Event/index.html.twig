@@ -31,7 +31,7 @@
 		<!-- <th>ID</th> -->
 		<th>Event Name</th>
 		<th>Date</th>
-		<th>Current Layout</th>
+		<th>Site State</th>
 		<th>Actions</th>
 	</tr>
 </thead>
@@ -43,7 +43,7 @@
 	<td class="center">Arrivals</td>
 	<td class="center">
 		 <a href="dashboard/{{ event.id }}" class="link" data-toggle="tooltip" title="To Event Dashboard"><span class="glyphicon glyphicon-home"></a>
-         <a href="update/{{event.id }}" class="link" data-toggle="tooltip" title="Update Event, Arrival and Poll Names"><span class="glyphicon glyphicon-circle-arrow-up"></span></a>
+         <a href="config/{{event.id }}" class="link" data-toggle="tooltip" title="To Event Config"><span class="glyphicon glyphicon-circle-arrow-up"></span></a>
          <a href="events/event-delete.php?event_id=133" class="delbtn" title="Are you sure you want to delete event <blink><b>2013Oscars</b></blink>???"><span class="glyphicon glyphicon-trash"></span></a>	
 	</td>
 </tr>
@@ -53,7 +53,7 @@
 		<tr>			
 			<th>Event Name</th>
 			<th>Date</th>
-			<th>Current Layout</th>
+			<th>Site State</th>
 			<th>Actions</th>   
 		</tr>
 	</tfoot>

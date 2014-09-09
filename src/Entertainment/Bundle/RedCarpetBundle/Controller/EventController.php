@@ -50,9 +50,7 @@ class EventController extends Controller
         }
         
         
-        return $this->render(
-            'EntertainmentRedCarpetBundle:Event:create.html.twig'           
-        );
+        return $this->redirect($this->generateUrl('entertainment_redcarpet_event_index'));
     }
     
     /**
@@ -84,7 +82,18 @@ class EventController extends Controller
        return $this->render(
             'EntertainmentRedCarpetBundle:Event:dashboard.html.twig'           
         );
-    }   
+    } 
+    
+     /**
+     * @Route("/events/config/{eventId}")
+     */
+    public function config($eventId) {
+       
+       
+       return $this->render(
+            'EntertainmentRedCarpetBundle:Event:config.html.twig'           
+        );
+    }     
     
      
 }
