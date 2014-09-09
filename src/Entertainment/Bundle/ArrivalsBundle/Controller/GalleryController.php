@@ -16,6 +16,7 @@ class GalleryController extends Controller
     {
         return array(
                 // ...
-            );    }
+            );    
+    }
 
 }

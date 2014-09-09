@@ -65,7 +65,7 @@ class EventController extends Controller
 
         if (!$eventId) {
             throw $this->createNotFoundException(
-                'No event id found '.$id
+                'No event id found '.$eventId
             );
         }
         
@@ -76,24 +76,51 @@ class EventController extends Controller
     /**
      * @Route("/events/dashboard/{eventId}")
      */
-    public function dashboard($eventId) {
+    public function dashboardAction($eventId) {
+       
+        $event = $this->getDoctrine()
+        ->getRepository('EntertainmentRedCarpetBundle:Event')
+        ->find($eventId);
+
+        if (!$eventId) {
+            throw $this->createNotFoundException(
+                'No event id found '.$eventId
+            );
+        }
        
        
        return $this->render(
-            'EntertainmentRedCarpetBundle:Event:dashboard.html.twig'           
+            'EntertainmentRedCarpetBundle:Event:dashboard.html.twig',
+            array('event' => $event)           
         );
     } 
     
      /**
      * @Route("/events/config/{eventId}")
      */
-    public function config($eventId) {
+    public function configAction($eventId) {
+       
+       
+       $repository = $this->getDoctrine()
+             ->getRepository('EntertainmentRedCarpetBundle:Event');
+             
+       $event = $repository->findOneBy(
+                    array ('event_id' => $eventId));
+                    
+       var_dump($event);
        
        
        return $this->render(
-            'EntertainmentRedCarpetBundle:Event:config.html.twig'           
+            'EntertainmentRedCarpetBundle:Event:config.html.twig',
+            array('event' => $event)           
         );
     }     
+    
+    //TEMP PLACE HOLDER
+    public function jsonAction() {
+        //$response = new Response(json_encode(array('name' => $name)));
+        //$response->headers->set('Content-Type', 'application/json');
+    }
     
      
 }
