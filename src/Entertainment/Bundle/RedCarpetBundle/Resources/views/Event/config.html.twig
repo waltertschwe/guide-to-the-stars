@@ -27,6 +27,13 @@
         <input class="form-control input-lg" type="text" name="event_name" id="event_name" size="36" required="required" value="{{ event.eventName }}"/>
     </div>
 </div>
+
+	<select id="multiselect" multiple="multiple">
+		<option value="arrivals">Arrivals Gallery</option>
+		<option value="gts">Guide To The Stars</option>
+	    <option value="brackets">Bracketology</option>
+	</select>
+    
 <div class="form-group">
 	<div class="col-sm-offset-2 col-sm-10"> 
 		<button name="submit" value="Save" type="submit" class="btn btn-lg btn-primary">Save</button>&nbsp;&nbsp

@@ -14,9 +14,9 @@ class GalleryController extends Controller
      */
     public function createAction()
     {
-        return array(
-                // ...
-            );    
+          return $this->render(
+              'EntertainmentArrivalsBundle:Gallery:create.html.twig'
+          );
     }
 
 }
