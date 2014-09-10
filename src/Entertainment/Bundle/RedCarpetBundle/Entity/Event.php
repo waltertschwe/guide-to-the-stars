@@ -34,8 +34,29 @@ class Event
      * @ORM\Column(name="eventShortName", type="string", length=255)
      */
     private $eventShortName;
-
-
+    
+     /**
+     * @var integer
+     *
+     * @ORM\Column(name="is_app_arrivals", type="integer", nullable="TRUE")
+     */
+    private $isArrivals;
+    
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="is_app_gts", type="integer", nullable="TRUE")
+     */
+    private $isGuideToStars;
+    
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="is_app_brackets", type="integer", nullable="TRUE")
+     */
+    private $isBrackets;
+    
+    
     /**
      * Get id
      *

@@ -6,41 +6,50 @@
 	<h1>Event Config - <font color="blue"><a href="event-index.php?event_id=141">{{ event.eventName }}</a></font></h1>
 </div>
 </div>
-<form class="form-horizontal" method="post" action="{{ event.id }}" role="form">
-<input type="hidden" name="event_id" value="{{ event.id}}" />
-<div class="form-group">
-	<label class="col-sm-2 control-label">Site State</label>
-	<div class="col-xs-2">
-        <select class="form-control" name="is-lite" id="is-lite" size="1">
-             <option value="fancam">Fan Cam</option>
-             <option value="livestream">Live Stream</option>
-             <option value="arrivals">Arrivals</option>
-             <option value="arrivals-video">Arrivals - Video</option>
-             <option value="coverage">Coverage</option>
-             <option value="coverage-2">Coverage 2</option>
-        </select>
-    </div>
-</div>
-<div class="form-group">
-	<label class="col-sm-2 control-label">Event Name</label>
-	<div class="col-xs-2">
-        <input class="form-control input-lg" type="text" name="event_name" id="event_name" size="36" required="required" value="{{ event.eventName }}"/>
-    </div>
-</div>
 
-	<select id="multiselect" multiple="multiple">
-		<option value="arrivals">Arrivals Gallery</option>
-		<option value="gts">Guide To The Stars</option>
-	    <option value="brackets">Bracketology</option>
-	</select>
-    
-<div class="form-group">
-	<div class="col-sm-offset-2 col-sm-10"> 
-		<button name="submit" value="Save" type="submit" class="btn btn-lg btn-primary">Save</button>&nbsp;&nbsp
+<div class="container">
+<div class="row">
+	<div class="col-md-6">
+		<form class="form-horizontal" method="post" action="{{ event.id }}" role="form">
+		<input type="hidden" name="event_id" value="{{ event.id}}" />
+		<div class="form-group">
+			<label class="col-sm-4 control-label">Site State</label>
+			<div class="col-xs-6">
+		        <select class="form-control" name="is-lite" id="is-lite" size="1">
+		             <option value="fancam">Fan Cam</option>
+		             <option value="livestream">Live Stream</option>
+		             <option value="arrivals">Arrivals</option>
+		             <option value="arrivals-video">Arrivals - Video</option>
+		             <option value="coverage">Coverage</option>
+		             <option value="coverage-2">Coverage 2</option>
+		        </select>
+		    </div>
+		</div>
+		<div class="form-group">
+			<label class="col-sm-4 control-label">Event Name</label>
+			<div class="col-xs-8">
+		        <input class="form-control input-lg" type="text" name="event_name" id="event_name" size="36" required="required" value="{{ event.eventName }}"/>
+		    </div>
+		</div>
+		<div class="form-group">
+			<div class="col-sm-offset-2 col-sm-10"> 
+				<button name="submit" value="Save" type="submit" class="btn btn-lg btn-primary">Save</button>&nbsp;&nbsp
+			</div>
+		</div>
 	</div>
+	<div class="col-md-6"> 
+		<div class="form-group">
+			<label class="col-sm-6 col-sm-offset-3 control-label">Application Selection</label>
+			<div class="col-sm-offset-3 col-sm-6"> 
+			<select id="multiselect" multiple="multiple">
+				<option value="arrivals">Arrivals Gallery</option>
+				<option value="gts">Guide To The Stars</option>
+			    <option value="brackets">Bracketology</option>
+			</select>
+			</div>
+		</div>
+	</div>
+	</form>
 </div>
-
-
-</form>
-
+</div>
 {% endblock %}
