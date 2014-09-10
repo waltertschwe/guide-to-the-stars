@@ -38,7 +38,7 @@ class Gallery
     /**
      * @var string
      *
-     * @ORM\Column(name="credit", type="string", length=255)
+     * @ORM\Column(name="credit", type="string", length=255, nullable=true)
      */
     private $credit;
 
@@ -52,7 +52,7 @@ class Gallery
     /**
      * @var string
      *
-     * @ORM\Column(name="position", type="string", length=255)
+     * @ORM\Column(name="position", type="string", length=255, nullable=true)
      */
     private $position;
 

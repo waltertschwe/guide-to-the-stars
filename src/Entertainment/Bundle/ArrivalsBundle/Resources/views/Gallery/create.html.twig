@@ -3,7 +3,7 @@
 {{ include('::nav.html.twig') }}
 
 <div class="container">
-<h1>Event Name:  2013 CMT</h1>
+<h1>Event Name:  {{ event.eventName }}</h1>
 <div id="nav">
 	<p style="float:left;">
         <!-- LEFT NAV GOES HERE -->	
@@ -13,8 +13,8 @@
 
 <div class="container">
 <div class="row">
-  <div class="col-md-6"><form method="post" action="item.php" enctype="multipart/form-data" class="form-horizontal" role="form">
-	<input type="hidden" name="event_id" value="141"/><input type="hidden" name="type_id" value="5"/>
+  <div class="col-md-6"><form method="post" action="" enctype="multipart/form-data" class="form-horizontal" role="form">
+	<input type="hidden" name="event-id" value="{{ event.eventId }}"/>
 	<div class="form-group">
 	<label for="title" class="col-sm-2 control-label"></label>
 		<div class="col-xs-9">
@@ -29,7 +29,7 @@
 	</div>
 	<div class="form-group">
    		<div class="col-sm-offset-2 col-sm-10"> 
-			<button name="PublishSubmit" value="Save" type="submit" class="btn btn-lg btn-primary">Save</button>&nbsp;&nbsp;
+			<button name="submit" value="Save" type="submit" class="btn btn-lg btn-primary">Save</button>&nbsp;&nbsp;
 		</div>
   	</div>
 	
