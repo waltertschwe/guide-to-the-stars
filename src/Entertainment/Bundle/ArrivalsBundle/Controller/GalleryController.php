@@ -32,15 +32,29 @@ class GalleryController extends Controller
             $fileName = $request->files->getAlnum('arrival-image');
             $userFileName = $_FILES['arrival-image']['name'];
             $basePath = $this->get('kernel')->getRootDir();
+            
+            
            
             move_uploaded_file($tmpFileName, $basePath."/event-images/".$userFileName);
             
             $image = new Gallery();
             
+            $conn = $this->get('database_connection');
+            $sql = " 
+                SELECT count(*) as count
+                FROM Gallery 
+                WHERE event_id = " . $eventId  
+                ;
+            
+            $dbGalleryCount= $conn->fetchAll($sql);
+            $galleryCount = $dbGalleryCount[0]['count'];
+            $positionCount = ++$galleryCount;
+           
             $image->setEventId($eventId);
             $image->setTitle($title);
             $image->setCredit($credit);
             $image->setImageName($userFileName);
+            $image->setPosition($positionCount);
             
             $em = $this->getDoctrine()->getManager();
             $em->persist($image);

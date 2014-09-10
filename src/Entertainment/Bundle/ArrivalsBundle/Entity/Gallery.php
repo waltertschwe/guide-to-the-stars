@@ -52,7 +52,7 @@ class Gallery
     /**
      * @var string
      *
-     * @ORM\Column(name="position", type="string", length=255, nullable=true)
+     * @ORM\Column(name="position", type="string", length=255)
      */
     private $position;
 
@@ -181,4 +181,21 @@ class Gallery
     {
         return $this->position;
     }
+    
+    ## This counts the current number of images in a gallery 
+    ## based off eventId
+    public function galleryCounter($eventId)
+    {   
+        $sql = " 
+            select NUM, count(1) as count 
+            from Event 
+            where num = " . $eventId . "
+            group by NUM
+        ";
+        
+        $em = $this->getDoctrine()->getManager();
+        $result = $em->getConnection()->exec( $sql );
+        return $result;
+        
+    }   
 }
