@@ -200,27 +200,4 @@ class Event
     {
         return $this->isBrackets;
     }
-
-    /**
-     * Set eventState
-     *
-     * @param string $eventState
-     * @return Event
-     */
-    public function setEventState($eventState)
-    {
-        $this->eventState = $eventState;
-
-        return $this;
-    }
-
-    /**
-     * Get eventState
-     *
-     * @return string 
-     */
-    public function getEventState()
-    {
-        return $this->eventState;
-    }
 }

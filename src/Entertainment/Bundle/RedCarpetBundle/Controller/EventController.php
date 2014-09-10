@@ -37,7 +37,7 @@ class EventController extends Controller
     public function createAction() {
         
         $request = $this->get('request');
-        if ($request->getMethod() == 'POST') {
+        if ($request->isMethod('POST')) {
             $event = new Event();
             $eventName = $request->request->get('event_name');
             $eventShortName = str_replace(' ', '_', $eventName);
@@ -53,26 +53,7 @@ class EventController extends Controller
         return $this->redirect($this->generateUrl('entertainment_redcarpet_event_index'));
     }
     
-    /**
-     * @Route("/events/update/{eventId}")
-     */
-    public function updateAction($eventId) {
-        
-        
-        $events = $this->getDoctrine()
-        ->getRepository('EntertainmentRedCarpetBundle:Event')
-        ->find($eventId);
-
-        if (!$eventId) {
-            throw $this->createNotFoundException(
-                'No event id found '.$eventId
-            );
-        }
-        
-        
-        return new Response('Update');
-    }
-    
+   
     /**
      * @Route("/events/dashboard/{eventId}")
      */
@@ -99,28 +80,65 @@ class EventController extends Controller
      * @Route("/events/config/{eventId}")
      */
     public function configAction($eventId) {
-       
-       
+        
+        $request = $this->get('request');
+        if ($request->isMethod('POST')) {
+            
+            $eventId = $request->request->get('event-id');
+            $em = $this->getDoctrine()->getManager();
+            $event = $em->getRepository('EntertainmentRedCarpetBundle:Event')->find($eventId);
+     
+            if (!$event) {
+                throw $this->createNotFoundException(
+                   'No event id found for event id = '.$eventId
+                 );
+            }
+
+            $siteState = $request->request->get('site-state');
+            $eventName = $request->request->get('event-name');
+            $eventShortName = str_replace(' ', '_', $eventName);
+            $isArrivals = $request->request->get('arrivals');
+            $isGTS = $request->request->get('gts');
+            $isBrackets = $request->request->get('brackets');
+            
+            $event->setEventState($siteState);
+            $event->setEventName($eventName);
+            $event->setEventShortName($eventShortName);
+            $event->setIsArrivals($isArrivals);
+            $event->setIsGuideToStars($isGTS);
+            $event->setIsBrackets($isBrackets);
+          
+            $em->flush();
+            
+        } 
+          
        $repository = $this->getDoctrine()
              ->getRepository('EntertainmentRedCarpetBundle:Event');
              
        $event = $repository->findOneBy(
                     array ('event_id' => $eventId));
                     
-       var_dump($event);
-       
-       
        return $this->render(
             'EntertainmentRedCarpetBundle:Event:config.html.twig',
             array('event' => $event)           
         );
-    }     
+    }
     
+   
+        
     //TEMP PLACE HOLDER
     public function jsonAction() {
         //$response = new Response(json_encode(array('name' => $name)));
         //$response->headers->set('Content-Type', 'application/json');
     }
     
+     /**
+     * @Route("/events/test")
+     */
+    public function testAction() {
+    
+        
+        return new Response('Test');
+    }
      
 }
