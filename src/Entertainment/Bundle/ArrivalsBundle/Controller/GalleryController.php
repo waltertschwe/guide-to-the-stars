@@ -18,22 +18,18 @@ class GalleryController extends Controller
     public function createAction($eventId)
     {
         
-        //$event = array();
         $event = $this->getDoctrine()
         ->getRepository('EntertainmentRedCarpetBundle:Event')
         ->find($eventId);
-        //$event['eventId'] = $eventId;
+       
         $request = $this->get('request');
         if ($request->isMethod('POST')) {
             $eventId = $request->request->get('event-id');
             $title = $request->request->get('title');
             $credit = $request->request->get('credit');
             $tmpFileName = $request->files->get('arrival-image');
-            $fileName = $request->files->getAlnum('arrival-image');
             $userFileName = $_FILES['arrival-image']['name'];
             $basePath = $this->get('kernel')->getRootDir();
-            
-            
            
             move_uploaded_file($tmpFileName, $basePath."/event-images/".$userFileName);
             
@@ -74,8 +70,17 @@ class GalleryController extends Controller
      */
     public function positionAction($eventId)
     {
+        
+          $repository = $this->getDoctrine()
+              ->getRepository('EntertainmentArrivalsBundle:Gallery');
+          
+          $images =  $repository->findBy(
+                        array('eventId' => $eventId)
+                        );
+            
           return $this->render(
-              'EntertainmentArrivalsBundle:Gallery:position.html.twig'
+              'EntertainmentArrivalsBundle:Gallery:position.html.twig',
+              array('images' => $images)
           );
     }
 
