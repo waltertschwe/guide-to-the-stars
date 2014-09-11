@@ -1,23 +1,30 @@
 {% extends '::base.html.twig' %}
 {% block body %}
 {{ include('::nav.html.twig') }}
-
-
-
+<div class="container">
+<div class="page-header">
+	<h1>Arrivals Ordering <font color="blue"><a href=""></a></font></h1>
+</div>
+</div>
+<div class="container">
+<div class="row">
+	<div class="col-md-8">
+<ul id="sortable">
+	
 {% for image in images %}
 
-{{image.imageName}}
-<br/>
-
+	<!-- <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>{{image.imageName}}<a href=""><span class="glyphicon glyphicon-trash"></span></a></li> -->
+	<li id="{{ image.event.eventId }}_{{image.id}}"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>{{image.title}}
+		<a href=""><span style="padding: 10px 10px 0; float: right;" class="glyphicon glyphicon-trash float: right;"></span></a></li>
 {% endfor %}
-
-
-
-
-
-
-
-
+</ul>
+</div>
+<div class="col-md-2">
+    <button id="savepostion" name="submit" type="submit" class="btn btn-lg btn-success">Save Order &raquo;</button>
+</div>
+	</div>
+</div>
+</div>
 
 
 

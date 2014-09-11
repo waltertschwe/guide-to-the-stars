@@ -3,6 +3,7 @@
 namespace Entertainment\Bundle\RedCarpetBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Event
@@ -12,6 +13,7 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Event
 {
+    
     /**
      * @var integer
      *
@@ -199,5 +201,28 @@ class Event
     public function getIsBrackets()
     {
         return $this->isBrackets;
+    }
+
+    /**
+     * Set eventState
+     *
+     * @param string $eventState
+     * @return Event
+     */
+    public function setEventState($eventState)
+    {
+        $this->eventState = $eventState;
+
+        return $this;
+    }
+
+    /**
+     * Get eventState
+     *
+     * @return string 
+     */
+    public function getEventState()
+    {
+        return $this->eventState;
     }
 }

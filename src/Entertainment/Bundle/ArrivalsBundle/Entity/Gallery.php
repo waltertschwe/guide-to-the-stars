@@ -3,6 +3,7 @@
 namespace Entertainment\Bundle\ArrivalsBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Gallery
@@ -12,6 +13,15 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Gallery
 {
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="Entertainment\Bundle\RedCarpetBundle\Entity\Event")
+     * @ORM\JoinColumn(name="event_id", referencedColumnName="event_id")
+     */
+     
+    private $event;
+    
+    
     /**
      * @var integer
      *
@@ -67,29 +77,7 @@ class Gallery
         return $this->id;
     }
 
-    /**
-     * Set eventId
-     *
-     * @param integer $eventId
-     * @return Gallery
-     */
-    public function setEventId($eventId)
-    {
-        $this->eventId = $eventId;
-
-        return $this;
-    }
-
-    /**
-     * Get eventId
-     *
-     * @return integer 
-     */
-    public function getEventId()
-    {
-        return $this->eventId;
-    }
-
+    
     /**
      * Set title
      *
@@ -198,4 +186,50 @@ class Gallery
         return $result;
         
     }   
+
+    /**
+     * Set eventId
+     *
+     * @param integer $eventId
+     * @return Gallery
+     */
+    public function setEventId($eventId)
+    {
+        $this->eventId = $eventId;
+
+        return $this;
+    }
+
+    /**
+     * Get eventId
+     *
+     * @return integer 
+     */
+    public function getEventId()
+    {
+        return $this->eventId;
+    }
+
+    /**
+     * Set event
+     *
+     * @param \Entertainment\Bundle\RedCarpetBundle\Entity\Event $event
+     * @return Gallery
+     */
+    public function setEvent(\Entertainment\Bundle\RedCarpetBundle\Entity\Event $event = null)
+    {
+        $this->event = $event;
+
+        return $this;
+    }
+
+    /**
+     * Get event
+     *
+     * @return \Entertainment\Bundle\RedCarpetBundle\Entity\Event 
+     */
+    public function getEvent()
+    {
+        return $this->event;
+    }
 }

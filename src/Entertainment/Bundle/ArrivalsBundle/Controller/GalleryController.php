@@ -45,7 +45,8 @@ class GalleryController extends Controller
             $dbGalleryCount= $conn->fetchAll($sql);
             $galleryCount = $dbGalleryCount[0]['count'];
             $positionCount = ++$galleryCount;
-           
+          
+            $image->setEvent($event);
             $image->setEventId($eventId);
             $image->setTitle($title);
             $image->setCredit($credit);
@@ -77,7 +78,7 @@ class GalleryController extends Controller
           $images =  $repository->findBy(
                         array('eventId' => $eventId)
                         );
-            
+          
           return $this->render(
               'EntertainmentArrivalsBundle:Gallery:position.html.twig',
               array('images' => $images)

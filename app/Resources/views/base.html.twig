@@ -16,7 +16,11 @@
 	<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0-rc2/css/bootstrap-glyphicons.css" type="text/css" rel="stylesheet" />
 	
 {% endblock %}
+<style>
+#sortable {float:left;width:500px;margin:0 0 0 50px;display:inline;list-style-type:none}
+#sortable li{color:#003366;font-size:20px;float:left;width:496px;background-color:#fcfcfc;border:2px solid #dddddd;margin:0 50px 2px 0;line-height:50px;text-align:center;display:inline;cursor:move}
 
+</style>
 {% block javascripts %}
 <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
 <script src="http://code.jquery.com/ui/1.10.1/jquery-ui.js"></script>
@@ -31,7 +35,20 @@ $(document).ready(function() {
      "sDom": '<"top"iflp<"clear">>rt<"bottom"iflp<"clear">>'
      });
      
+     $(function() {
+		$( "#sortable" ).sortable();
+		$( "#sortable" ).disableSelection();
+	 });
+	 
+	 $('#savepostion').click(function(event){
+	     var order = $("ul#sortable").sortable("serialize");
+	     alert(order);
+	     
+	
+	    event.preventDefault();
+     });  
 });
+
 </script>
 <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!--[if lt IE 9]>
