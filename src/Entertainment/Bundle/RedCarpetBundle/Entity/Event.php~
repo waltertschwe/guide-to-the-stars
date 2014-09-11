@@ -66,6 +66,14 @@ class Event
      */
     private $isBrackets;
     
+     /**
+     * @var datetime
+     *
+     * @ORM\Column(name="date_time", type="datetime", nullable=true)
+     */
+    
+    private $dateTime;
+    
     
     /**
      * Get id

@@ -66,6 +66,14 @@ class Event
      */
     private $isBrackets;
     
+     /**
+     * @var datetime
+     *
+     * @ORM\Column(name="date_time", type="datetime", nullable=true)
+     */
+    
+    private $dateTime;
+    
     
     /**
      * Get id
@@ -224,5 +232,28 @@ class Event
     public function getEventState()
     {
         return $this->eventState;
+    }
+
+    /**
+     * Set dateTime
+     *
+     * @param \DateTime $dateTime
+     * @return Event
+     */
+    public function setDateTime($dateTime)
+    {
+        $this->dateTime = $dateTime;
+
+        return $this;
+    }
+
+    /**
+     * Get dateTime
+     *
+     * @return \DateTime 
+     */
+    public function getDateTime()
+    {
+        return $this->dateTime;
     }
 }

@@ -39,11 +39,11 @@
 {% for event in events %}
 <tr class="gradeC">
 	<td class="center">{{ event.eventName }}</td>
-	<td class="center">Date</td>
-	<td class="center">Arrivals</td>
+	<td class="center">{{ event.dateTime|date("m/d/Y h:s") }}</td>
+	<td class="center">{{ event.eventState }}</td>
 	<td class="center">
 		 <a href="dashboard/{{ event.id }}" class="link" data-toggle="tooltip" title="To Event Dashboard"><span class="glyphicon glyphicon-home"></a>
-         <a href="config/{{event.id }}" class="link" data-toggle="tooltip" title="To Event Config"><span class="glyphicon glyphicon-circle-arrow-up"></span></a>
+         <a href="config/{{ event.id }}" class="link" data-toggle="tooltip" title="To Event Config"><span class="glyphicon glyphicon-circle-arrow-up"></span></a>
          <a href="events/event-delete.php?event_id=133" class="delbtn" title="Are you sure you want to delete event <blink><b>2013Oscars</b></blink>???"><span class="glyphicon glyphicon-trash"></span></a>	
 	</td>
 </tr>

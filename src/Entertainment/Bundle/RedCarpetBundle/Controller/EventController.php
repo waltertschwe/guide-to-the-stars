@@ -41,7 +41,8 @@ class EventController extends Controller
             $event = new Event();
             $eventName = $request->request->get('event_name');
             $eventShortName = str_replace(' ', '_', $eventName);
-            
+           
+            $event->setDateTime(new \DateTime(date('Y-m-d H:i:s')));
             $event->setEventName($eventName);
             $event->setEventShortName($eventShortName);
             $em = $this->getDoctrine()->getManager();

@@ -75,9 +75,11 @@ class GalleryController extends Controller
           $repository = $this->getDoctrine()
               ->getRepository('EntertainmentArrivalsBundle:Gallery');
           
-          $images =  $repository->findBy(
-                        array('eventId' => $eventId)
-                        );
+          $images = $repository->findBy(
+                        array('eventId' => $eventId),
+                        array('position' => 'DESC')
+                    );
+          
           
           return $this->render(
               'EntertainmentArrivalsBundle:Gallery:position.html.twig',
