@@ -42,7 +42,11 @@ $(document).ready(function() {
 	 });
 	 
 	 $('#savepostion').click(function(event){
-	     var order = $("ul#sortable").sortable("serialize");
+	     var data = $("ul#sortable").sortable("serialize");
+	     alert("about to post data" + data);
+	     $.post("{{ path('entertainment_arrivals_gallery_ajaxposition') }} ",data,function(theResponse){
+			alert("Success");
+			});
 	     alert(order);
 	    event.preventDefault();
      });

@@ -68,3 +68,14 @@ swiftmailer:
     username:  "%mailer_user%"
     password:  "%mailer_password%"
     spool:     { type: memory }
+
+monolog:
+    handlers:
+        main:
+            type:     stream
+            path:     /var/www/red-carpet/app/logs/symfony.log
+            channels: ["!doctrine"]
+        doctrine:
+            type:     stream
+            path:     /var/www/red-carpet/app/logs/doctrine.log
+            channels: [doctrine]

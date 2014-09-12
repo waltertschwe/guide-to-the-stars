@@ -7,6 +7,9 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\JsonResponse;
+
 use Entertainment\Bundle\ArrivalsBundle\Entity\Gallery;
 
 class GalleryController extends Controller
@@ -71,7 +74,9 @@ class GalleryController extends Controller
      */
     public function positionAction($eventId)
     {
-        
+                
+          $logger = $this->get('logger');
+          
           $repository = $this->getDoctrine()
               ->getRepository('EntertainmentArrivalsBundle:Gallery');
           
@@ -79,12 +84,72 @@ class GalleryController extends Controller
                         array('eventId' => $eventId),
                         array('position' => 'DESC')
                     );
+                    
+          $request = $this->get('request');
           
-          
+          if ($request->isMethod('POST')) {
+              $logger->info("POSTITION POST = " . var_dump($request)); 
+          }
+         
           return $this->render(
               'EntertainmentArrivalsBundle:Gallery:position.html.twig',
               array('images' => $images)
           );
+    }
+
+     /**
+     * @Route("/arrivals/ajax-position")
+     * @Template()
+     */
+    public function ajaxPositionAction(Request $request) 
+    {
+            
+        $logger = $this->get('logger');
+        $logger->info("AJAX Request : About to Re-Order Gallery Positions ");
+        $data = $request->request->get('request');
+        $logger->info("POST DATA = " . var_dump($data));
+        
+        $testArray = array("foo" => "bar");
+        $logger->info("test log" . print_r($testArray));
+        
+        if ($request->isMethod('POST')) {
+            
+        }
+        
+        return new Response('Hello');
+    }
+    
+    
+    /**
+     * @Route("/rest/arrivals/{$eventId}")
+     * @Template()
+     */
+    public function arrivalsGetAction($eventId) 
+    {
+                
+        $results = array();
+        $results['feed_id'] = 1;
+        $results['feed_name'] = "arrivalsFeed";
+        $results['photos'][0]['title'] = 'Beyonce';
+        $results['photos'][1]['title'] = 'JayZ';
+        
+        
+                
+        $repository = $this->getDoctrine()
+              ->getRepository('EntertainmentArrivalsBundle:Gallery');    
+        
+        $images = $repository->findBy(
+                        array('eventId' => $eventId),
+                        array('position' => 'DESC')
+                    );
+        
+        
+        $response = new Response();
+         //$response->headers->set('Content-Type', 'application/json');
+        $response->setContent(json_encode($results));
+       
+        
+        return $response;
     }
 
 }

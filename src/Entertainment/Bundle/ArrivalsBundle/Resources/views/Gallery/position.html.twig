@@ -10,12 +10,9 @@
 <div class="row">
 	<div class="col-md-8">
 <ul id="sortable">
-	
 {% for image in images %}
-
-	<!-- <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>{{image.imageName}}<a href=""><span class="glyphicon glyphicon-trash"></span></a></li> -->
 	<li id="{{ image.event.eventId }}_{{image.id}}"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>{{image.title}}
-		<a href=""><span style="padding: 10px 10px 0; float: right;" class="glyphicon glyphicon-trash float: right;"></span></a></li>
+    <a href=""><span style="padding: 10px 10px 0; float: right;" class="glyphicon glyphicon-trash float: right;"></span></a></li>
 {% endfor %}
 </ul>
 </div>
@@ -25,7 +22,4 @@
 	</div>
 </div>
 </div>
-
-
-
 {% endblock %}
