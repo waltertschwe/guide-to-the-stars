@@ -121,19 +121,24 @@ class GalleryController extends Controller
     
     
     /**
-     * @Route("/rest/arrivals/{$eventId}")
+     * @Route("/rest/arrivals/{eventId}")
      * @Template()
      */
     public function arrivalsGetAction($eventId) 
     {
-                
+         
+        $eventId = 1;       
         $results = array();
         $results['feed_id'] = 1;
         $results['feed_name'] = "arrivalsFeed";
         $results['photos'][0]['title'] = 'Beyonce';
+        $results['photos'][0]['credit'] = 'adsfdas';
         $results['photos'][1]['title'] = 'JayZ';
+        $results['photos'][0]['fullsize']['url'] = "http://img5.timeinc.net/people/static/common/gallerytool/img/2014vma/167_3284_350.jpg";
+        $results['photos'][0]['fullsize']['width'] = 350;
         
-        
+         
+  
                 
         $repository = $this->getDoctrine()
               ->getRepository('EntertainmentArrivalsBundle:Gallery');    
