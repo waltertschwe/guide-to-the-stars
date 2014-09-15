@@ -50,7 +50,8 @@ $(document).ready(function() {
 	     	data: data,
 	     	//dataType: "json",
 	     	success : function(theResponse){
-				alert("Success");
+				alert("Success: Image Order Updated");
+				location.reload();
 			},
     		error: function(XMLHttpRequest, textStatus, errorThrown) { 
        		    alert("Status: " + textStatus); alert("Error: " + errorThrown); 

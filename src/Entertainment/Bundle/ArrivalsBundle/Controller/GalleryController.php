@@ -87,13 +87,7 @@ class GalleryController extends Controller
           
           $em = $this->getDoctrine()->getManager();
           $event = $em->getRepository('EntertainmentRedCarpetBundle:Event')->find($eventId);
-                   
-          $request = $this->get('request');
-          
-          if ($request->isMethod('POST')) {
-              $logger->info("POSTITION POST = " . var_dump($request)); 
-          }
-         
+                 
           return $this->render(
               'EntertainmentArrivalsBundle:Gallery:position.html.twig',
               array('images' => $images, 'event' => $event)
@@ -104,26 +98,39 @@ class GalleryController extends Controller
      * @Route("/arrivals/ajax-position")
      * @Template()
      */
-    public function ajaxPositionAction(Request $request) 
+    public function ajaxPositionAction() 
     {
         
         $data = $_POST;
-        $logger = $this->get('logger');
-        $testArray = array("foo" => "bar");
-        $logger->info("TEST ARRAY DUMP");
-        $logger->info(var_export($testArray, true));  
-        $logger->info("I AM HERE IN AJAXPOSITION ACTION");
-        $logger->info(var_export($data, true));
-        
-        foreach($data as $eventId => $imageIds) {
-            $logger->info("eventId = " . $eventId);
-            $totalImages = count($imageIds);
-            $logger->info("total image ids = " . $totalImages);
-            foreach($imageIds as $imageId) {
-                $logger->info("image ID = " . $imageId);
+        if($data) {
+            $logger = $this->get('logger');
+           
+            
+            $logger->info("I AM HERE IN AJAXPOSITION ACTION");
+            $logger->info(var_export($data, true));
+            
+            $em = $this->getDoctrine()->getManager();
+            //$repository = $this->getDoctrine()
+            //  ->getRepository('EntertainmentArrivalsBundle:Gallery');
+            
+            foreach($data as $eventId => $imageIds) {
+                $logger->info("eventId = " . $eventId);
+                $totalImages = count($imageIds);
+                $logger->info("total image ids = " . $totalImages);
+                foreach($imageIds as $imageId) {
+                     
+                    $image = $em->getRepository('EntertainmentArrivalsBundle:Gallery')
+                                ->find(array ('eventId' => $eventId,  
+                                              'id' => $imageId));
+                   
+                    $image->setPosition($totalImages);
+                    $logger->info("IMAGE OBJECT = " . var_export($image, true));
+                    $totalImages--;
+                    $em->flush();
+                }
             }
-        }
         
+        }
        
         return new Response("finished");
     }
