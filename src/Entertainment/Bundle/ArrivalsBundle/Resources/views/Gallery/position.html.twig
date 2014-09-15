@@ -11,7 +11,8 @@
 	<div class="col-md-8">
 <ul id="sortable">
 {% for image in images %}
-	<li id="{{ image.event.eventId }}_{{image.id}}"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>{{image.title}}
+	<li id="{{ image.event.eventId }}_{{image.id}}"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>
+	 {{image.title}}
     <a href=""><span style="padding: 10px 10px 0; float: right;" class="glyphicon glyphicon-trash float: right;"></span></a></li>
 {% endfor %}
 </ul>

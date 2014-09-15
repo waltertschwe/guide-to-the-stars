@@ -44,13 +44,19 @@ $(document).ready(function() {
 	 $('#savepostion').click(function(event){
 	     var data = $("ul#sortable").sortable("serialize");
 	     alert("about to post data" + data);
-	     $.post("{{ path('entertainment_arrivals_gallery_ajaxposition') }} ",data,function(theResponse){
-			alert("Success");
-			});
-	     alert(order);
-	    event.preventDefault();
-     });
-       
+	     $.ajax({
+	     	url: "{{ path('entertainment_arrivals_gallery_ajaxposition') }} ",
+	     	type: "POST",
+	     	data: data,
+	     	//dataType: "json",
+	     	success : function(theResponse){
+				alert("Success");
+			},
+    		error: function(XMLHttpRequest, textStatus, errorThrown) { 
+       		    alert("Status: " + textStatus); alert("Error: " + errorThrown); 
+            }       
+      	});
+   	});
      $('.collapse').collapse()
 });
 

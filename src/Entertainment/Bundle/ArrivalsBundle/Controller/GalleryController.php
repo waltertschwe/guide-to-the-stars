@@ -106,20 +106,20 @@ class GalleryController extends Controller
      */
     public function ajaxPositionAction(Request $request) 
     {
-            
+        /*
         $logger = $this->get('logger');
-        $logger->info("AJAX Request : About to Re-Order Gallery Positions ");
-        $data = $request->request->get('request');
-        $logger->info("POST DATA = " . var_dump($data));
-        
         $testArray = array("foo" => "bar");
-        $logger->info("test log" . print_r($testArray));
+        $logger->info("TEST ARRAY DUMP");
+        $logger->info(var_export($testArray, true));  
+        $logger->info("I AM HERE IN AJAXPOSITION ACTION");
         
-        if ($request->isMethod('POST')) {
-            
-        }
-        
-        return new Response('Hello');
+        $eventId = 6; 
+        $data = $request->request->get('request');
+        $logger->info("AJAX DATA");
+        $logger->info(var_export($data, true));  
+        var_dump($data);
+         */
+        return new Response("finished");
     }
     
     
@@ -133,13 +133,7 @@ class GalleryController extends Controller
         $eventId = 6;       
         $results = array();
         $results['feed_id'] = 1;
-        $results['feed_name'] = "arrivalsFeed";
-       # $results['photos'][0]['title'] = 'Beyonce';
-       # $results['photos'][0]['credit'] = 'adsfdas';
-       # $results['photos'][1]['title'] = 'JayZ';
-       # $results['photos'][0]['fullsize']['url'] = "http://img5.timeinc.net/people/static/common/gallerytool/img/2014vma/167_3284_350.jpg";
-       # $results['photos'][0]['fullsize']['width'] = 350;
-                     
+        $results['feed_name'] = "arrivalsFeed";                
         $repository = $this->getDoctrine()
               ->getRepository('EntertainmentArrivalsBundle:Gallery');    
         
