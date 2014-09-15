@@ -77,14 +77,17 @@ class GalleryController extends Controller
                 
           $logger = $this->get('logger');
           
-          $repository = $this->getDoctrine()
+          $imageRepository = $this->getDoctrine()
               ->getRepository('EntertainmentArrivalsBundle:Gallery');
           
-          $images = $repository->findBy(
+          $images = $imageRepository->findBy(
                         array('eventId' => $eventId),
                         array('position' => 'DESC')
                     );
-                    
+          
+          $em = $this->getDoctrine()->getManager();
+          $event = $em->getRepository('EntertainmentRedCarpetBundle:Event')->find($eventId);
+                   
           $request = $this->get('request');
           
           if ($request->isMethod('POST')) {
@@ -93,7 +96,7 @@ class GalleryController extends Controller
          
           return $this->render(
               'EntertainmentArrivalsBundle:Gallery:position.html.twig',
-              array('images' => $images)
+              array('images' => $images, 'event' => $event)
           );
     }
 
@@ -127,19 +130,16 @@ class GalleryController extends Controller
     public function arrivalsGetAction($eventId) 
     {
          
-        $eventId = 1;       
+        $eventId = 6;       
         $results = array();
         $results['feed_id'] = 1;
         $results['feed_name'] = "arrivalsFeed";
-        $results['photos'][0]['title'] = 'Beyonce';
-        $results['photos'][0]['credit'] = 'adsfdas';
-        $results['photos'][1]['title'] = 'JayZ';
-        $results['photos'][0]['fullsize']['url'] = "http://img5.timeinc.net/people/static/common/gallerytool/img/2014vma/167_3284_350.jpg";
-        $results['photos'][0]['fullsize']['width'] = 350;
-        
-         
-  
-                
+       # $results['photos'][0]['title'] = 'Beyonce';
+       # $results['photos'][0]['credit'] = 'adsfdas';
+       # $results['photos'][1]['title'] = 'JayZ';
+       # $results['photos'][0]['fullsize']['url'] = "http://img5.timeinc.net/people/static/common/gallerytool/img/2014vma/167_3284_350.jpg";
+       # $results['photos'][0]['fullsize']['width'] = 350;
+                     
         $repository = $this->getDoctrine()
               ->getRepository('EntertainmentArrivalsBundle:Gallery');    
         
@@ -148,9 +148,17 @@ class GalleryController extends Controller
                         array('position' => 'DESC')
                     );
         
+        $imageCounter = 0;
+        foreach($images as $image) {
+            $results['photos'][$imageCounter]['title'] = $image->getTitle();
+            $results['photos'][$imageCounter]['credit'] = $image->getCredit();
+            $results['photos'][$imageCounter]['fullsize']['url'] = $image->getImageName();
+            $results['photos'][$imageCounter]['fullsize']['width'] = 350; 
+            
+            $imageCounter++;
+        }
         
         $response = new Response();
-         //$response->headers->set('Content-Type', 'application/json');
         $response->setContent(json_encode($results));
        
         

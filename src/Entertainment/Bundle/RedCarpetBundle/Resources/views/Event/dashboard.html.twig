@@ -13,7 +13,7 @@
             </div>
             <div class="panel-body">
                 <a href="{{ path('entertainment_arrivals_gallery_create', {'eventId': event.id}) }}">Create Arrivals</a><br/>
-        	    <a href="">Published Arrivals</a>
+        	    <a href="{{ path('entertainment_arrivals_gallery_position', {'eventId': event.id}) }}">Published Arrivals</a>
             </div>
           </div>
           {% endif %}
