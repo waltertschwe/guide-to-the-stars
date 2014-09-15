@@ -1,12 +1,6 @@
-<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+<div class="navbar navbar-fixed-top" role="navigation">
   <div class="container-fluid">
     <div class="navbar-header">
-     <button type="button"  class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
       <a class="navbar-brand" href="#"><img src="{{ asset('bundles/entertainmentguidetothestars/img/people-logo-new.png') }}" alt="People.com" /></a>
     </div>
     <div class="navbar-collapse collapse">
@@ -14,20 +8,22 @@
           <li><a href="{{ path('entertainment_redcarpet_event_index') }}">View All Events</a></li>
       </ul>
         {% if event is defined %}
-        <ul class="nav navbar-nav navbar-right">
-        <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ event.eventName }} <span class="caret"></span></a>
-              <ul class="dropdown-menu" role="menu">
-                <li><a href="{{ path('entertainment_redcarpet_event_config', {'eventId': event.id}) }}">Event Config</a></li>
-                <li class="divider"></li>
-                <li class="dropdown-header">Applications Activated</li>
-                 {% if event.isArrivals %} <li><a href="#">Arrivals</a></li>{% endif %}
-                 {% if event.isGuideToStars %} <li><a href="#">Guide To The Stars</a></li>{% endif %}
-                 {% if event.isBrackets %} <li><a href="#">Bracketology</a></li>{% endif %}
-              </ul>
+        <ul class="nav navbar-nav">
+            <li class="dropdown">
+	              <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ event.eventName }} <span class="caret"></span></a>
+	              <ul class="dropdown-menu" role="menu">
+	                <li><a href="{{ path('entertainment_redcarpet_event_config', {'eventId': event.id}) }}">Event Config</a></li>
+	                <li class="divider"></li>
+	                <li class="dropdown-header">Applications Activated</li>
+	                 {% if event.isArrivals %} <li><a href="#">Arrivals</a></li>{% endif %}
+	                 {% if event.isGuideToStars %} <li><a href="#">Guide To The Stars</a></li>{% endif %}
+	                 {% if event.isBrackets %} <li><a href="#">Bracketology</a></li>{% endif %}
+	              </ul>
             </li>
          </ul>
          {% endif %}
     </div><!--/.nav-collapse -->
   </div>
 </div>
+
+ 

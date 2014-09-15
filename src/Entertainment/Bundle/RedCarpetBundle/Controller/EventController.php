@@ -6,6 +6,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
+use Symfony\Component\HttpFoundation\Session\Session;
+
 use Symfony\Component\HttpFoundation\Response;
 use Entertainment\Bundle\RedCarpetBundle\Entity\Event;
 
@@ -48,6 +50,11 @@ class EventController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($event);
             $em->flush();
+            
+            ## Flash message success of event creation
+            $session = new Session();
+            $session->getFlashBag()->add('notice', 'Success. Event created');
+            
         }
         
         
