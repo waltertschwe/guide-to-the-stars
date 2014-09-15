@@ -106,19 +106,25 @@ class GalleryController extends Controller
      */
     public function ajaxPositionAction(Request $request) 
     {
-        /*
+        
+        $data = $_POST;
         $logger = $this->get('logger');
         $testArray = array("foo" => "bar");
         $logger->info("TEST ARRAY DUMP");
         $logger->info(var_export($testArray, true));  
         $logger->info("I AM HERE IN AJAXPOSITION ACTION");
+        $logger->info(var_export($data, true));
         
-        $eventId = 6; 
-        $data = $request->request->get('request');
-        $logger->info("AJAX DATA");
-        $logger->info(var_export($data, true));  
-        var_dump($data);
-         */
+        foreach($data as $eventId => $imageIds) {
+            $logger->info("eventId = " . $eventId);
+            $totalImages = count($imageIds);
+            $logger->info("total image ids = " . $totalImages);
+            foreach($imageIds as $imageId) {
+                $logger->info("image ID = " . $imageId);
+            }
+        }
+        
+       
         return new Response("finished");
     }
     
