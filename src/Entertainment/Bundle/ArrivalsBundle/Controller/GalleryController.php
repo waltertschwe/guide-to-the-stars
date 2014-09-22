@@ -60,9 +60,10 @@ class GalleryController extends Controller
             
             $em = $this->getDoctrine()->getManager();
             $em->persist($image);
-            $em->flush();
+            $em->flush();  
+           
         }
-        
+      
         return $this->render(
             'EntertainmentArrivalsBundle:Gallery:create.html.twig',
             array ('event' => $event)
@@ -122,7 +123,7 @@ class GalleryController extends Controller
           
         $em = $this->getDoctrine()->getManager();
         $event = $em->getRepository('EntertainmentRedCarpetBundle:Event')->find($eventId);
-                 
+                
         return $this->render(
             'EntertainmentArrivalsBundle:Gallery:position.html.twig',
             array('images' => $images, 'event' => $event)
@@ -162,12 +163,16 @@ class GalleryController extends Controller
                     $logger->info("IMAGE OBJECT = " . var_export($image, true));
                     $totalImages--;
                     $em->flush();
+                    
                 }
             }
         
         }
+
+        $session = new Session();
+        $session->getFlashBag()->add('notice', 'Success! The Arrivlas ordering has been updated.');
        
-        return new Response("finished");
+        return new Response("positions updated");
     }
     
     

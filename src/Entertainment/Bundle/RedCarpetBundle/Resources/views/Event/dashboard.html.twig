@@ -13,7 +13,12 @@
             </div>
             <div class="panel-body">
                 <a href="{{ path('entertainment_arrivals_gallery_create', {'eventId': event.id}) }}">Create Arrivals</a><br/>
-        	    <a href="{{ path('entertainment_arrivals_gallery_position', {'eventId': event.id}) }}">Published Arrivals</a>
+        	    <a href="{{ path('entertainment_arrivals_gallery_position', {'eventId': event.id}) }}">Published Arrivals</a><br/>
+        	    <hr/>
+        	    <h4>Most Recent Arrivals</h4>
+        	    {% for image in images %}
+        	    	{{ image.title }} <br/>
+        	    {% endfor %}
             </div>
           </div>
           {% endif %}
@@ -44,8 +49,8 @@
               <h3 class="panel-title"><span class="glyphicon glyphicon-link"></span>&nbsp;JSON Feeds</h3>
             </div>
             <div class="panel-body">
-               <a href="http://www.people.com/people/static/common/gallerytool/json/2014_oscar_test/config.json" target="_blank">Config</a><br/>
-               <a href="http://www.people.com/people/static/common/gallerytool/json/2014_oscar_test/photos.json" target="_blank">Arrival</a><br/>
+               <a href="" target="_blank">Config</a><br/>
+               <a href="" target="_blank">Arrival</a><br/>
             </div>
           </div>
          

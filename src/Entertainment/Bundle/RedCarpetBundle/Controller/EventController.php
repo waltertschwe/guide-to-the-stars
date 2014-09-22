@@ -26,6 +26,7 @@ class EventController extends Controller
              ->getRepository('EntertainmentRedCarpetBundle:Event');
              
          $events = $repository->findAll();
+         $request = $this->get('request');
         
          return $this->render(
             'EntertainmentRedCarpetBundle:Event:index.html.twig',
@@ -50,10 +51,19 @@ class EventController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($event);
             $em->flush();
-            
+           
             $session = new Session();
-            $session->getFlashBag()->add('notice', 'Success. Event created');
+            $session->getFlashBag()->add('notice', 'Success! Event created');
+            $lastEventId = $event->getId();
             
+            $repository = $this->getDoctrine()
+             ->getRepository('EntertainmentRedCarpetBundle:Event'); 
+            $events = $repository->findAll();
+        
+            return $this->render(
+                'EntertainmentRedCarpetBundle:Event:index.html.twig',
+                array('events' => $events, 'lastEventId' => $lastEventId)
+            );     
         }
         
         return $this->redirect($this->generateUrl('entertainment_redcarpet_event_index'));
@@ -68,17 +78,26 @@ class EventController extends Controller
         $event = $this->getDoctrine()
         ->getRepository('EntertainmentRedCarpetBundle:Event')
         ->find($eventId);
-
-        if (!$eventId) {
-            throw $this->createNotFoundException(
-                'No event id found '.$eventId
-            );
-        }
+        
+        $repository = $this->getDoctrine()
+              ->getRepository('EntertainmentArrivalsBundle:Gallery');    
        
+        $limit = 3; 
+        $images = $repository->findBy(
+                        array('eventId' => $eventId),
+                        array('position' => 'DESC'),
+                        $limit
+                    );
+       
+       if (!$eventId) {
+           throw $this->createNotFoundException(
+               'No event id found '.$eventId
+           );
+       }
        
        return $this->render(
             'EntertainmentRedCarpetBundle:Event:dashboard.html.twig',
-            array('event' => $event)           
+            array('event' => $event, 'images' => $images)           
         );
     } 
     
@@ -129,7 +148,7 @@ class EventController extends Controller
        return $this->render(
             'EntertainmentRedCarpetBundle:Event:config.html.twig',
             array('event' => $event)           
-        );
+       );
     }
     
    

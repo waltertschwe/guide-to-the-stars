@@ -43,14 +43,12 @@ $(document).ready(function() {
 	 
 	 $('#savepostion').click(function(event){
 	     var data = $("ul#sortable").sortable("serialize");
-	     alert("about to post data" + data);
 	     $.ajax({
 	     	url: "{{ path('entertainment_arrivals_gallery_ajaxposition') }} ",
 	     	type: "POST",
 	     	data: data,
 	     	//dataType: "json",
 	     	success : function(theResponse){
-				alert("Success: Image Order Updated");
 				location.reload();
 			},
     		error: function(XMLHttpRequest, textStatus, errorThrown) { 

@@ -1,6 +1,13 @@
 {% extends '::base.html.twig' %}
 {% block body %}
 {{ include('::nav.html.twig') }}
+{% for flashMessage in app.session.flashbag.get('notice') %}
+  <div class="alert alert-success">  
+    	<a class="close" data-dismiss="alert">×</a>  
+        {{ flashMessage }}
+        <b><a href="{{ path('entertainment_redcarpet_event_dashboard', {'eventId': event.id}) }}">Click Here</a></b> to return to Event Dashboard.
+    </div>
+{% endfor %}
 <div class="container">
 <div class="page-header">
 	<h1>Arrivals Ordering <font color="blue"><a href="">{{ event.eventName }}</a></font></h1>
