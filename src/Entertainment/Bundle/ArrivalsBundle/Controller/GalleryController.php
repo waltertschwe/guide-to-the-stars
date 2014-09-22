@@ -9,6 +9,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Session\Session;
 
 use Entertainment\Bundle\ArrivalsBundle\Entity\Gallery;
 
@@ -90,6 +91,8 @@ class GalleryController extends Controller
            $image->setTitle($title);
            $image->setCredit($credit);
            $em->flush();
+           $session = new Session();
+           $session->getFlashBag()->add('notice', 'Your Image Info has been updated.');
            
        }
                         
@@ -100,7 +103,6 @@ class GalleryController extends Controller
                   
     }
 
-    
     /**
      * @Route("/arrivals/{eventId}/position")
      * @Template()
@@ -108,23 +110,23 @@ class GalleryController extends Controller
     public function positionAction($eventId)
     {
                 
-          $logger = $this->get('logger');
+        $logger = $this->get('logger');
           
-          $imageRepository = $this->getDoctrine()
+        $imageRepository = $this->getDoctrine()
               ->getRepository('EntertainmentArrivalsBundle:Gallery');
           
-          $images = $imageRepository->findBy(
-                        array('eventId' => $eventId),
-                        array('position' => 'DESC')
-                    );
+        $images = $imageRepository->findBy(
+                      array('eventId' => $eventId),
+                      array('position' => 'DESC')
+                  );
           
-          $em = $this->getDoctrine()->getManager();
-          $event = $em->getRepository('EntertainmentRedCarpetBundle:Event')->find($eventId);
+        $em = $this->getDoctrine()->getManager();
+        $event = $em->getRepository('EntertainmentRedCarpetBundle:Event')->find($eventId);
                  
-          return $this->render(
-              'EntertainmentArrivalsBundle:Gallery:position.html.twig',
-              array('images' => $images, 'event' => $event)
-          );
+        return $this->render(
+            'EntertainmentArrivalsBundle:Gallery:position.html.twig',
+            array('images' => $images, 'event' => $event)
+        );
     }
 
      /**

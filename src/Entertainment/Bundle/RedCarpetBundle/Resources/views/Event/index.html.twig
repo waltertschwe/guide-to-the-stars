@@ -1,19 +1,12 @@
 {% extends '::base.html.twig' %}
 {% block body %}
 {{ include('::nav.html.twig') }}
-
-
 {% for flashMessage in app.session.flashbag.get('notice') %}
   <div class="alert alert-success">  
     	<a class="close" data-dismiss="alert">×</a>  
         {{ flashMessage }}
     </div>
 {% endfor %}
-
-  	
-   
-
-
 <div class="container">
 	<div class="page-header">
 	    <h1>Red Carpet Live</h1>

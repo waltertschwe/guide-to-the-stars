@@ -51,12 +51,10 @@ class EventController extends Controller
             $em->persist($event);
             $em->flush();
             
-            ## Flash message success of event creation
             $session = new Session();
             $session->getFlashBag()->add('notice', 'Success. Event created');
             
         }
-        
         
         return $this->redirect($this->generateUrl('entertainment_redcarpet_event_index'));
     }
@@ -117,6 +115,8 @@ class EventController extends Controller
             $event->setIsBrackets($isBrackets);
           
             $em->flush();
+            $session = new Session();
+            $session->getFlashBag()->add('notice', 'Success. Event Config Updated');
             
         } 
           

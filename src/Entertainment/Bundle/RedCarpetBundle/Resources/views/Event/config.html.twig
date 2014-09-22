@@ -1,12 +1,18 @@
 {% extends '::base.html.twig' %}
 {% block body %}
 {{ include('::nav.html.twig') }}
+{% for flashMessage in app.session.flashbag.get('notice') %}
+  <div class="alert alert-success">  
+    	<a class="close" data-dismiss="alert">×</a>  
+        {{ flashMessage }}
+        <b><a href="{{ path('entertainment_redcarpet_event_dashboard', {'eventId': event.id}) }}">Click Here</a></b> to return to Event Dashboard.
+    </div>
+{% endfor %}
 <div class="container">
 <div class="page-header">
-	<h1>Event Config - <font color="blue"><a href="../dashboard/{{ event.eventId }}">{{ event.eventName }}</a></font></h1>
+	<h1>Event Config - <font color="blue"><a href="{{ path('entertainment_redcarpet_event_dashboard', {'eventId': event.id}) }}">{{ event.eventName }}</a></font></h1>
 </div>
 </div>
-
 <div class="container">
 <div class="row">
 	<div class="col-md-6">
@@ -16,12 +22,9 @@
 			<label class="col-sm-4 control-label">Site State</label>
 			<div class="col-xs-6">
 		        <select class="form-control" name="site-state" id="is-lite" size="1">
-		             <option value="fancam" {% if event.eventState == "fancam" %} selected {% endif %}>Fan Cam</option>
-		             <option value="livestream" {% if event.eventState == "livestream" %} selected {% endif %}>Live Stream</option>
 		             <option value="arrivals" {% if event.eventState == "arrivals" %} selected {% endif %}>Arrivals</option>
 		             <option value="arrivals-video" {% if event.eventState == "arrivals-video" %} selected {% endif %}>Arrivals - Video</option>
 		             <option value="coverage" {% if event.eventState == "coverage" %} selected {% endif %}>Coverage</option>
-		             <option value="coverage-2" {% if event.eventState == "coverage-2" %} selected {% endif %}>Coverage 2</option>
 		        </select>
 		    </div>
 		</div>
