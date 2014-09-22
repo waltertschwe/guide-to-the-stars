@@ -38,6 +38,7 @@ class GalleryController extends Controller
             
             $image = new Gallery();
             
+            ## TODO: put in model
             $conn = $this->get('database_connection');
             $sql = " 
                 SELECT count(*) as count
@@ -61,12 +62,34 @@ class GalleryController extends Controller
             $em->flush();
         }
         
-        
+        var_dump($event);
+        exit();
         return $this->render(
             'EntertainmentArrivalsBundle:Gallery:create.html.twig',
             array ('event' => $event)
         );
     }
+
+    /**
+     * @Route("/arrivals/upload/{arrivalId}")
+     * @Template()
+    */
+    public function updateAction($arrivalId) {
+           
+       $image = $this->getDoctrine()
+        ->getRepository('EntertainmentArrivalsBundle:Gallery')
+        ->find($arrivalId);      
+       
+       ## get event data from image object
+       $event = $image->getEvent();
+                        
+       return $this->render(
+            'EntertainmentArrivalsBundle:Gallery:update.html.twig',
+            array ('image' => $image, 'event' => $event)
+        );             
+                  
+    }
+
     
     /**
      * @Route("/arrivals/{eventId}/position")

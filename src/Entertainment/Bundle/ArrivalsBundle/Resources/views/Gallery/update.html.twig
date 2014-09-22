@@ -1,0 +1,52 @@
+{% extends '::base.html.twig' %}
+{% block body %}
+{{ include('::nav.html.twig') }}
+
+<div class="container">
+<h1>Event Name:  {{ event.eventName }}</h1>
+<div id="nav">
+	<p style="float:left;">
+        <!-- LEFT NAV GOES HERE -->	
+	</p>
+</div>
+</div>
+<div class="container">
+<div class="row">
+  <div class="col-md-6"><form method="post" action="" enctype="multipart/form-data" class="form-horizontal" role="form">
+	<input type="hidden" name="event-id" value="{{ event.eventId }}"/>
+	<div class="form-group">
+	<label for="title" class="col-sm-2 control-label"></label>
+		<div class="col-xs-9">
+		<input class="form-control input-lg" type="text" name="title" id="title" value="{{ image.title }}"  size="60" required="required" placeholder="Headline" />
+		</div>
+	</div>
+	<div class="form-group">
+	<label for="credit" class="col-sm-2 control-label"></label>
+		<div class="col-xs-9">
+		<input class="form-control input-lg" type="text" name="credit" id="credit" value="{{ image.credit }}"  size="60" placeholder="Credit "/>
+		</div>
+	</div>
+	<div class="form-group">
+   		<div class="col-sm-offset-2 col-sm-10"> 
+			<button name="submit" value="Save" type="submit" class="btn btn-lg btn-primary">Save</button>&nbsp;&nbsp;
+		</div>
+  	</div>
+	
+	</div>
+  <div class="col-md-6"> 
+  	<div class="fileinput fileinput-new pull-left" data-provides="fileinput">
+  		 <div>
+    <span class="btn btn-default btn-file"><span class="fileinput-new">Select image</span><span class="fileinput-exists">Change</span>
+    <input type="file" name="arrival-image" required="required">
+    </span>
+    <a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
+  </div>
+  <div class="fileinput-new thumbnail" style="width: 350px; height: 700px;">
+    <img src="http://placehold.it/350x700" alt="No File Selected">
+  </div>
+  <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 350px; max-height: 700px;"></div>
+	</div>
+	  </div>
+  </div>
+</div>
+{% endblock %}
