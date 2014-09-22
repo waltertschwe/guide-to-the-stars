@@ -25,7 +25,7 @@ class GalleryController extends Controller
         $event = $this->getDoctrine()
         ->getRepository('EntertainmentRedCarpetBundle:Event')
         ->find($eventId);
-       
+        
         $request = $this->get('request');
         if ($request->isMethod('POST')) {
             $eventId = $request->request->get('event-id');
@@ -65,10 +65,18 @@ class GalleryController extends Controller
             $session->getFlashBag()->add('notice', 'Success! Arrival created.');
            
         }
+
+        $imageRepository = $this->getDoctrine()
+              ->getRepository('EntertainmentArrivalsBundle:Gallery');
+              
+        $images = $imageRepository->findBy(
+                     array('eventId' => $eventId),
+                     array('position' => 'DESC')
+                 );
       
         return $this->render(
             'EntertainmentArrivalsBundle:Gallery:create.html.twig',
-            array ('event' => $event)
+            array ('event' => $event, 'images' => $images)
         );
     }
 
