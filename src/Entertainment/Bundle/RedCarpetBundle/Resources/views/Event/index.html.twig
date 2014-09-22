@@ -5,7 +5,7 @@
   <div class="alert alert-success">  
     	<a class="close" data-dismiss="alert">×</a>  
         {{ flashMessage }}
-        <b><a href="">Click Here</a> to configure your event.</b>
+        <b><a href="{{ path('entertainment_redcarpet_event_config', {'eventId': lastEventId}) }}">Click Here</a> to configure your event.</b>
     </div>
 {% endfor %}
 <div class="container">
@@ -49,8 +49,8 @@
 	<td class="center">{{ event.dateTime|date("m/d/Y h:s") }}</td>
 	<td class="center">{{ event.eventState }}</td>
 	<td class="center">
-		 <a href="dashboard/{{ event.id }}" class="link" data-toggle="tooltip" title="To Event Dashboard"><span class="glyphicon glyphicon-home"></a>
-         <a href="config/{{ event.id }}" class="link" data-toggle="tooltip" title="To Event Config"><span class="glyphicon glyphicon-circle-arrow-up"></span></a>
+		 <a href="{{ path('entertainment_redcarpet_event_dashboard', {'eventId': event.id}) }}" class="link" data-toggle="tooltip" title="To Event Dashboard"><span class="glyphicon glyphicon-home"></a>
+         <a href="{{ path('entertainment_redcarpet_event_config', {'eventId': event.id}) }}" class="link" data-toggle="tooltip" title="To Event Config"><span class="glyphicon glyphicon-circle-arrow-up"></span></a>
          <a href="events/event-delete.php?event_id=133" class="delbtn" title="Are you sure you want to delete event <blink><b>2013Oscars</b></blink>???"><span class="glyphicon glyphicon-trash"></span></a>	
 	</td>
 </tr>

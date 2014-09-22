@@ -1,6 +1,13 @@
 {% extends '::base.html.twig' %}
 {% block body %}
 {{ include('::nav.html.twig') }}
+{% for flashMessage in app.session.flashbag.get('notice') %}
+  <div class="alert alert-success">  
+    	<a class="close" data-dismiss="alert">×</a>  
+        {{ flashMessage }}
+        <b><a href="">Click Here</a></b> to order your arrivals.
+    </div>
+{% endfor %}
 
 <div class="container">
 <h1>Event Name:  {{ event.eventName }}</h1>
@@ -13,28 +20,28 @@
 
 <div class="container">
 <div class="row">
-  <div class="col-md-6"><form method="post" action="" enctype="multipart/form-data" class="form-horizontal" role="form">
+  <div class="col-xs-6 col-sm-4"><form method="post" action="" enctype="multipart/form-data" class="form-horizontal" role="form">
 	<input type="hidden" name="event-id" value="{{ event.eventId }}"/>
 	<div class="form-group">
-	<label for="title" class="col-sm-2 control-label"></label>
+	<label for="title" class="col-sm-4 control-label"></label>
 		<div class="col-xs-9">
 		<input class="form-control input-lg" type="text" name="title" id="title" value=""  size="60" required="required" placeholder="Headline" />
 		</div>
 	</div>
 	<div class="form-group">
-	<label for="credit" class="col-sm-2 control-label"></label>
+	<label for="credit" class="col-sm-4 control-label"></label>
 		<div class="col-xs-9">
 		<input class="form-control input-lg" type="text" name="credit" id="credit" value=""  size="60" placeholder="Credit "/>
 		</div>
 	</div>
 	<div class="form-group">
-   		<div class="col-sm-offset-2 col-sm-10"> 
+   		<div class="col-sm-4"> 
 			<button name="submit" value="Save" type="submit" class="btn btn-lg btn-primary">Save</button>&nbsp;&nbsp;
 		</div>
   	</div>
 	
 	</div>
-  <div class="col-md-6"> 
+  <div class="col-xs-6 col-sm-4"> 
   	<div class="fileinput fileinput-new pull-left" data-provides="fileinput">
   		 <div>
     <span class="btn btn-default btn-file"><span class="fileinput-new">Select image</span><span class="fileinput-exists">Change</span>
@@ -48,7 +55,19 @@
   <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 350px; max-height: 700px;"></div>
 	</div>
 	  </div>
+  <div class="col-xs-6 col-sm-4">
+      <ul class="list-group">
+        <li class="list-group-item active">
+            Current Arrivals 
+        </li>
+        <li class="list-group-item">
+            <b>Event Name: </b>adsfadsfadsf            
+        </li>
+       
+     </ul>   
   </div>
+  </div>
+  
 </div>
 
 {% endblock %}

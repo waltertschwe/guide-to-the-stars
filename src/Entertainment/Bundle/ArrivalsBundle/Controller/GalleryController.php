@@ -61,6 +61,8 @@ class GalleryController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($image);
             $em->flush();  
+            $session = new Session();
+            $session->getFlashBag()->add('notice', 'Success! Arrival created.');
            
         }
       
