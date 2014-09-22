@@ -62,8 +62,6 @@ class GalleryController extends Controller
             $em->flush();
         }
         
-        var_dump($event);
-        exit();
         return $this->render(
             'EntertainmentArrivalsBundle:Gallery:create.html.twig',
             array ('event' => $event)
@@ -80,8 +78,20 @@ class GalleryController extends Controller
         ->getRepository('EntertainmentArrivalsBundle:Gallery')
         ->find($arrivalId);      
        
-       ## get event data from image object
        $event = $image->getEvent();
+       
+       $request = $this->get('request');
+       if ($request->isMethod('POST')) {
+           
+           $em = $this->getDoctrine()->getManager();
+           $title = $request->request->get('title');
+           $credit = $request->request->get('credit');
+           
+           $image->setTitle($title);
+           $image->setCredit($credit);
+           $em->flush();
+           
+       }
                         
        return $this->render(
             'EntertainmentArrivalsBundle:Gallery:update.html.twig',
