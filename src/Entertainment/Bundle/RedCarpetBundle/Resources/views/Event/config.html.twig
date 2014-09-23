@@ -16,37 +16,42 @@
 <div class="container">
 <div class="row">
 	<div class="col-md-6">
+		<div class="tabbable">
+	  		<div id="tabs">	
+			    <ul class="nav nav-tabs">
+			    	<li><a href="#pane1" data-toggle="tab">General</a></li>
+			    	<li><a href="#pane2" data-toggle="tab">Site State Specific</a></li>
+			  	</ul>
+	  		</div>
+	    <p></p>
 		<form method="post" action="" class="form-horizontal" role="form">
 		<input type="hidden" name="event-id" value="{{ event.id }}" />
-		<div class="form-group">
-			<label class="col-sm-4 control-label">Site State</label>
-			<div class="col-xs-6">
-		        <select class="form-control" name="site-state" id="is-lite" size="1">
-		             <option value="arrivals" {% if event.eventState == "arrivals" %} selected {% endif %}>Arrivals</option>
-		             <option value="arrivals-video" {% if event.eventState == "arrivals-video" %} selected {% endif %}>Arrivals - Video</option>
-		             <option value="coverage" {% if event.eventState == "coverage" %} selected {% endif %}>Coverage</option>
-		        </select>
-		    </div>
-		</div>
-		<div class="tabbable">
-  <div id="tabs">	
-	  <ul class="nav nav-tabs">
-	    <li><a href="#pane1" data-toggle="tab">Required</a></li>
-	    <li><a href="#pane2" data-toggle="tab">Site State</a></li>
-	  </ul>
-  </div>
-  </div>
-		<div class="form-group">
-			<label class="col-sm-4 control-label">Event Name</label>
-			<div class="col-xs-8">
-		        <input class="form-control input-lg" type="text" name="event-name" id="event-name" size="36" required="required" value="{{ event.eventName }}"/>
-		    </div>
-		</div>
-		<div class="form-group">
-			<div class="col-sm-offset-2 col-sm-10"> 
-				<button name="submit" type="submit" class="btn btn-lg btn-success">Submit &raquo;</button>
+		<div class="tab-content">
+	    	<div id="pane1" class="tab-pane active">	
+			<div class="form-group">
+				<label class="col-sm-4 control-label">Site State</label>
+				<div class="col-xs-6">
+			        <select class="form-control" name="site-state" id="is-lite" size="1">
+			             <option value="arrivals" {% if event.eventState == "arrivals" %} selected {% endif %}>Arrivals</option>
+			             <option value="arrivals-video" {% if event.eventState == "arrivals-video" %} selected {% endif %}>Arrivals - Video</option>
+			             <option value="coverage" {% if event.eventState == "coverage" %} selected {% endif %}>Coverage</option>
+			        </select>
+			    </div>
+			</div>	
+			<div class="form-group">
+				<label class="col-sm-4 control-label">Event Name</label>
+				<div class="col-xs-8">
+			        <input class="form-control input-lg" type="text" name="event-name" id="event-name" size="36" required="required" value="{{ event.eventName }}"/>
+			    </div>
 			</div>
-		</div>
+			<div class="form-group">
+				<div class="col-sm-offset-2 col-sm-10"> 
+					<button name="submit" type="submit" class="btn btn-lg btn-success">Submit &raquo;</button>
+				</div>
+			</div>
+		    </div>
+	    </div>
+	</div>
 	</div>
 	<div class="col-md-6"> 
 		<div class="form-group">
