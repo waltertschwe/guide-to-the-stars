@@ -20,7 +20,7 @@
 	  		<div id="tabs">	
 			    <ul class="nav nav-tabs">
 			    	<li><a href="#pane1" data-toggle="tab">General</a></li>
-			    	<li><a href="#pane2" data-toggle="tab">Site State Specific</a></li>
+			    	<li><a href="#pane2" data-toggle="tab">TBD</a></li>
 			  	</ul>
 	  		</div>
 	    <p></p>
@@ -29,19 +29,49 @@
 		<div class="tab-content">
 	    	<div id="pane1" class="tab-pane active">	
 			<div class="form-group">
-				<label class="col-sm-4 control-label">Site State</label>
-				<div class="col-xs-6">
-			        <select class="form-control" name="site-state" id="is-lite" size="1">
+				<label class="col-xs-2 control-label">Site State</label>
+				<div class="col-xs-10">
+			        <select class="form-control" name="site-state" id="site-state" size="1">
 			             <option value="arrivals" {% if event.eventState == "arrivals" %} selected {% endif %}>Arrivals</option>
-			             <option value="arrivals-video" {% if event.eventState == "arrivals-video" %} selected {% endif %}>Arrivals - Video</option>
+			             <option value="arrivals-video" {% if event.eventState == "arrivals-video" %} selected {% endif %}>Arrivals Video</option>
 			             <option value="coverage" {% if event.eventState == "coverage" %} selected {% endif %}>Coverage</option>
 			        </select>
 			    </div>
 			</div>	
 			<div class="form-group">
-				<label class="col-sm-4 control-label">Event Name</label>
-				<div class="col-xs-8">
-			        <input class="form-control input-lg" type="text" name="event-name" id="event-name" size="36" required="required" value="{{ event.eventName }}"/>
+				<label class="col-xs-2 control-label">Event Name</label>
+				<div class="col-xs-6">
+			        <input class="form-control" type="text" name="event-name" id="event-name" size="36" required="required" value="{{ event.eventName }}"/>
+			    </div>
+			</div>
+			<div class="form-group" id="arrivals-video">
+				<label class="col-xs-2 control-label">Arrivals Video</label>
+				<div class="col-xs-10">
+			        <input class="form-control" type="text" name="arrivals-video" size="255" value="" />
+			    </div>
+			</div>
+			<div class="form-group" id="arrivals-gallery">
+				<label class="col-xs-2 control-label">Arrivals Gallery</label>
+				<div class="col-xs-10">
+			        <input class="form-control" type="text" name="arrivals-gallery" size="255" value="" />
+			    </div>
+			</div>
+			<div class="form-group">
+				<label class="col-xs-2 control-label">External Content</label>
+				<div class="col-xs-10">
+			        <input class="form-control" type="text" name="external-content" id="external-content" size="255"  value="" />
+			    </div>
+			</div>
+			<div class="form-group">
+				<label class="col-xs-2 control-label">Editorial Content</label>
+				<div class="col-xs-10">
+			        <input class="form-control" type="text" name="editorial-content" id="external-content" size="255"  value="" />
+			    </div>
+			</div>
+			<div class="form-group">
+				<label class="col-xs-2 control-label">Most Recent</label>
+				<div class="col-xs-10">
+			        <input class="form-control" type="text" name="most-recent" id="most-recent" size="255"  value="" />
 			    </div>
 			</div>
 			<div class="form-group">

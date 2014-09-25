@@ -56,7 +56,15 @@ $(document).ready(function() {
             }       
       	});
    	});
-     $('.collapse').collapse()
+    $('.collapse').collapse()
+    $( "#site-state" ).change(function() {
+    	var siteState =  $(this).find('option:selected').val();
+    	alert(siteState);
+		switch(siteState) {
+            case "coverage":
+                $('#arrivals-video').hide();
+        }
+	});
 });
 
 </script>
