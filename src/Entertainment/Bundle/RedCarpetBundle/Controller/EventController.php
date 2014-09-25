@@ -119,20 +119,24 @@ class EventController extends Controller
                  );
             }
 
-            $siteState = $request->request->get('site-state');
+          
             $eventName = $request->request->get('event-name');
             $eventShortName = str_replace(' ', '_', $eventName);
-            $isArrivals = $request->request->get('arrivals');
-            $isGTS = $request->request->get('gts');
-            $isBrackets = $request->request->get('brackets');
             
-            $event->setEventState($siteState);
+            $event->setEventState($request->request->get('site-state'));
             $event->setEventName($eventName);
             $event->setEventShortName($eventShortName);
-            $event->setIsArrivals($isArrivals);
-            $event->setIsGuideToStars($isGTS);
-            $event->setIsBrackets($isBrackets);
-          
+            $event->setIsArrivals($request->request->get('arrivals'));
+            $event->setIsGuideToStars($request->request->get('gts'));
+            $event->setIsBrackets($request->request->get('brackets'));
+            $event->setPackageId($request->request->get('general-pid'));
+            $event->setArrivalsVideo($request->request->get('arrivals-video'));
+            $event->setArrivalsGallery($request->request->get('arrivals-gallery'));
+            $event->setExternalContent($request->request->get('external-content'));
+            $event->setEditorialContent($request->request->get('editorial-content'));
+            $event->setMostRecent($request->request->get('most-recent'));
+            
+            
             $em->flush();
             $session = new Session();
             $session->getFlashBag()->add('notice', 'Success. Event Config Updated');

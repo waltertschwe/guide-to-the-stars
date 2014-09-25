@@ -20,7 +20,8 @@
 	  		<div id="tabs">	
 			    <ul class="nav nav-tabs">
 			    	<li><a href="#pane1" data-toggle="tab">General</a></li>
-			    	<li><a href="#pane2" data-toggle="tab">TBD</a></li>
+			    	<li><a href="#pane2" data-toggle="tab">URLs</a></li>
+			    	<li><a href="#pane3" data-toggle="tab">Ads</a></li>
 			  	</ul>
 	  		</div>
 	    <p></p>
@@ -44,42 +45,132 @@
 			        <input class="form-control" type="text" name="event-name" id="event-name" size="36" required="required" value="{{ event.eventName }}"/>
 			    </div>
 			</div>
+			 <div class="form-group">      
+                <label class="col-sm-2 control-label">PID</label>
+	            <div class="col-xs-2">
+	            	<input type="text" class="form-control" name="general-pid" id="general-pid" value="{{ event.packageId }}" />
+	            </div>
+	        </div>
 			<div class="form-group" id="arrivals-video">
 				<label class="col-xs-2 control-label">Arrivals Video</label>
 				<div class="col-xs-10">
-			        <input class="form-control" type="text" name="arrivals-video" size="255" value="" />
+			        <input class="form-control" type="text" name="arrivals-video" size="255" value="{{ event.arrivalsVideo }}" />
 			    </div>
 			</div>
 			<div class="form-group" id="arrivals-gallery">
 				<label class="col-xs-2 control-label">Arrivals Gallery</label>
 				<div class="col-xs-10">
-			        <input class="form-control" type="text" name="arrivals-gallery" size="255" value="" />
+			        <input class="form-control" type="text" name="arrivals-gallery" size="255" value="{{ event.arrivalsGallery }}" />
 			    </div>
 			</div>
 			<div class="form-group">
 				<label class="col-xs-2 control-label">External Content</label>
 				<div class="col-xs-10">
-			        <input class="form-control" type="text" name="external-content" id="external-content" size="255"  value="" />
+			        <input class="form-control" type="text" name="external-content" id="external-content" size="255"  value="{{ event.externalContent }}" />
 			    </div>
 			</div>
 			<div class="form-group">
 				<label class="col-xs-2 control-label">Editorial Content</label>
 				<div class="col-xs-10">
-			        <input class="form-control" type="text" name="editorial-content" id="external-content" size="255"  value="" />
+			        <input class="form-control" type="text" name="editorial-content" id="editorial-content" size="255"  value="{{ event.editorialContent }}" />
 			    </div>
 			</div>
 			<div class="form-group">
 				<label class="col-xs-2 control-label">Most Recent</label>
 				<div class="col-xs-10">
-			        <input class="form-control" type="text" name="most-recent" id="most-recent" size="255"  value="" />
+			        <input class="form-control" type="text" name="most-recent" id="most-recent" size="255"  value="{{ event.mostRecent }}" />
 			    </div>
 			</div>
-			<div class="form-group">
+		    </div>
+		   
+		     <div id="pane2" class="tab-pane">
+		     <div class="form-group">    
+        	<label class="col-sm-2 control-label">Facebook Share</label>
+        	<div class="col-xs-6">
+      	    <input type="text" class="form-control" name="facebook-share" id="facebook-share" value="" />
+   			</div>
+   		</div>
+   		<div class="form-group">    
+        	<label class="col-sm-2 control-label">Package URL</label>
+        	<div class="col-xs-6">
+      	    <input type="text" class="form-control" name="package-url" id="package-url" value="" />
+   			</div>
+   		</div>
+   		<div class="form-group">    
+        	<label class="col-sm-2 control-label">Whitelabel Page URL</label>
+        	<div class="col-xs-6">
+      	    <input type="text" class="form-control" name="whitelabel-url" id="whitelabel-url" value="" />
+   			</div>
+   		</div>
+   		<div class="form-group">    
+        	<label class="col-sm-2 control-label">Mobile Gallery URL</label>
+        	<div class="col-xs-6">
+      	    <input type="text" class="form-control" name="mobile-gallery-url" id="mobile-gallery-url" value="" />
+   			</div>
+   		</div>
+   		</div>
+   		 <div id="pane3" class="tab-pane">
+		    <div class="form-group">    
+      			<label class="col-sm-2 control-label">Ad Zone</label>
+      	 		<div class="col-xs-6">
+      	 		  <input type="text" class="form-control" name="arrivals-ad-zone" id="arrivals-ad-zone" value="" />
+      			</div>
+      		</div>
+      	    <div class="form-group">    
+      		    <label class="col-sm-2 control-label">Ad Subject</label>
+      	 	    <div class="col-xs-6">
+      	 		   <input type="text" class="form-control" name="arrivals-ad-subject" id="arrivals-ad-subject" value="" />
+      		    </div>
+      	    </div>
+      	    <div class="form-group">    
+      		<label class="col-sm-2 control-label">HP has ads?</label>
+      	 	<div class="col-sm-4">
+      	 		 <select class="form-control" name="arrivals-hp-has-ads" id="arrivals-hp-has-ads" size="1">
+                        <option value="0" selected="selected" disabled="disabled">Please choose</option>
+                        <option value="1" selected="selected">Yes</option>
+                        <option value="2" selected="selected">No</option>
+                    </select>
+      	 	</div>
+      	</div>
+      	<div class="form-group">    
+      		<label class="col-sm-2 control-label">Arrivals Ads</label>
+      	 	<div class="col-sm-4">
+  	 		   <select class="form-control" name="arrivals-has-ads" id="arrivals-has-ads" size="1" >
+                    <option value="0" selected="selected" disabled="disabled">Please choose</option>
+                    <option value="1" selected="selected">Yes</option>
+                    <option value="2" selected="selected">No</option>
+                </select>
+      	 	</div>
+      	</div>     	
+      	<div class="form-group">    
+      		<label class="col-sm-2 control-label">Mobile Arrivals Ads</label>
+      	 	<div class="col-sm-4">
+      	 		 <select class="form-control" name="arrivals-mobile-has-ads" id="arrivals-mobile-has-ads" size="1">
+                        <option value="0" selected="selected" disabled="disabled">Please choose</option>
+                        <option value="1" selected="selected">Yes</option>
+                        <option value="2" selected="selected">No</option>
+                    </select>
+      	 	</div>
+      	</div>	
+      		<div class="form-group">
+            <label class="col-sm-2 control-label">Ad Size</label>
+            	<div class="col-sm-4">
+                        <select class="form-control" name="ad-size" id="ad-size" size="1">
+                            <option value="" selected="selected" disabled="disabled">Please choose</option>
+                            <option value="small" selected="selected">small</option>
+                            <option value="large" >large</option>
+                            <option value="small-sponsored" >small-sponsored</option>
+                            <option value="large-sponsored" >large-sponsored</option>
+                        </select>
+               </div>
+           </div>
+		    </div>	
+		    
+		    <div class="form-group">
 				<div class="col-sm-offset-2 col-sm-10"> 
 					<button name="submit" type="submit" class="btn btn-lg btn-success">Submit &raquo;</button>
 				</div>
 			</div>
-		    </div>
 	    </div>
 	</div>
 	</div>

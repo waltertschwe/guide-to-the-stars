@@ -74,6 +74,47 @@ class Event
     
     private $dateTime;
     
+      /**
+     * @var string
+     *
+     * @ORM\Column(name="packageId", type="string", length=255, nullable=true)
+     */
+     private $packageId;
+     
+      /**
+     * @var string
+     *
+     * @ORM\Column(name="arrivalsVideo", type="string", length=255, nullable=true)
+     */
+     private $arrivalsVideo;
+     
+      /**
+     * @var string
+     *
+     * @ORM\Column(name="arrivalsGallery", type="string", length=255, nullable=true)
+     */
+     private $arrivalsGallery;
+     
+      /**
+     * @var string
+     *
+     * @ORM\Column(name="externalContent", type="string", length=255, nullable=true)
+     */
+     private $externalContent;
+     
+       /**
+     * @var string
+     *
+     * @ORM\Column(name="editorialContent", type="string", length=255, nullable=true)
+     */
+     private $editorialContent;
+     
+       /**
+     * @var string
+     *
+     * @ORM\Column(name="mostRecent", type="string", length=255, nullable=true)
+     */
+     private $mostRecent;
     
     /**
      * Get id
@@ -232,5 +273,28 @@ class Event
     public function getEventState()
     {
         return $this->eventState;
+    }
+
+    /**
+     * Set dateTime
+     *
+     * @param \DateTime $dateTime
+     * @return Event
+     */
+    public function setDateTime($dateTime)
+    {
+        $this->dateTime = $dateTime;
+
+        return $this;
+    }
+
+    /**
+     * Get dateTime
+     *
+     * @return \DateTime 
+     */
+    public function getDateTime()
+    {
+        return $this->dateTime;
     }
 }

@@ -74,6 +74,47 @@ class Event
     
     private $dateTime;
     
+      /**
+     * @var string
+     *
+     * @ORM\Column(name="packageId", type="string", length=255, nullable=true)
+     */
+     private $packageId;
+     
+      /**
+     * @var string
+     *
+     * @ORM\Column(name="arrivalsVideo", type="string", length=255, nullable=true)
+     */
+     private $arrivalsVideo;
+     
+      /**
+     * @var string
+     *
+     * @ORM\Column(name="arrivalsGallery", type="string", length=255, nullable=true)
+     */
+     private $arrivalsGallery;
+     
+      /**
+     * @var string
+     *
+     * @ORM\Column(name="externalContent", type="string", length=255, nullable=true)
+     */
+     private $externalContent;
+     
+       /**
+     * @var string
+     *
+     * @ORM\Column(name="editorialContent", type="string", length=255, nullable=true)
+     */
+     private $editorialContent;
+     
+       /**
+     * @var string
+     *
+     * @ORM\Column(name="mostRecent", type="string", length=255, nullable=true)
+     */
+     private $mostRecent;
     
     /**
      * Get id
@@ -255,5 +296,143 @@ class Event
     public function getDateTime()
     {
         return $this->dateTime;
+    }
+
+    /**
+     * Set packageId
+     *
+     * @param string $packageId
+     * @return Event
+     */
+    public function setPackageId($packageId)
+    {
+        $this->packageId = $packageId;
+
+        return $this;
+    }
+
+    /**
+     * Get packageId
+     *
+     * @return string 
+     */
+    public function getPackageId()
+    {
+        return $this->packageId;
+    }
+
+    /**
+     * Set arrivalsVideo
+     *
+     * @param string $arrivalsVideo
+     * @return Event
+     */
+    public function setArrivalsVideo($arrivalsVideo)
+    {
+        $this->arrivalsVideo = $arrivalsVideo;
+
+        return $this;
+    }
+
+    /**
+     * Get arrivalsVideo
+     *
+     * @return string 
+     */
+    public function getArrivalsVideo()
+    {
+        return $this->arrivalsVideo;
+    }
+
+    /**
+     * Set arrivalsGallery
+     *
+     * @param string $arrivalsGallery
+     * @return Event
+     */
+    public function setArrivalsGallery($arrivalsGallery)
+    {
+        $this->arrivalsGallery = $arrivalsGallery;
+
+        return $this;
+    }
+
+    /**
+     * Get arrivalsGallery
+     *
+     * @return string 
+     */
+    public function getArrivalsGallery()
+    {
+        return $this->arrivalsGallery;
+    }
+
+    /**
+     * Set externalContent
+     *
+     * @param string $externalContent
+     * @return Event
+     */
+    public function setExternalContent($externalContent)
+    {
+        $this->externalContent = $externalContent;
+
+        return $this;
+    }
+
+    /**
+     * Get externalContent
+     *
+     * @return string 
+     */
+    public function getExternalContent()
+    {
+        return $this->externalContent;
+    }
+
+    /**
+     * Set editorialContent
+     *
+     * @param string $editorialContent
+     * @return Event
+     */
+    public function setEditorialContent($editorialContent)
+    {
+        $this->editorialContent = $editorialContent;
+
+        return $this;
+    }
+
+    /**
+     * Get editorialContent
+     *
+     * @return string 
+     */
+    public function getEditorialContent()
+    {
+        return $this->editorialContent;
+    }
+
+    /**
+     * Set mostRecent
+     *
+     * @param string $mostRecent
+     * @return Event
+     */
+    public function setMostRecent($mostRecent)
+    {
+        $this->mostRecent = $mostRecent;
+
+        return $this;
+    }
+
+    /**
+     * Get mostRecent
+     *
+     * @return string 
+     */
+    public function getMostRecent()
+    {
+        return $this->mostRecent;
     }
 }
