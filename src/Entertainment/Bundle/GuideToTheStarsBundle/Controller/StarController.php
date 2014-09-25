@@ -10,9 +10,9 @@ class StarController extends Controller
 {
     
      /**
-     * @Route("/stars/index")
+     * @Route("/stars/index/{eventId}")
      */
-    public function indexAction()
+    public function indexAction($eventId)
     {
         
         $stars = array();
@@ -23,7 +23,6 @@ class StarController extends Controller
         );
         
     }
-    
     
     /**
      * @Route("/stars/create")
@@ -38,7 +37,6 @@ class StarController extends Controller
        
         
     }
-    
     
      /**
      * @Route("/stars/updateAction")

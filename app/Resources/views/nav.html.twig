@@ -17,7 +17,7 @@
 	                <li class="divider"></li>
 	                <li class="dropdown-header">Applications Activated</li>
 	                 {% if event.isArrivals %} <li><a href="#">Arrivals</a></li>{% endif %}
-	                 {% if event.isGuideToStars %} <li><a href="#">Guide To The Stars</a></li>{% endif %}
+	                 {% if event.isGuideToStars %} <li><a href="{{ path('entertainment_guidetothestars_star_index', {'eventId': event.id}) }}">Guide To The Stars</a></li>{% endif %}
 	                 {% if event.isBrackets %} <li><a href="#">Bracketology</a></li>{% endif %}
 	              </ul>
             </li>
