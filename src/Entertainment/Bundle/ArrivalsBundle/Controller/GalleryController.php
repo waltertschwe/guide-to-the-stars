@@ -150,15 +150,11 @@ class GalleryController extends Controller
         $data = $_POST;
         if($data) {
             $logger = $this->get('logger');
-           
-            
             $logger->info("I AM HERE IN AJAXPOSITION ACTION");
             $logger->info(var_export($data, true));
             
             $em = $this->getDoctrine()->getManager();
-            //$repository = $this->getDoctrine()
-            //  ->getRepository('EntertainmentArrivalsBundle:Gallery');
-            
+             
             foreach($data as $eventId => $imageIds) {
                 $logger->info("eventId = " . $eventId);
                 $totalImages = count($imageIds);
