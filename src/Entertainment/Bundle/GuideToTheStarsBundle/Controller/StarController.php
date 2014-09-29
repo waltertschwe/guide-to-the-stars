@@ -15,17 +15,21 @@ class StarController extends Controller
     public function indexAction($eventId)
     {
         
+        $event = $this->getDoctrine()
+        ->getRepository('EntertainmentRedCarpetBundle:Event')
+        ->find($eventId);
+        
         $stars = array();
         
         return $this->render(
             'EntertainmentGuideToTheStarsBundle:Star:index.html.twig',
-            array('stars' => $stars)
+            array('event' => $event, 'stars' => $stars)
         );
         
     }
     
     /**
-     * @Route("/stars/create")
+     * @Route("/stars/create/{eventId}")
      */
     public function createAction()
     {
@@ -33,9 +37,7 @@ class StarController extends Controller
         return $this->render(
             'EntertainmentGuideToTheStarsBundle:Star:create.html.twig'
         );
-       
-       
-        
+            
     }
     
      /**

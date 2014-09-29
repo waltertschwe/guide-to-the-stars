@@ -297,4 +297,142 @@ class Event
     {
         return $this->dateTime;
     }
+
+    /**
+     * Set packageId
+     *
+     * @param string $packageId
+     * @return Event
+     */
+    public function setPackageId($packageId)
+    {
+        $this->packageId = $packageId;
+
+        return $this;
+    }
+
+    /**
+     * Get packageId
+     *
+     * @return string 
+     */
+    public function getPackageId()
+    {
+        return $this->packageId;
+    }
+
+    /**
+     * Set arrivalsVideo
+     *
+     * @param string $arrivalsVideo
+     * @return Event
+     */
+    public function setArrivalsVideo($arrivalsVideo)
+    {
+        $this->arrivalsVideo = $arrivalsVideo;
+
+        return $this;
+    }
+
+    /**
+     * Get arrivalsVideo
+     *
+     * @return string 
+     */
+    public function getArrivalsVideo()
+    {
+        return $this->arrivalsVideo;
+    }
+
+    /**
+     * Set arrivalsGallery
+     *
+     * @param string $arrivalsGallery
+     * @return Event
+     */
+    public function setArrivalsGallery($arrivalsGallery)
+    {
+        $this->arrivalsGallery = $arrivalsGallery;
+
+        return $this;
+    }
+
+    /**
+     * Get arrivalsGallery
+     *
+     * @return string 
+     */
+    public function getArrivalsGallery()
+    {
+        return $this->arrivalsGallery;
+    }
+
+    /**
+     * Set externalContent
+     *
+     * @param string $externalContent
+     * @return Event
+     */
+    public function setExternalContent($externalContent)
+    {
+        $this->externalContent = $externalContent;
+
+        return $this;
+    }
+
+    /**
+     * Get externalContent
+     *
+     * @return string 
+     */
+    public function getExternalContent()
+    {
+        return $this->externalContent;
+    }
+
+    /**
+     * Set editorialContent
+     *
+     * @param string $editorialContent
+     * @return Event
+     */
+    public function setEditorialContent($editorialContent)
+    {
+        $this->editorialContent = $editorialContent;
+
+        return $this;
+    }
+
+    /**
+     * Get editorialContent
+     *
+     * @return string 
+     */
+    public function getEditorialContent()
+    {
+        return $this->editorialContent;
+    }
+
+    /**
+     * Set mostRecent
+     *
+     * @param string $mostRecent
+     * @return Event
+     */
+    public function setMostRecent($mostRecent)
+    {
+        $this->mostRecent = $mostRecent;
+
+        return $this;
+    }
+
+    /**
+     * Get mostRecent
+     *
+     * @return string 
+     */
+    public function getMostRecent()
+    {
+        return $this->mostRecent;
+    }
 }

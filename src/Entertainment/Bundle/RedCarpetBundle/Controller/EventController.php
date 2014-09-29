@@ -156,7 +156,32 @@ class EventController extends Controller
     }
     
    
+    /**
+     * @Route("/events/config/json/{eventId}")
+     */
+    public function configJSONAction($eventId) {
+        $name = "hello";
         
+        $configJson = array();
+        $event = $this->getDoctrine()
+             ->getRepository('EntertainmentRedCarpetBundle:Event')
+             ->find($eventId);
+             
+        $siteState = $event->getSiteState();    
+         
+        $configJson['eventName'] = "";
+        $configJson['site-state'] = "";
+        $configJson['event_shortname'] = "";
+        $configJson['pid'] = "";
+        $configJson['ad_size'] = "";
+        $configJson['feeds']['arrivals-video'] = "";
+        
+        
+        $response = new Response(json_encode($configJson));
+        $response->headers->set('Content-Type', 'application/json');
+        
+        return $response;
+    }
     //TEMP PLACE HOLDER
     public function jsonAction() {
         //$response = new Response(json_encode(array('name' => $name)));
