@@ -1,6 +1,13 @@
 {% extends '::base.html.twig' %}
 {% block body %}
 {{ include('::nav.html.twig') }}
+{% for flashMessage in app.session.flashbag.get('notice') %}
+  <div class="alert alert-success">  
+    	<a class="close" data-dismiss="alert">×</a>  
+        {{ flashMessage }}
+        <b><a href="{{ path('entertainment_arrivals_gallery_position', {'eventId': event.id}) }}">Click Here</a></b> to view all the categories for this event.
+    </div>
+{% endfor %}
 
 <div class="container">
 <h1>Category Creation:  {{ event.eventName }}</h1>
@@ -13,12 +20,12 @@
 
 <div class="container">
 <div class="row">
-  <div class="col-xs-8 col-sm-4">
+  <div class="col-md-8 ">
   	<form method="post" action="" class="form-horizontal" role="form">
 	<input type="hidden" name="event-id" value="{{ event.eventId }}"/>
 	<div class="form-group">
-		<div class="col-xs-12">
-		<input class="form-control input-lg" type="text" name="category-name" id="category-name" value="" size="120" required="required" placeholder="Category Name" />
+		<div class="col-md-8">
+		<input class="form-control input-lg" type="text" name="category-name" id="category-name" value="" size="255" required="required" placeholder="Category Name" />
 		</div>
 	</div>
 	<div class="form-group">
