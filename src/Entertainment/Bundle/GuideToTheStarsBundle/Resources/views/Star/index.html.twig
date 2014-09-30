@@ -11,7 +11,7 @@
 <div class="btn-group">
   <a href=""><button type="button" class="btn btn-success">Create Star <span class="glyphicon glyphicon-star"></span></button></a>
   <a href="{{ path('entertainment_guidetothestars_category_create', {'eventId': event.id}) }}"><button type="button" class="btn btn-success" >Create Category</button></a>
-  <a href=""><button type="button" class="btn btn-success">View Categories</button></a>
+  <a href="{{ path('entertainment_guidetothestars_category_index', {'eventId': event.id}) }}"><button type="button" class="btn btn-success">View Categories</button></a>
 </div>
 </p>
 </div>

@@ -13,7 +13,6 @@ use Doctrine\ORM\Mapping as ORM;
 class GTScategory
 {
     
-    
     /**
     * @ORM\ManyToOne(targetEntity="Entertainment\Bundle\RedCarpetBundle\Entity\Event")
     * @ORM\JoinColumn(name="event_id", referencedColumnName="event_id")
@@ -29,6 +28,13 @@ class GTScategory
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
+    
+    /**
+    * @var integer
+    *
+    * @ORM\Column(name="event_id", type="integer")
+    */
+     private $eventId;
 
     /**
      * @var string
@@ -36,7 +42,6 @@ class GTScategory
      * @ORM\Column(name="category_name", type="string", length=255)
      */
     private $categoryName;
-
 
     /**
      * Get id
@@ -92,5 +97,28 @@ class GTScategory
     public function getEvent()
     {
         return $this->event;
+    }
+
+    /**
+     * Set eventId
+     *
+     * @param integer $eventId
+     * @return GTScategory
+     */
+    public function setEventId($eventId)
+    {
+        $this->eventId = $eventId;
+
+        return $this;
+    }
+
+    /**
+     * Get eventId
+     *
+     * @return integer 
+     */
+    public function getEventId()
+    {
+        return $this->eventId;
     }
 }
