@@ -16,7 +16,7 @@
 	                <li><a href="{{ path('entertainment_redcarpet_event_config', {'eventId': event.id}) }}">Event Config</a></li>
 	                <li class="divider"></li>
 	                <li class="dropdown-header">Applications Activated</li>
-	                 {% if event.isArrivals %} <li><a href="#">Arrivals</a></li>{% endif %}
+	                 {% if event.isArrivals %} <li><a href="{{ path('entertainment_arrivals_gallery_position', {'eventId': event.id}) }}">Arrivals</a></li>{% endif %}
 	                 {% if event.isGuideToStars %} <li><a href="{{ path('entertainment_guidetothestars_star_index', {'eventId': event.id}) }}">Guide To The Stars</a></li>{% endif %}
 	                 {% if event.isBrackets %} <li><a href="#">Bracketology</a></li>{% endif %}
 	              </ul>

@@ -31,7 +31,7 @@
             </div>
             <div class="panel-body">
               <a href="{{ path('entertainment_guidetothestars_star_index', {'eventId': event.id}) }}">GTS - Home</a><br/>
-              <a href="">Create Star</a><br/>
+              <a href="{{ path('entertainment_guidetothestars_star_create', {'eventId': event.id}) }}">Create Star</a><br/>
               <a href="{{ path('entertainment_guidetothestars_category_create', {'eventId': event.id}) }}">Create Category</a><br/>
             </div>
           </div>

@@ -10,7 +10,10 @@
 {% endfor %}
 <div class="container">
 <div class="page-header">
-	<h1>Arrivals Ordering <font color="blue"><a href="">{{ event.eventName }}</a></font></h1>
+	<h1><a href="{{ path('entertainment_redcarpet_event_dashboard', {'eventId': event.id}) }}">{{ event.eventName }}</a> - Current Arrivals
+	<a href="{{ path('entertainment_arrivals_gallery_create', {'eventId': event.id}) }}"><button type="button" class="btn btn-lg btn-danger" >Create Arrival &raquo;</button></a>	
+	</h1>
+	 
 </div>
 </div>
 <div class="container">
@@ -26,6 +29,8 @@
 </div>
 <div class="col-md-2">
     <button id="savepostion" name="submit" type="submit" class="btn btn-lg btn-success">Save Order &raquo;</button>
+    <div class="spacer"></div>
+   
 </div>
 	</div>
 </div>

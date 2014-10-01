@@ -7,7 +7,7 @@ php app/console generate:controller
 php app/console generate:controller --no-interaction --controller=AcmeBlogBundle:Post
 
 ## copy from bundle to web folder css & js
-app/console assets:install
+php app/console assets:install
 
 ## doctrine
 php app/console doctrine:database:drop --force

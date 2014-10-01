@@ -31,11 +31,16 @@ class StarController extends Controller
     /**
      * @Route("/stars/create/{eventId}")
      */
-    public function createAction()
+    public function createAction($eventId)
     {
        
+         $event = $this->getDoctrine()
+            ->getRepository('EntertainmentRedCarpetBundle:Event')
+            ->find($eventId);
+       
         return $this->render(
-            'EntertainmentGuideToTheStarsBundle:Star:create.html.twig'
+            'EntertainmentGuideToTheStarsBundle:Star:create.html.twig',
+            array('event' => $event)
         );
             
     }
