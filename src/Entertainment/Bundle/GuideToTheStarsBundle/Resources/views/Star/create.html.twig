@@ -10,6 +10,7 @@
 <div class="container">
 <div class="row">
 	<form method="post" action="create" class="form-horizontal" role="form">
+		<input type="hidden" name="event-id" value="{{ event.eventId }}" />
 	<div class="col-md-8">
 	<div class="form-group">
 		<div class="col-md-10">
@@ -41,7 +42,7 @@
         </li>
         {% for category in categories %}
         <li class="list-group-item">
-            <input type="checkbox" name="{{ category.id }}">  {{ category.categoryName}}</input><br/>
+            <input type="checkbox" name="category-check[]" value="{{ category.id }}">  {{ category.categoryName}} </input><br/>
         </li>
         {% endfor %}
      </ul>   

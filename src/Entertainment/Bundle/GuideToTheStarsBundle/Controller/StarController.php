@@ -34,17 +34,25 @@ class StarController extends Controller
     public function createAction($eventId)
     {
        
+       
+        $request = $this->get('request');
+        if ($request->isMethod('POST')) {
+            var_dump($_POST['category-check']);
+            exit();
+            
+        }
           
-         $event = $this->getDoctrine()
-            ->getRepository('EntertainmentRedCarpetBundle:Event')
-            ->find($eventId);
+        $event = $this->getDoctrine()
+           ->getRepository('EntertainmentRedCarpetBundle:Event')
+           ->find($eventId);
         
         ## get all categories that are associated with the event
         $categories = $event->getCategory();
         
         $request = $this->get('request');
         if ($request->isMethod('POST')) {
-            
+            var_dump($request);
+            exit();
             
         }
         
