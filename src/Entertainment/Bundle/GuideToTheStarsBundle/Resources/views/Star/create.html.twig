@@ -25,7 +25,6 @@
 			CKEDITOR.replace( 'editor1', {
 				
 			});
-
 		</script>
 		</div>
 	</div>
@@ -42,7 +41,7 @@
         </li>
         {% for category in categories %}
         <li class="list-group-item">
-            {{ category.categoryName}}    
+            <input type="checkbox" name="{{ category.categoryName}}" value="">  {{ category.categoryName}}</input><br/>
         </li>
         {% endfor %}
      </ul>   

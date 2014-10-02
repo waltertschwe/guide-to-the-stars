@@ -445,4 +445,37 @@ class Event
     {
         return $this->mostRecent;
     }
+
+    /**
+     * Add category
+     *
+     * @param \Entertainment\Bundle\GuideToTheStarsBundle\Entity\GTScategory $category
+     * @return Event
+     */
+    public function addCategory(\Entertainment\Bundle\GuideToTheStarsBundle\Entity\GTScategory $category)
+    {
+        $this->category[] = $category;
+
+        return $this;
+    }
+
+    /**
+     * Remove category
+     *
+     * @param \Entertainment\Bundle\GuideToTheStarsBundle\Entity\GTScategory $category
+     */
+    public function removeCategory(\Entertainment\Bundle\GuideToTheStarsBundle\Entity\GTScategory $category)
+    {
+        $this->category->removeElement($category);
+    }
+
+    /**
+     * Get category
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getCategory()
+    {
+        return $this->category;
+    }
 }

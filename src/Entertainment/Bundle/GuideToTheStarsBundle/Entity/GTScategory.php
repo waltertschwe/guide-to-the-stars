@@ -14,6 +14,15 @@ class GTScategory
 {
     
     /**
+    * @ORM\ManyToMany(targetEntity="Entertainment\Bundle\GuideToTheStarsBundle\Entity\GTSstar", mappedBy="category")
+    */
+    protected $stars;
+
+    public function __construct() {
+        $this->stars = new ArrayCollection();
+    }
+    
+    /**
     * @ORM\ManyToOne(targetEntity="Entertainment\Bundle\RedCarpetBundle\Entity\Event", inversedBy="category")
     * @ORM\JoinColumn(name="event_id", referencedColumnName="event_id")
     */
@@ -120,5 +129,38 @@ class GTScategory
     public function getEventId()
     {
         return $this->eventId;
+    }
+
+    /**
+     * Add stars
+     *
+     * @param \Entertainment\Bundle\GuideToTheStarsBundle\Entity\GTSstar $stars
+     * @return GTScategory
+     */
+    public function addStar(\Entertainment\Bundle\GuideToTheStarsBundle\Entity\GTSstar $stars)
+    {
+        $this->stars[] = $stars;
+
+        return $this;
+    }
+
+    /**
+     * Remove stars
+     *
+     * @param \Entertainment\Bundle\GuideToTheStarsBundle\Entity\GTSstar $stars
+     */
+    public function removeStar(\Entertainment\Bundle\GuideToTheStarsBundle\Entity\GTSstar $stars)
+    {
+        $this->stars->removeElement($stars);
+    }
+
+    /**
+     * Get stars
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getStars()
+    {
+        return $this->stars;
     }
 }
