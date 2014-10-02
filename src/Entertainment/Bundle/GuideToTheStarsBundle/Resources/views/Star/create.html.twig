@@ -13,16 +13,16 @@
 	<div class="col-md-8">
 	<div class="form-group">
 		<div class="col-md-10">
-			<input class="form-control input-lg" type="text" name="event_name" id="event_name" size="36" required="required" placeholder="Star Name"/>
+			<input class="form-control input-lg" type="text" name="star-name" id="star-name" size="255" required="required" placeholder="Star Name"/>
 		</div>
 	</div>
 	<div class="form-group">
 		<div class="col-md-10">
-			 <textarea class="ckeditor" cols="80" id="editor1" name="editor1" rows="10"><b>STAR DESCRIPTION</b></textarea>
+			 <textarea class="ckeditor" cols="80" id="category-desc" name="category-desc" rows="10"><b>STAR DESCRIPTION</b></textarea>
 			 <script>
 			// Replace the <textarea id="editor"> with an CKEditor
 			// instance, using default configurations.
-			CKEDITOR.replace( 'editor1', {
+			CKEDITOR.replace( 'category-desc', {
 				
 			});
 		</script>
@@ -41,7 +41,7 @@
         </li>
         {% for category in categories %}
         <li class="list-group-item">
-            <input type="checkbox" name="{{ category.categoryName}}" value="">  {{ category.categoryName}}</input><br/>
+            <input type="checkbox" name="{{ category.id }}">  {{ category.categoryName}}</input><br/>
         </li>
         {% endfor %}
      </ul>   

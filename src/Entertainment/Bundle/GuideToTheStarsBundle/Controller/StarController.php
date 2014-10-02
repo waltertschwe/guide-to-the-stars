@@ -34,11 +34,19 @@ class StarController extends Controller
     public function createAction($eventId)
     {
        
+          
          $event = $this->getDoctrine()
             ->getRepository('EntertainmentRedCarpetBundle:Event')
             ->find($eventId);
-       
+        
+        ## get all categories that are associated with the event
         $categories = $event->getCategory();
+        
+        $request = $this->get('request');
+        if ($request->isMethod('POST')) {
+            
+            
+        }
         
         return $this->render(
             'EntertainmentGuideToTheStarsBundle:Star:create.html.twig',
