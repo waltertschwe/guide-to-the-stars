@@ -14,7 +14,7 @@ class GTScategory
 {
     
     /**
-    * @ORM\ManyToOne(targetEntity="Entertainment\Bundle\RedCarpetBundle\Entity\Event")
+    * @ORM\ManyToOne(targetEntity="Entertainment\Bundle\RedCarpetBundle\Entity\Event", inversedBy="category")
     * @ORM\JoinColumn(name="event_id", referencedColumnName="event_id")
     */
     

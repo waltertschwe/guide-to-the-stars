@@ -14,6 +14,11 @@ use Doctrine\Common\Collections\ArrayCollection;
 class Event
 {
     
+    public function __construct()
+    {
+        $this->category = new ArrayCollection();
+    }
+    
     /**
      * @var integer
      *
@@ -22,6 +27,11 @@ class Event
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $event_id;
+
+    /**
+    * @ORM\OneToMany(targetEntity="Entertainment\Bundle\GuideToTheStarsBundle\Entity\GTScategory", mappedBy="event")
+    */
+    protected $category;
 
     /**
      * @var string
@@ -434,5 +444,38 @@ class Event
     public function getMostRecent()
     {
         return $this->mostRecent;
+    }
+
+    /**
+     * Add category
+     *
+     * @param \Entertainment\Bundle\GuideToTheStarsBundle\Entity\GTScategory $category
+     * @return Event
+     */
+    public function addCategory(\Entertainment\Bundle\GuideToTheStarsBundle\Entity\GTScategory $category)
+    {
+        $this->category[] = $category;
+
+        return $this;
+    }
+
+    /**
+     * Remove category
+     *
+     * @param \Entertainment\Bundle\GuideToTheStarsBundle\Entity\GTScategory $category
+     */
+    public function removeCategory(\Entertainment\Bundle\GuideToTheStarsBundle\Entity\GTScategory $category)
+    {
+        $this->category->removeElement($category);
+    }
+
+    /**
+     * Get category
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getCategory()
+    {
+        return $this->category;
     }
 }
