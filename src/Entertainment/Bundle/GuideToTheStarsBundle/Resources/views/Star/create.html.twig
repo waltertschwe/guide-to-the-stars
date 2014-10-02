@@ -36,7 +36,16 @@
 	</div>
 	</div>
 	 <div class="col-md-4">
-	 here
+	  <ul class="list-group">
+        <li class="list-group-item list-group-item-success">
+            <b>Select Categories</b>
+        </li>
+        {% for category in categories %}
+        <li class="list-group-item">
+            {{ category.categoryName}}    
+        </li>
+        {% endfor %}
+     </ul>   
 	 </div>
 </form>
 </div>

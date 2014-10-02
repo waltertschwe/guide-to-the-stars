@@ -38,9 +38,11 @@ class StarController extends Controller
             ->getRepository('EntertainmentRedCarpetBundle:Event')
             ->find($eventId);
        
+        $categories = $event->getCategory();
+        
         return $this->render(
             'EntertainmentGuideToTheStarsBundle:Star:create.html.twig',
-            array('event' => $event)
+            array('event' => $event, 'categories' => $categories)
         );
             
     }
