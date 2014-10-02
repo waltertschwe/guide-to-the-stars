@@ -3,6 +3,7 @@
 namespace Entertainment\Bundle\GuideToTheStarsBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * GTScategory
@@ -13,11 +14,6 @@ use Doctrine\ORM\Mapping as ORM;
 class GTScategory
 {
     
-    /**
-    * @ORM\ManyToMany(targetEntity="Entertainment\Bundle\GuideToTheStarsBundle\Entity\GTSstar", mappedBy="category")
-    */
-    protected $stars;
-
     public function __construct() {
         $this->stars = new ArrayCollection();
     }
@@ -60,6 +56,30 @@ class GTScategory
     public function getId()
     {
         return $this->id;
+    }
+
+
+    /**
+     * Set eventId
+     *
+     * @param integer $eventId
+     * @return GTScategory
+     */
+    public function setEventId($eventId)
+    {
+        $this->eventId = $eventId;
+
+        return $this;
+    }
+
+    /**
+     * Get eventId
+     *
+     * @return integer 
+     */
+    public function getEventId()
+    {
+        return $this->eventId;
     }
 
     /**
@@ -106,61 +126,5 @@ class GTScategory
     public function getEvent()
     {
         return $this->event;
-    }
-
-    /**
-     * Set eventId
-     *
-     * @param integer $eventId
-     * @return GTScategory
-     */
-    public function setEventId($eventId)
-    {
-        $this->eventId = $eventId;
-
-        return $this;
-    }
-
-    /**
-     * Get eventId
-     *
-     * @return integer 
-     */
-    public function getEventId()
-    {
-        return $this->eventId;
-    }
-
-    /**
-     * Add stars
-     *
-     * @param \Entertainment\Bundle\GuideToTheStarsBundle\Entity\GTSstar $stars
-     * @return GTScategory
-     */
-    public function addStar(\Entertainment\Bundle\GuideToTheStarsBundle\Entity\GTSstar $stars)
-    {
-        $this->stars[] = $stars;
-
-        return $this;
-    }
-
-    /**
-     * Remove stars
-     *
-     * @param \Entertainment\Bundle\GuideToTheStarsBundle\Entity\GTSstar $stars
-     */
-    public function removeStar(\Entertainment\Bundle\GuideToTheStarsBundle\Entity\GTSstar $stars)
-    {
-        $this->stars->removeElement($stars);
-    }
-
-    /**
-     * Get stars
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getStars()
-    {
-        return $this->stars;
     }
 }

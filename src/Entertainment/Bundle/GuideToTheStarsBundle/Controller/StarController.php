@@ -6,6 +6,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
+use Entertainment\Bundle\GuideToTheStarsBundle\Entity\GTSstar;
+
 class StarController extends Controller
 {
     
@@ -33,11 +35,29 @@ class StarController extends Controller
      */
     public function createAction($eventId)
     {
-       
-       
+      
         $request = $this->get('request');
         if ($request->isMethod('POST')) {
-            var_dump($_POST['category-check']);
+            $em = $this->getDoctrine()->getManager();
+            $star = new GTSstar();
+            $star->setStarName($request->request->get('star-name'));
+            $star->setStarDescription($request->request->get('star-description'));
+            $em->persist($star);
+            $em->flush(); 
+                
+            $categories = $request->request->get('category-check');
+            foreach($categories as $key => $value) {
+                $catRepo = $this->getDoctrine()
+                    ->getRepository('EntertainmentGuideToTheBundle:Gallery');    
+        
+                //$category = $catRepo->findBy(
+                  
+                //$star = $this->getDoct
+                $category->addStar($star);
+                $em->persist($category);
+                $em->flush();
+            }
+              
             exit();
             
         }
@@ -49,12 +69,6 @@ class StarController extends Controller
         ## get all categories that are associated with the event
         $categories = $event->getCategory();
         
-        $request = $this->get('request');
-        if ($request->isMethod('POST')) {
-            var_dump($request);
-            exit();
-            
-        }
         
         return $this->render(
             'EntertainmentGuideToTheStarsBundle:Star:create.html.twig',
