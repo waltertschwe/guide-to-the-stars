@@ -21,7 +21,10 @@ class StarController extends Controller
         ->getRepository('EntertainmentRedCarpetBundle:Event')
         ->find($eventId);
         
-        $stars = array();
+        $repository = $this->getDoctrine()
+             ->getRepository('EntertainmentGuideToTheStarsBundle:GTSstar');
+        
+        $stars = $repository->findAll();
         
         return $this->render(
             'EntertainmentGuideToTheStarsBundle:Star:index.html.twig',

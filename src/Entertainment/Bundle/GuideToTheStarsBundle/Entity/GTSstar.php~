@@ -28,7 +28,7 @@ class GTSstar
     * @ORM\ManyToMany(targetEntity="Entertainment\Bundle\GuideToTheStarsBundle\Entity\GTScategory")
     * @ORM\JoinTable(name="star_category",
     *      joinColumns={@ORM\JoinColumn(name="star_id", referencedColumnName="id")},
-    *      inverseJoinColumns={@ORM\JoinColumn(name="category_id", referencedColumnName="id", unique=true)})
+    *      inverseJoinColumns={@ORM\JoinColumn(name="category_id", referencedColumnName="id")})
     */
    
     private $category;
@@ -58,4 +58,6 @@ class GTSstar
 
 
   
+
+   
 }

@@ -37,8 +37,8 @@
 <tbody>
 {% for star in stars %}
 <tr class="gradeA">
-	<td class="center"></td>
-	<td class="center"></td>
+	<td class="center">{{ star.starName}}</td>
+	<td class="center">{% for category in star.category %} {{ category.categoryName}} <br/> {% endfor %}</td>
 	<td class="center">Actions</td>
 </tr>
 {% endfor %}
