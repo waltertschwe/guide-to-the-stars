@@ -65,7 +65,7 @@ class EventController extends Controller
                 array('events' => $events, 'lastEventId' => $lastEventId)
             );     
         }
-        
+       
         return $this->redirect($this->generateUrl('entertainment_redcarpet_event_index'));
     }
     

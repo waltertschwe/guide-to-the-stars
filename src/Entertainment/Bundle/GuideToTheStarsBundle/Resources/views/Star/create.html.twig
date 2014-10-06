@@ -1,7 +1,19 @@
 {% extends '::base.html.twig' %}
 {% block body %}
 {{ include('::nav.html.twig') }}
+
 <div class="container">
+<ol class="breadcrumb">
+  <li>  
+    <a href="{{ path('entertainment_redcarpet_event_dashboard', {'eventId': event.id}) }}">{{ event.eventName }}</a>
+  </li>  
+  <li>
+  	<a href="{{ path('entertainment_guidetothestars_star_index', {'eventId': event.id}) }}">Guide To The Stars</a>
+  	
+  </li>  
+  <li class="active">Create Star</li>
+</ol>  
+	
 	<p></p>	
 	<div class="event-text">
 		<h1>Create Star</h1>

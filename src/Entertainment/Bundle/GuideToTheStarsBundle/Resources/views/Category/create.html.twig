@@ -10,7 +10,7 @@
     </div>
 {% endfor %}
 <div class="container">
-<ul class="breadcrumb">  
+<ol class="breadcrumb">  
   <li>  
     <a href="{{ path('entertainment_redcarpet_event_dashboard', {'eventId': event.id}) }}">{{ event.eventName }}</a> <span class="divider"></span>  
   </li>  
@@ -20,7 +20,7 @@
    <li class="active">
   	Create Category
   </li>  
-</ul>  
+</ol>  
 <h1>Category Creation:  {{ event.eventName }}</h1>
 <div id="nav">
 	<p style="float:left;">

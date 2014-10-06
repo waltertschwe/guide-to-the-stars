@@ -11,9 +11,9 @@ use Entertainment\Bundle\GuideToTheStarsBundle\Entity\GTSstar;
 class StarController extends Controller
 {
     
-     /**
-     * @Route("/stars/index/{eventId}")
-     */
+    /**
+    * @Route("/stars/index/{eventId}")
+    */
     public function indexAction($eventId)
     {
         
@@ -35,7 +35,7 @@ class StarController extends Controller
     
     /**
      * @Route("/stars/create/{eventId}")
-     */
+    */
     public function createAction($eventId)
     {
       
@@ -52,10 +52,9 @@ class StarController extends Controller
             
             $categories = $request->request->get('category-check');
             foreach($categories as $key => $categoryId) {
-                echo " key =  " . $key;
-                echo "<br/> value = " . $categoryId;
-                
                 $conn = $this->get('database_connection');
+                
+                ## JOIN TABLE INSERT
                 $sql = " 
                     INSERT INTO star_category
                     VALUES(" . $starId . ", " . $categoryId . ")" 
@@ -77,10 +76,6 @@ class StarController extends Controller
                
             }
            
-            
-              
-            exit();
-            
         }
           
         $event = $this->getDoctrine()
@@ -99,12 +94,31 @@ class StarController extends Controller
     }
     
      /**
-     * @Route("/stars/updateAction")
+     * @Route("/stars/{eventId}update/{starId}")
      */
-    public function updateAction($starId)
+    public function updateAction($eventId, $starId)
     {
         
     }
     
-    
+    /**
+    * @Route("/stars/{eventId}/content/{starId}")
+    */
+    public function addContentAction($eventId, $starId) {
+         $event = $this->getDoctrine()
+            ->getRepository('EntertainmentRedCarpetBundle:Event')
+            ->find($eventId);
+        
+        $repository = $this->getDoctrine()
+             ->getRepository('EntertainmentGuideToTheStarsBundle:GTSstar');
+        
+        $star = $repository->findBy(
+                                 array('id' => $starId));
+        
+         return $this->render(
+            'EntertainmentGuideToTheStarsBundle:Star:content.html.twig',
+            array('event' => $event, 'star' => $star)
+        );
+        
+    }
 }
