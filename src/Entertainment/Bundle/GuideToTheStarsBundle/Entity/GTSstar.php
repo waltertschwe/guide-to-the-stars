@@ -26,12 +26,12 @@ class GTSstar
     
     /**
     * @ORM\ManyToMany(targetEntity="Entertainment\Bundle\GuideToTheStarsBundle\Entity\GTScategory")
-    * @ORM\JoinTable(name="GTSstar_cat",
-    *      joinColumns={@ORM\JoinColumn(name="category_id", referencedColumnName="id", onDelete="CASCADE")},
-    *      inverseJoinColumns={@ORM\JoinColumn(name="star_id", referencedColumnName="id", onDelete="CASCADE")})
+    * @ORM\JoinTable(name="star_category",
+    *      joinColumns={@ORM\JoinColumn(name="star_id", referencedColumnName="id")},
+    *      inverseJoinColumns={@ORM\JoinColumn(name="category_id", referencedColumnName="id", unique=true)})
     */
    
-    protected $category;
+    private $category;
        
     /**
      * @var integer
@@ -57,99 +57,5 @@ class GTSstar
     private $starDescription;
 
 
-    /**
-     * Get id
-     *
-     * @return integer 
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
-     * Set starName
-     *
-     * @param string $starName
-     * @return GTSstar
-     */
-    public function setStarName($starName)
-    {
-        $this->starName = $starName;
-
-        return $this;
-    }
-
-    /**
-     * Get starName
-     *
-     * @return string 
-     */
-    public function getStarName()
-    {
-        return $this->starName;
-    }
-
-    /**
-     * Set starDescription
-     *
-     * @param string $starDescription
-     * @return GTSstar
-     */
-     
-    /**
-     * Set starDescription
-     *
-     * @param string $starDescription
-     * @return GTSstar
-     */
-    public function setStarDescription($starDescription)
-    {
-        $this->starDescription = $starDescription;
-
-        return $this;
-    }
-
-    /**
-     * Get starDescription
-     *
-     * @return string 
-     */
-    public function getStarDescription()
-    {
-        return $this->starDescription;
-    }
-
-    /**
-     * Add category
-     *
-     * @param \Entertainment\Bundle\GuideToTheStarsBundle\Entity\GTScategory $category
-     * @return GTSstar
-     */
-    public function addCategory(\Entertainment\Bundle\GuideToTheStarsBundle\Entity\GTScategory $category)
-    {
-        $this->category[] = $category;
-
-        return $this;
-    }
-
-    /**
-     * Remove category
-     *
-     * @param \Entertainment\Bundle\GuideToTheStarsBundle\Entity\GTScategory $category
-     */
-    public function removeCategory(\Entertainment\Bundle\GuideToTheStarsBundle\Entity\GTScategory $category)
-    {
-        $this->category->removeElement($category);
-    }
-
-    /**
-     * Get category
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getCategory()
-    {
-        return $this->category;
-    }
+  
 }
