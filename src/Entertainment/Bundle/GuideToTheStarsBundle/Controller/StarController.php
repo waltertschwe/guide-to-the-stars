@@ -43,20 +43,38 @@ class StarController extends Controller
             $star->setStarName($request->request->get('star-name'));
             $star->setStarDescription($request->request->get('star-description'));
             $em->persist($star);
-            $em->flush(); 
-                
+            $em->flush();
+            
+            $starId = $star->getId(); 
+            
             $categories = $request->request->get('category-check');
-            foreach($categories as $key => $value) {
+            foreach($categories as $key => $categoryId) {
+                echo " key =  " . $key;
+                echo "<br/> value = " . $categoryId;
+                
+                $conn = $this->get('database_connection');
+                $sql = " 
+                    INSERT INTO star_category
+                    VALUES(" . $starId . ", " . $categoryId . ")" 
+                    ;
+                $numRowsEffected = $conn->exec($sql);
+                
+                /*
                 $catRepo = $this->getDoctrine()
-                    ->getRepository('EntertainmentGuideToTheBundle:Gallery');    
+                    ->getRepository('EntertainmentGuideToTheStarsBundle:GTScategory');    
         
-                //$category = $catRepo->findBy(
+                $category = $catRepo->findBy(
+                                        array('id' => $value)
+                                     );
+                 //var_dump($category);
+                // exit(); 
                   
-                //$star = $this->getDoct
-                $category->addStar($star);
-                $em->persist($category);
-                $em->flush();
+               $star->addCategory($category);
+                 */
+               
             }
+           
+            
               
             exit();
             
