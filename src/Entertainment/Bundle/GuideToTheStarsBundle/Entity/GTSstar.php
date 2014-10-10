@@ -56,11 +56,6 @@ class GTSstar
      */
     private $starDescription;
 
-
-  
-
-   
-
     /**
      * Get id
      *
@@ -116,6 +111,20 @@ class GTSstar
     {
         return $this->starDescription;
     }
+    
+     /**
+     * @var string
+     *
+     * @ORM\Column(name="imageBubbleName", type="string", length=255)
+     */
+    private $imageBubbleName;
+    
+     /**
+     * @var string
+     *
+     * @ORM\Column(name="imageLargeName", type="string", length=255)
+     */
+    private $imageLargeName;
 
     /**
      * Add category
@@ -148,5 +157,51 @@ class GTSstar
     public function getCategory()
     {
         return $this->category;
+    }
+
+    /**
+     * Set imageBubbleName
+     *
+     * @param string $imageBubbleName
+     * @return GTSstar
+     */
+    public function setImageBubbleName($imageBubbleName)
+    {
+        $this->imageBubbleName = $imageBubbleName;
+
+        return $this;
+    }
+
+    /**
+     * Get imageBubbleName
+     *
+     * @return string 
+     */
+    public function getImageBubbleName()
+    {
+        return $this->imageBubbleName;
+    }
+
+    /**
+     * Set imageLargeName
+     *
+     * @param string $imageLargeName
+     * @return GTSstar
+     */
+    public function setImageLargeName($imageLargeName)
+    {
+        $this->imageLargeName = $imageLargeName;
+
+        return $this;
+    }
+
+    /**
+     * Get imageLargeName
+     *
+     * @return string 
+     */
+    public function getImageLargeName()
+    {
+        return $this->imageLargeName;
     }
 }

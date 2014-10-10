@@ -45,37 +45,36 @@ class StarController extends Controller
             $star = new GTSstar();
             $star->setStarName($request->request->get('star-name'));
             $star->setStarDescription($request->request->get('star-description'));
+                        
+            ## Handle uploaded Files
+            $tmpImageBubble = $request->files->get('star-bubble');
+            $tmpImageLarge = $request->files->get('star-large');
+            $bubbleFileName = $_FILES['star-bubble']['name'];
+            $largeFileName = $_FILES['star-large']['name'];
+            $basePath = $this->get('kernel')->getRootDir();
+           
+            move_uploaded_file($tmpImageBubble, $basePath."/gts-images/".$bubbleFileName);
+            move_uploaded_file($tmpImageLarge, $basePath."/gts-images/".$largeFileName);
+            $star->setImageBubbleName($bubbleFileName);
+            $star->setImageLargeName($largeFileName);
             $em->persist($star);
             $em->flush();
             
+            ## get the ID that was just inserted    
             $starId = $star->getId(); 
             
             $categories = $request->request->get('category-check');
-            foreach($categories as $key => $categoryId) {
-                $conn = $this->get('database_connection');
-                
-                ## JOIN TABLE INSERT
-                $sql = " 
-                    INSERT INTO star_category
-                    VALUES(" . $starId . ", " . $categoryId . ")" 
-                    ;
-                $numRowsEffected = $conn->exec($sql);
-                
-                /*
-                $catRepo = $this->getDoctrine()
-                    ->getRepository('EntertainmentGuideToTheStarsBundle:GTScategory');    
-        
-                $category = $catRepo->findBy(
-                                        array('id' => $value)
-                                     );
-                 //var_dump($category);
-                // exit(); 
-                  
-               $star->addCategory($category);
-                 */
-               
+            if(isset($categories)) {
+                foreach($categories as $key => $categoryId) {
+                    $conn = $this->get('database_connection');
+                    ## JOIN TABLE INSERT
+                    $sql = " 
+                        INSERT INTO star_category
+                        VALUES(" . $starId . ", " . $categoryId . ")" 
+                        ;
+                    $numRowsEffected = $conn->exec($sql);  
+                }
             }
-           
         }
           
         $event = $this->getDoctrine()
@@ -109,13 +108,11 @@ class StarController extends Controller
             ->getRepository('EntertainmentRedCarpetBundle:Event')
             ->find($eventId);
         
-        $repository = $this->getDoctrine()
-             ->getRepository('EntertainmentGuideToTheStarsBundle:GTSstar');
+        $star = $this->getDoctrine()
+             ->getRepository('EntertainmentGuideToTheStarsBundle:GTSstar')
+             ->find(array('id' => $starId));
         
-        $star = $repository->findBy(
-                                 array('id' => $starId));
-        
-         return $this->render(
+        return $this->render(
             'EntertainmentGuideToTheStarsBundle:Star:content.html.twig',
             array('event' => $event, 'star' => $star)
         );
