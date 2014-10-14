@@ -158,4 +158,50 @@ class GTSstar
     {
         return $this->category;
     }
+
+    /**
+     * Set imageBubbleName
+     *
+     * @param string $imageBubbleName
+     * @return GTSstar
+     */
+    public function setImageBubbleName($imageBubbleName)
+    {
+        $this->imageBubbleName = $imageBubbleName;
+
+        return $this;
+    }
+
+    /**
+     * Get imageBubbleName
+     *
+     * @return string 
+     */
+    public function getImageBubbleName()
+    {
+        return $this->imageBubbleName;
+    }
+
+    /**
+     * Set imageLargeName
+     *
+     * @param string $imageLargeName
+     * @return GTSstar
+     */
+    public function setImageLargeName($imageLargeName)
+    {
+        $this->imageLargeName = $imageLargeName;
+
+        return $this;
+    }
+
+    /**
+     * Get imageLargeName
+     *
+     * @return string 
+     */
+    public function getImageLargeName()
+    {
+        return $this->imageLargeName;
+    }
 }
