@@ -6,6 +6,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
+use Symfony\Component\HttpFoundation\Session\Session;
+
 use Entertainment\Bundle\GuideToTheStarsBundle\Entity\GTSstar;
 
 class StarController extends Controller
@@ -59,6 +61,8 @@ class StarController extends Controller
             $star->setImageLargeName($largeFileName);
             $em->persist($star);
             $em->flush();
+            $session = new Session();
+            $session->getFlashBag()->add('notice', 'Success! The star has been created.');
             
             ## get the ID that was just inserted    
             $starId = $star->getId(); 

@@ -32,6 +32,13 @@ class GTSconfig
      */
     private $gtsId;
     
+     /**
+    * @var integer
+    *
+    * @ORM\Column(name="event_id", type="integer")
+    */
+     private $eventId;
+    
       /**
      * @var string
      *
@@ -46,4 +53,83 @@ class GTSconfig
      */
     private $categoryDesc;
   
+
+    /**
+     * Get gtsId
+     *
+     * @return integer 
+     */
+    public function getGtsId()
+    {
+        return $this->gtsId;
+    }
+
+    /**
+     * Set starDesc
+     *
+     * @param string $starDesc
+     * @return GTSconfig
+     */
+    public function setStarDesc($starDesc)
+    {
+        $this->starDesc = $starDesc;
+
+        return $this;
+    }
+
+    /**
+     * Get starDesc
+     *
+     * @return string 
+     */
+    public function getStarDesc()
+    {
+        return $this->starDesc;
+    }
+
+    /**
+     * Set categoryDesc
+     *
+     * @param string $categoryDesc
+     * @return GTSconfig
+     */
+    public function setCategoryDesc($categoryDesc)
+    {
+        $this->categoryDesc = $categoryDesc;
+
+        return $this;
+    }
+
+    /**
+     * Get categoryDesc
+     *
+     * @return string 
+     */
+    public function getCategoryDesc()
+    {
+        return $this->categoryDesc;
+    }
+
+    /**
+     * Set event
+     *
+     * @param \Entertainment\Bundle\RedCarpetBundle\Entity\Event $event
+     * @return GTSconfig
+     */
+    public function setEvent(\Entertainment\Bundle\RedCarpetBundle\Entity\Event $event = null)
+    {
+        $this->event = $event;
+
+        return $this;
+    }
+
+    /**
+     * Get event
+     *
+     * @return \Entertainment\Bundle\RedCarpetBundle\Entity\Event 
+     */
+    public function getEvent()
+    {
+        return $this->event;
+    }
 }

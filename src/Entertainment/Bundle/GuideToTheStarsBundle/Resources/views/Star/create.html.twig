@@ -2,6 +2,12 @@
 {% block body %}
 {{ include('::nav.html.twig') }}
 <div class="container">
+	{% for flashMessage in app.session.flashbag.get('notice') %}
+  <div class="alert alert-success">  
+    	<a class="close" data-dismiss="alert">×</a>  
+        {{ flashMessage }}
+    </div>
+{% endfor %}
 <ol class="breadcrumb">
   <li>  
     <a href="{{ path('entertainment_redcarpet_event_dashboard', {'eventId': event.id}) }}">{{ event.eventName }}</a>

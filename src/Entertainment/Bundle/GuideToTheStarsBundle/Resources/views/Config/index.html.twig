@@ -1,1 +1,11 @@
-here.
+{% extends '::base.html.twig' %}
+{% block body %}
+{{ include('::nav.html.twig') }}
+{% for flashMessage in app.session.flashbag.get('notice') %}
+  <div class="alert alert-success">  
+    	<a class="close" data-dismiss="alert">×</a>  
+        {{ flashMessage }}
+        <b><a href="{{ path('entertainment_guidetothestars_category_index', {'eventId': event.id}) }}">Click Here</a></b> to view all the categories for this event.<br/>
+        Or <b><a href="{{ path('entertainment_guidetothestars_category_index', {'eventId': event.id}) }}">Click Here</a>to return to the Guide To The Stars home.</b>
+    </div>
+{% endfor %}

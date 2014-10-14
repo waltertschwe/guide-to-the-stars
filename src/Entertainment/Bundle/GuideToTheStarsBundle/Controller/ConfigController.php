@@ -24,8 +24,8 @@ class ConfigController extends Controller
             ->getRepository('EntertainmentRedCarpetBundle:Event')
             ->find($eventId);
          
-        $configRepo = $this->getDoctrine()
-            ->getRepository('EntertainmentGuideToTheStarsBundle:GTSconfig');
+         $configRepo = $this->getDoctrine()
+             ->getRepository('EntertainmentGuideToTheStarsBundle:GTSconfig');
         
         $configData = $configRepo->findBy(
                        array('eventId' => $eventId));
@@ -35,7 +35,8 @@ class ConfigController extends Controller
         }
         
         return $this->render(
-            'EntertainmentGuideToTheStarsBundle:Config:index.html.twig'
+            'EntertainmentGuideToTheStarsBundle:Config:index.html.twig',
+                array('configData' => $configData)
         );
     }
 }       

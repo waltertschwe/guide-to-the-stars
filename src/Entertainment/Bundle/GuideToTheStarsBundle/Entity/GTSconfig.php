@@ -32,6 +32,13 @@ class GTSconfig
      */
     private $gtsId;
     
+     /**
+    * @var integer
+    *
+    * @ORM\Column(name="event_id", type="integer")
+    */
+     private $eventId;
+    
       /**
      * @var string
      *
@@ -124,5 +131,28 @@ class GTSconfig
     public function getEvent()
     {
         return $this->event;
+    }
+
+    /**
+     * Set eventId
+     *
+     * @param integer $eventId
+     * @return GTSconfig
+     */
+    public function setEventId($eventId)
+    {
+        $this->eventId = $eventId;
+
+        return $this;
+    }
+
+    /**
+     * Get eventId
+     *
+     * @return integer 
+     */
+    public function getEventId()
+    {
+        return $this->eventId;
     }
 }
