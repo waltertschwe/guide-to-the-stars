@@ -28,14 +28,15 @@
 	</div>
 	<div class="form-group">
 		<div class="col-md-10">
-			 <textarea class="ckeditor" cols="80" id="star-description" name="star-description" rows="10"><b>STAR DESCRIPTION</b></textarea>
-			 <script>
-			// Replace the <textarea id="editor"> with an CKEditor
-			// instance, using default configurations.
-			CKEDITOR.replace( 'star-description', {
-				config.skin = 'moono-dark'
-			});
-		</script>
+			
+			 <textarea cols="80" id="star-description" name="star-description" rows="10"><b>STAR DESCRIPTION</b></textarea>
+			<script type="text/javascript">
+			   
+    			var editor = CKEDITOR.replace('star-description', {
+    				skin:'moono-dark'
+    			});
+    			editor.config.extraPlugins = 'youtube';
+			</script>
 		</div>
 	</div>
 	<div class="form-group">
