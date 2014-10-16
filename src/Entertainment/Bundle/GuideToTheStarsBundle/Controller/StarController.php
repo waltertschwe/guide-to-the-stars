@@ -102,10 +102,19 @@ class StarController extends Controller
     public function updateAction($eventId, $starId)
     {
         
+        $event = $this->getDoctrine()
+        ->getRepository('EntertainmentRedCarpetBundle:Event')
+        ->find($eventId);
+        
         $request = $this->get('request');
         if ($request->isMethod('POST')) {
             
         }
+        
+        return $this->render(
+            'EntertainmentGuideToTheStarsBundle:Star:udpate.html.twig',
+            array('event' => $event)
+        );
         
     }
     
