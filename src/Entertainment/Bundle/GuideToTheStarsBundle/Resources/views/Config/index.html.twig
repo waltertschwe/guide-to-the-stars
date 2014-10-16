@@ -1,11 +1,40 @@
 {% extends '::base.html.twig' %}
 {% block body %}
 {{ include('::nav.html.twig') }}
-{% for flashMessage in app.session.flashbag.get('notice') %}
-  <div class="alert alert-success">  
-    	<a class="close" data-dismiss="alert">×</a>  
-        {{ flashMessage }}
-        <b><a href="{{ path('entertainment_guidetothestars_category_index', {'eventId': event.id}) }}">Click Here</a></b> to view all the categories for this event.<br/>
-        Or <b><a href="{{ path('entertainment_guidetothestars_category_index', {'eventId': event.id}) }}">Click Here</a>to return to the Guide To The Stars home.</b>
-    </div>
-{% endfor %}
+<div class="container">
+<ol class="breadcrumb">
+  <li>  
+    <a href="{{ path('entertainment_redcarpet_event_dashboard', {'eventId': event.id}) }}">{{ event.eventName }}</a>
+  </li>  
+  <li>
+  	<a href="{{ path('entertainment_guidetothestars_star_index', {'eventId': event.id}) }}">Guide To The Stars</a>
+  </li>  
+  <li class="active">Guide To The Stars - Config</li>
+</ol>  	
+	<p></p>	
+	<div class="event-text">
+		<h1>Guide To The Stars - Config</h1>
+	</div>
+</div>
+<div class="container">
+	<div class="row">
+		<form name="form-config" method="post" action="" enctype="multipart/form-data" class="form-horizontal" role="form">
+			<input type="hidden" name="event-id" value="{{ event.eventId }}" />
+		<div class="col-md-8">
+			<div class="form-group">
+				<div class="col-md-10">
+					<input class="form-control input-lg" type="text" name="app-title" id="app-title" size="255" required="required" placeholder="Title"/>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-8">
+			<div class="form-group">
+				<div class="col-md-10">
+					<textarea cols="95" id="page-description" name="page-description" rows="10" placeholder="Page Description"></textarea>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+{% endblock %}

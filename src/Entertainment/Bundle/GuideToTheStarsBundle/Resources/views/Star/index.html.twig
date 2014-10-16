@@ -15,6 +15,7 @@
 <p>
 <!-- Split button -->
 <div class="btn-group">
+  <a href="{{ path('entertainment_guidetothestars_config_index', {'eventId': event.id}) }}"><button type="button" class="btn btn-primary">Config</button></a>
   <a href="{{ path('entertainment_guidetothestars_star_create', {'eventId': event.id}) }}"><button type="button" class="btn btn-primary">Create Star <span class="glyphicon glyphicon-star"></span></button></a>
   <a href="{{ path('entertainment_guidetothestars_category_create', {'eventId': event.id}) }}"><button type="button" class="btn btn-success" >Create Category</button></a>
   <a href="{{ path('entertainment_guidetothestars_category_index', {'eventId': event.id}) }}"><button type="button" class="btn btn-success">View Categories</button></a>
@@ -37,13 +38,14 @@
 <tbody>
 {% for star in stars %}
 <tr class="gradeA">
+	
 	<td class="center"><a href="{{ path('entertainment_guidetothestars_star_addcontent', {'eventId': event.id, 'starId' : star.id}) }}">{{ star.starName}}</a></td>
 	<td class="center">{% for category in star.category %} {{ category.categoryName}} <br/> {% endfor %}</td>
 	<td class="center">
-		<a href="" class="link" data-toggle="tooltip" title="">
-			 <span class="glyphicon glyphicon-circle-arrow-up"></span>
-		 </a>
-         <a href="" class="delbtn" title="Are you sure you want to delete this star {{ star.starName }} ???"><span class="glyphicon glyphicon-trash"></span></a>	
+	<a href="{{ path('entertainment_guidetothestars_star_addcontent', {'eventId': event.id, 'starId' : star.id}) }}" class="link" data-toggle="tooltip" title=""><span class="glyphicon glyphicon glyphicon-plus"></span></a>
+	<a href="" class="link" data-toggle="tooltip" title=""><span class="glyphicon glyphicon glyphicon-edit"></span></a>
+    <a href="" class="delbtn" title="Are you sure you want to delete this star {{ star.starName }} ???"><span class="glyphicon glyphicon-trash"></span></a>
+         	
 	</td>
 </tr>
 {% endfor %}

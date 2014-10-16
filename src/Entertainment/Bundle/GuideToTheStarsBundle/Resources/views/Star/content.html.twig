@@ -44,12 +44,32 @@
         <h4 class="modal-title" id="myModalLabel">Video Content -- {{ star.starName}}</h4>
       </div>
       <div class="modal-body">
-        <textarea name="video" class="form-control" rows="3" placeHolder="Video Embed Code"></textarea>
+        <form id="form-video" name="form-video" method="post" action="" class="form-horizontal" role="form">
+        <div class="container">
+		     <div class="row">
+        		  <div class="form-group">
+	         			<div class="col-sm-6">
+	         				<textarea name="video" class="form-control" rows="3" placeHolder="Video Embed Code"></textarea>
+	         		   </div>
+	            </div>
+         		<div class="form-group">
+	         		<div class="col-sm-6">
+	         	 		<textarea name="fact-twitter" class="form-control" rows="3" placeHolder="Twitter Text"></textarea>
+	         		</div>
+	     		</div>	
+			    <div class="form-group">
+			        <div class="col-sm-6">
+			        	 <textarea name="fact-facebook" class="form-control" rows="3" placeHolder="Facebook Share Text"></textarea>
+			        </div>
+			    </div>			     		     
+        	</div>
+        </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         <button type="button" class="btn btn-primary">Save changes</button>
       </div>
+      </form>
     </div>
   </div>
 </div>
@@ -61,7 +81,7 @@
         <h4 class="modal-title" id="myModalLabel">Tout Content  -- {{ star.starName}}</h4>
       </div>
       <div class="modal-body">
-      <form id="" method="post" action="" class="form-horizontal" role="form" enctype="multipart/form-data">
+      <form id="form-tout" name="form-tout" method="post" action="" class="form-horizontal" role="form" enctype="multipart/form-data">
        <div class="container">
 		     <div class="row">
 	      		 <div class="form-group">
@@ -147,7 +167,26 @@
         <h4 class="modal-title" id="myModalLabel">Fact Content  -- {{ star.starName}}</h4>
       </div>
       <div class="modal-body">
-        ...
+      <form id="fact-form" name="fact-form" method="post" action="" class="form-horizontal" role="form">
+       <div class="container">
+		     <div class="row">
+	             <div class="form-group">
+			         <div class="col-sm-6">
+			         	 <textarea name="fact-content" class="form-control" rows="3" placeHolder="Fun Fact"></textarea>
+			         </div>
+			     </div>
+			      <div class="form-group">
+			         <div class="col-sm-6">
+			         	 <textarea name="fact-twitter" class="form-control" rows="3" placeHolder="Twitter Text"></textarea>
+			         </div>
+			     </div>	
+			     <div class="form-group">
+			         <div class="col-sm-6">
+			         	 <textarea name="fact-facebook" class="form-control" rows="3" placeHolder="Facebook Share Text"></textarea>
+			         </div>
+			     </div>			     		     
+			 </div>
+		</div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

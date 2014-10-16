@@ -102,6 +102,11 @@ class StarController extends Controller
     public function updateAction($eventId, $starId)
     {
         
+        $request = $this->get('request');
+        if ($request->isMethod('POST')) {
+            
+        }
+        
     }
     
     /**

@@ -36,7 +36,7 @@ class ConfigController extends Controller
         
         return $this->render(
             'EntertainmentGuideToTheStarsBundle:Config:index.html.twig',
-                array('configData' => $configData)
+                array('event' => $event, 'configData' => $configData)
         );
     }
 }       
