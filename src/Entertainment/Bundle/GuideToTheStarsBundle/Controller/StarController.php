@@ -20,8 +20,8 @@ class StarController extends Controller
     {
         
         $event = $this->getDoctrine()
-        ->getRepository('EntertainmentRedCarpetBundle:Event')
-        ->find($eventId);
+            ->getRepository('EntertainmentRedCarpetBundle:Event')
+            ->find($eventId);
         
         $repository = $this->getDoctrine()
              ->getRepository('EntertainmentGuideToTheStarsBundle:GTSstar');
@@ -97,14 +97,22 @@ class StarController extends Controller
     }
     
      /**
-     * @Route("/stars/{eventId}update/{starId}")
+     * @Route("/stars/{eventId}/update/{starId}")
      */
     public function updateAction($eventId, $starId)
     {
         
         $event = $this->getDoctrine()
-        ->getRepository('EntertainmentRedCarpetBundle:Event')
-        ->find($eventId);
+            ->getRepository('EntertainmentRedCarpetBundle:Event')
+            ->find($eventId);
+            
+        $categories = $this->getDoctrine()
+            ->getRepository('EntertainmentGuideToTheStarsBundle:GTScategory')
+            ->findBy(array('eventId' => $eventId));
+           
+        $star = $this->getDoctrine()
+            ->getRepository('EntertainmentGuideToTheStarsBundle:GTSstar')
+            ->find(array('id' => $starId));
         
         $request = $this->get('request');
         if ($request->isMethod('POST')) {
@@ -112,8 +120,8 @@ class StarController extends Controller
         }
         
         return $this->render(
-            'EntertainmentGuideToTheStarsBundle:Star:udpate.html.twig',
-            array('event' => $event)
+            'EntertainmentGuideToTheStarsBundle:Star:update.html.twig',
+            array('event' => $event, 'categories' => $categories, 'star' => $star)
         );
         
     }
@@ -129,6 +137,8 @@ class StarController extends Controller
         $star = $this->getDoctrine()
              ->getRepository('EntertainmentGuideToTheStarsBundle:GTSstar')
              ->find(array('id' => $starId));
+        
+        
         
         return $this->render(
             'EntertainmentGuideToTheStarsBundle:Star:content.html.twig',

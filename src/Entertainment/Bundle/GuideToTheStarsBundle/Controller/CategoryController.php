@@ -20,17 +20,21 @@ class CategoryController extends Controller
     */
     public function indexAction($eventId)
     {
+        
+        $event = $this->getDoctrine()
+            ->getRepository('EntertainmentRedCarpetBundle:Event')
+            ->find($eventId);
          
         $categoryRepo = $this->getDoctrine()
             ->getRepository('EntertainmentGuideToTheStarsBundle:GTScategory');
         
         $categories = $categoryRepo->findBy(
-                        array('event_id' => $eventId));
+                        array('eventId' => $eventId));
             
         
         return $this->render(
             'EntertainmentGuideToTheStarsBundle:Category:index.html.twig',
-            array('categories' => $categories)
+            array('event' => $event, 'categories' => $categories)
         );
     }
      

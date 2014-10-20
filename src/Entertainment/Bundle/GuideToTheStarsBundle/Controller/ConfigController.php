@@ -39,5 +39,11 @@ class ConfigController extends Controller
                 array('event' => $event, 'configData' => $configData)
         );
     }
+    
+    public function updateAction($eventId) 
+    {
+        
+    }
+        
 }       
        

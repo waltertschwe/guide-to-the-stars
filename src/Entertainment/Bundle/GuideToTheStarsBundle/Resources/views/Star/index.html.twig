@@ -42,8 +42,9 @@
 	<td class="center"><a href="{{ path('entertainment_guidetothestars_star_addcontent', {'eventId': event.id, 'starId' : star.id}) }}">{{ star.starName}}</a></td>
 	<td class="center">{% for category in star.category %} {{ category.categoryName}} <br/> {% endfor %}</td>
 	<td class="center">
-	<a href="{{ path('entertainment_guidetothestars_star_addcontent', {'eventId': event.id, 'starId' : star.id}) }}" class="link" data-toggle="tooltip" title=""><span class="glyphicon glyphicon glyphicon-plus"></span></a>
-	<a href="" class="link" data-toggle="tooltip" title=""><span class="glyphicon glyphicon glyphicon-edit"></span></a>
+	<a href="{{ path('entertainment_guidetothestars_star_addcontent', {'eventId': event.id, 'starId' : star.id}) }}" class="link" data-toggle="tooltip" title="">
+		<span class="glyphicon glyphicon glyphicon-plus"></span></a>
+	<a href="{{ path('entertainment_guidetothestars_star_update', {'eventId': event.id, 'starId' : star.id}) }}" class="link" data-toggle="tooltip" title=""><span class="glyphicon glyphicon glyphicon-edit"></span></a>
     <a href="" class="delbtn" title="Are you sure you want to delete this star {{ star.starName }} ???"><span class="glyphicon glyphicon-trash"></span></a>
          	
 	</td>

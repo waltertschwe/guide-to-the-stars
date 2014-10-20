@@ -1,0 +1,81 @@
+{% extends '::base.html.twig' %}
+{% block body %}
+{{ include('::nav.html.twig') }}
+<div class="container">
+	{% for flashMessage in app.session.flashbag.get('notice') %}
+  <div class="alert alert-success">  
+    	<a class="close" data-dismiss="alert">×</a>  
+        {{ flashMessage }}
+    </div>
+{% endfor %}
+<ol class="breadcrumb">
+  <li>  
+    <a href="{{ path('entertainment_redcarpet_event_dashboard', {'eventId': event.id}) }}">{{ event.eventName }}</a>
+  </li>  
+  <li>
+  	<a href="{{ path('entertainment_guidetothestars_star_index', {'eventId': event.id}) }}">Guide To The Stars</a>
+  </li>  
+  <li class="active">Create Star</li>
+</ol>  	
+	<p></p>	
+	<div class="event-text">
+		<h1>Update Star</h1>
+	</div>
+</div>
+<div class="container">
+<div class="row">
+	<form method="post" action="" enctype="multipart/form-data" class="form-horizontal" role="form">
+		<input type="hidden" name="event-id" value="{{ event.eventId }}" />
+	<div class="col-md-8">
+	<div class="form-group">
+		<div class="col-md-10">
+			<input class="form-control input-lg" value="{{ star.starName }}" type="text" name="star-name" id="star-name" size="255" required="required" placeholder="Star Name"/>
+		</div>
+	</div>
+	<div class="form-group">
+		<div class="col-md-10">
+			
+			 <textarea cols="80" id="star-description" name="star-description" rows="10">{{ star.starDescription }}</textarea>
+			<script type="text/javascript">
+			   
+    			var editor = CKEDITOR.replace('star-description', {
+    				skin:'moono-dark'
+    			});
+    			editor.config.extraPlugins = 'youtube';
+			</script>
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="col-md-10">Star Image Bubble</label>
+		<div class="col-md-10">
+			<input type="file" name="star-bubble" required="required">
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="col-md-10">Star Image Large</label>
+		<div class="col-md-10">
+			<input type="file" name="star-large" required="required">
+		</div>
+	</div>
+	<div class="form-group">
+		<div class="col-md-10">
+			<button name="submit" type="submit" class="btn btn-lg btn-success">Update Star</button>
+		</div>
+	</div>
+	</div>
+	 <div class="col-md-4">
+	  <ul class="list-group">
+        <li class="list-group-item list-group-item-success">
+            <b>Select Categories</b>
+        </li>
+        {% for category in categories %}
+        <li class="list-group-item">
+            <input type="checkbox" name="category-check[]" value="{{ category.id }}">  {{ category.categoryName}} </input><br/>
+        </li>
+        {% endfor %}
+     </ul>   
+	 </div>
+</form>
+</div>
+</div>
+{% endblock %}
