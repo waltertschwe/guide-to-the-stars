@@ -110,8 +110,6 @@ class StarController extends Controller
             ->getRepository('EntertainmentGuideToTheStarsBundle:GTScategory')
             ->findBy(array('eventId' => $eventId));
             
-        
-           
         $star = $this->getDoctrine()
             ->getRepository('EntertainmentGuideToTheStarsBundle:GTSstar')
             ->find(array('id' => $starId));
@@ -129,13 +127,54 @@ class StarController extends Controller
         foreach ($dbCategories as $category) {
             $val = $category['category_id'];
             array_push($selectedCategories, $val);
+            
         }
        
         $request = $this->get('request');
         if ($request->isMethod('POST')) {
+            $em = $this->getDoctrine()->getManager();
+            $star->setStarName($request->request->get('star-name'));
+            $star->setStarDescription($request->request->get('star-description'));
+            $getCategories = $request->request->get('category-check');
             
+            
+            if(isset($getCategories)) {
+                ## delete old categories
+                $sql = " 
+                        DELETE FROM star_category
+                        WHERE star_id = " . $starId;
+                $numRowsEffected = $conn->exec($sql);
+                
+                ## add new categories from updated form
+                foreach($getCategories as $key => $categoryId) {
+                    $conn = $this->get('database_connection');
+                    $sql = " 
+                        INSERT INTO star_category
+                        VALUES(" . $starId . ", " . $categoryId . ")" 
+                        ;
+                    $numRowsEffected = $conn->exec($sql);  
+                } 
+            }
+          
+            $em->flush();
+            $session = new Session();
+            $session->getFlashBag()->add('notice', 'Success! The star information has been updated.');
+            
+            ## query for updated categories
+            $conn = $this->get('database_connection');
+            $sql = " 
+                SELECT category_id
+                FROM star_category 
+                WHERE star_id = " . $starId  
+                ;
+            $dbCategories= $conn->fetchAll($sql);
+            $selectedCategories = array();
+            foreach ($dbCategories as $category) {
+                $val = $category['category_id'];
+                array_push($selectedCategories, $val); 
+            }
         }
-        
+
         return $this->render(
             'EntertainmentGuideToTheStarsBundle:Star:update.html.twig',
             array('event' => $event, 'categories' => $categories, 'star' => $star, 'selectedcat' => $selectedCategories)
