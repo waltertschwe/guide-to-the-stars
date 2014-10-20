@@ -70,7 +70,13 @@
         </li>
         {% for category in categories %}
         <li class="list-group-item">
-            <input type="checkbox" name="category-check[]" value="{{ category.id }}">  {{ category.categoryName}} </input><br/>
+        	{% if category.id not in selectedcat %}
+                <input type="checkbox" name="category-check[]" value="{{ category.id }}">  {{ category.categoryName}} </input><br/>
+            {% endif %}
+            {% if category.id in selectedcat %}
+                <input type="checkbox" name="category-check[]" value="{{ category.id }}" checked>  {{ category.categoryName}} </input><br/>
+            {% endif %}
+            
         </li>
         {% endfor %}
      </ul>   

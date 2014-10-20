@@ -109,11 +109,28 @@ class StarController extends Controller
         $categories = $this->getDoctrine()
             ->getRepository('EntertainmentGuideToTheStarsBundle:GTScategory')
             ->findBy(array('eventId' => $eventId));
+            
+        
            
         $star = $this->getDoctrine()
             ->getRepository('EntertainmentGuideToTheStarsBundle:GTSstar')
             ->find(array('id' => $starId));
+       
+        ## TODO: put in model
+        $conn = $this->get('database_connection');
+        $sql = " 
+            SELECT category_id
+            FROM star_category 
+            WHERE star_id = " . $starId  
+            ;
         
+        $dbCategories= $conn->fetchAll($sql);
+        $selectedCategories = array();
+        foreach ($dbCategories as $category) {
+            $val = $category['category_id'];
+            array_push($selectedCategories, $val);
+        }
+       
         $request = $this->get('request');
         if ($request->isMethod('POST')) {
             
@@ -121,7 +138,7 @@ class StarController extends Controller
         
         return $this->render(
             'EntertainmentGuideToTheStarsBundle:Star:update.html.twig',
-            array('event' => $event, 'categories' => $categories, 'star' => $star)
+            array('event' => $event, 'categories' => $categories, 'star' => $star, 'selectedcat' => $selectedCategories)
         );
         
     }
