@@ -8,6 +8,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
 use Symfony\Component\HttpFoundation\Session\Session;
 
+use Symfony\Component\HttpFoundation\Response;
 use Entertainment\Bundle\GuideToTheStarsBundle\Entity\GTSconfig;
 
 
@@ -20,30 +21,51 @@ class ConfigController extends Controller
     */
     public function indexAction($eventId)
     {
-         $event = $this->getDoctrine()
-            ->getRepository('EntertainmentRedCarpetBundle:Event')
-            ->find($eventId);
+        $event = $this->getDoctrine()
+           ->getRepository('EntertainmentRedCarpetBundle:Event')
+           ->find($eventId);
          
-         $configRepo = $this->getDoctrine()
-             ->getRepository('EntertainmentGuideToTheStarsBundle:GTSconfig');
+        $configRepo = $this->getDoctrine()
+            ->getRepository('EntertainmentGuideToTheStarsBundle:GTSconfig');
         
-        $configData = $configRepo->findBy(
+        $config = $configRepo->findOneBy(
                        array('eventId' => $eventId));
-        
-        if(isset($configData)) {
+                       
+        $request = $this->get('request');
+        if ($request->isMethod('POST')) {
+            $title = $request->request->get('app-title');
+            $appDesc = $request->request->get('app-description');
+            $starText = $request->request->get('star-text');
+            $categoryText = $request->request->get('category-text');
             
+            $config->setEventId($eventId);
+            $config->setEvent($event);
+            $config->setTitle($title);
+            $config->setDescription($appDesc);
+            $config->setStarDesc($starText);
+            $config->setCategoryDesc($categoryText);
+            $em = $this->getDoctrine()->getManager();
+            if(empty($config)) {
+                ## initial Insert.
+                $config = new GTSconfig();
+                $em->persist($config);
+                $em->flush();
+                $session = new Session();
+                $session->getFlashBag()->add('notice', 'Success! Event Configuration created.');
+          
+            } else {
+                ## update existing config data
+                $em->flush();
+                $session = new Session();
+                $session->getFlashBag()->add('notice', 'Success! Event Configuration updated');
+            }
         }
         
         return $this->render(
             'EntertainmentGuideToTheStarsBundle:Config:index.html.twig',
-                array('event' => $event, 'configData' => $configData)
+                array('event' => $event, 'config' => $config)
         );
     }
-    
-    public function updateAction($eventId) 
-    {
-        
-    }
-        
+         
 }       
        

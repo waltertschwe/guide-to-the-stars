@@ -1,6 +1,12 @@
 {% extends '::base.html.twig' %}
 {% block body %}
 {{ include('::nav.html.twig') }}
+{% for flashMessage in app.session.flashbag.get('notice') %}
+  <div class="alert alert-success">  
+    	<a class="close" data-dismiss="alert">×</a>  
+        {{ flashMessage }}
+    </div>
+{% endfor %}
 <div class="container">
 <ol class="breadcrumb">
   <li>  
@@ -16,35 +22,36 @@
 		<h1>Guide To The Stars - Config</h1>
 	</div>
 </div>
+
 <div class="container">
 	<div class="row">
-		<form name="form-config" method="post" action="" enctype="multipart/form-data" class="form-horizontal" role="form">
+		<form name="form-config" method="post" action="" class="form-horizontal" role="form">
 			<input type="hidden" name="event-id" value="{{ event.eventId }}" />
 		<div class="col-md-8">
 			<div class="form-group">
 				<div class="col-md-10">
-					<input class="form-control input-lg" type="text" name="app-title" id="app-title" size="255" required="required" placeholder="Title"/>
+					<input class="form-control input-lg" type="text" name="app-title" id="app-title" size="255" value="{{ config.title }}" placeholder="Title"/>
 				</div>
 			</div>
 		</div>
 		<div class="col-md-8">
 			<div class="form-group">
 				<div class="col-md-10">
-					<textarea cols="95" id="page-description" name="page-description" rows="10" placeholder="Page Description"></textarea>
+					<textarea cols="90" id="app-description" name="app-description" rows="10" placeholder="Page Description">{{ config.description }}</textarea>
 				</div>
 			</div>
 		</div>
 		<div class="col-md-8">
 			<div class="form-group">
 				<div class="col-md-10">
-					<input class="form-control input-lg" type="text" name="star-text" id="star-text" size="255" required="required" placeholder="Star Text" />
+					<input class="form-control input-lg" type="text" name="star-text" id="star-text" size="255" value="{{ config.starDesc }}" required="required" placeholder="Star Text" />
 				</div>
 			</div>
 		</div>
 		<div class="col-md-8">
 			<div class="form-group">
 				<div class="col-md-10">
-					<input class="form-control input-lg" type="text" name="category-text" id="category-text" size="255" required="required" placeholder="Category Text"/>
+					<input class="form-control input-lg" type="text" name="category-text" id="category-text" size="255" value="{{ config.categoryDesc}}" required="required" placeholder="Category Text"/>
 				</div>
 			</div>
 		</div>
