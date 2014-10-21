@@ -24,37 +24,51 @@ class GTSimage
     /**
      * @var string
      *
-     * @ORM\Column(name="image_title", type="string", length=255)
+     * @ORM\Column(name="image_title", type="string", length=255, nullable=true)
      */
     private $imageTitle;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="image_url", type="string", length=255)
+     * @ORM\Column(name="image_url", type="string", length=255, nullable=true)
      */
     private $imageUrl;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="image_name", type="string", length=255)
+     * @ORM\Column(name="image_name", type="string", length=255, nullable=true)
      */
     private $imageName;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="image_caption", type="string", length=255)
+     * @ORM\Column(name="image_caption", type="string", length=255, nullable=true)
      */
     private $imageCaption;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="image_credit", type="string", length=255)
+     * @ORM\Column(name="image_credit", type="string", length=255, nullable=true)
      */
     private $imageCredit;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="twitter_text", type="string", length=140, nullable=true)
+     */
+    private $twitterText;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="facebook_text", type="string", length=255, nullable=true)
+     */
+    private $facebookText;
 
 
     /**

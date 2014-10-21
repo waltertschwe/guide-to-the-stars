@@ -24,28 +24,28 @@ class GTSvideo
     /**
      * @var string
      *
-     * @ORM\Column(name="video_embed", type="text")
+     * @ORM\Column(name="video_embed", type="text", nullable=true)
      */
     private $videoEmbed;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="video_id", type="string", length=255)
+     * @ORM\Column(name="video_id", type="string", length=255, nullable=true)
      */
     private $videoId;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="twitter_text", type="string", length=140)
+     * @ORM\Column(name="twitter_text", type="string", length=140, nullable=true)
      */
     private $twitterText;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="facebook_text", type="string", length=255)
+     * @ORM\Column(name="facebook_text", type="string", length=255, nullable=true)
      */
     private $facebookText;
 

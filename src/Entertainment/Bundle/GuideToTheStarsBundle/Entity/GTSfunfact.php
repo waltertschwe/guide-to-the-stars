@@ -24,23 +24,37 @@ class GTSfunfact
     /**
      * @var string
      *
-     * @ORM\Column(name="fun_fact", type="string", length=255)
+     * @ORM\Column(name="fun_fact", type="string", length=255, nullable=true)
      */
     private $funFact;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="fun_twitter", type="string", length=140)
+     * @ORM\Column(name="fun_twitter", type="string", length=140, nullable=true)
      */
     private $funTwitter;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="fun_facebook", type="string", length=255)
+     * @ORM\Column(name="fun_facebook", type="string", length=255, nullable=true)
      */
     private $funFacebook;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="twitter_text", type="string", length=140, nullable=true)
+     */
+    private $twitterText;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="facebook_text", type="string", length=255, nullable=true)
+     */
+    private $facebookText;
 
 
     /**

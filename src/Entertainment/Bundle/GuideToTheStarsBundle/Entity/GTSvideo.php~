@@ -24,14 +24,14 @@ class GTSvideo
     /**
      * @var string
      *
-     * @ORM\Column(name="video_embed", type="text")
+     * @ORM\Column(name="video_embed", type="text", nullable=true)
      */
     private $videoEmbed;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="video_id", type="string", length=255)
+     * @ORM\Column(name="video_id", type="string", length=255, nullable=true)
      */
     private $videoId;
 

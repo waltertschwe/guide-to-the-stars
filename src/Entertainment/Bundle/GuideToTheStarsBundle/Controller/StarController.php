@@ -203,16 +203,17 @@ class StarController extends Controller
             switch ($contentType) {
                 case 'video-submit':
                     $asset = new GTSvideo();
-                    
+                    $videoId = $request->request->get('video-id');
+                    $videoEmbed = $request->request->get('video-embed');
                     break;
                 case 'image-submit':
-                     $asset = new GTSimage();
+                    $asset = new GTSimage();
                     break;
                 case 'quote-submit':
-                     $asset = new GTSquote();
+                    $asset = new GTSquote();
                     break;
                 case 'fact-submit':
-                     $asset = new GTSfuncfact();
+                    $asset = new GTSfuncfact();
                     break;  
             }
         }

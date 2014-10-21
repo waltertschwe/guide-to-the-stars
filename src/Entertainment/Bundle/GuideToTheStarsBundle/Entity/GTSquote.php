@@ -24,23 +24,37 @@ class GTSquote
     /**
      * @var string
      *
-     * @ORM\Column(name="quote_credit", type="string", length=255)
+     * @ORM\Column(name="quote_credit", type="string", length=255, nullable=true)
      */
     private $quoteCredit;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="quote_text", type="text")
+     * @ORM\Column(name="quote_text", type="text", nullable=true)
      */
     private $quoteText;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="quote_image", type="string", length=255)
+     * @ORM\Column(name="quote_image", type="string", length=255, nullable=true)
      */
     private $quoteImage;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="twitter_text", type="string", length=140, nullable=true)
+     */
+    private $twitterText;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="facebook_text", type="string", length=255, nullable=true)
+     */
+    private $facebookText;
 
 
     /**
