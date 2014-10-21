@@ -12,6 +12,13 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class GTSfunfact
 {
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="Entertainment\Bundle\GuideToTheStarsBundle\Entity\GTSstar")
+     * @ORM\JoinColumn(name="star_id", referencedColumnName="id")
+     **/
+    private $star;
+    
     /**
      * @var integer
      *
@@ -24,23 +31,37 @@ class GTSfunfact
     /**
      * @var string
      *
-     * @ORM\Column(name="fun_fact", type="string", length=255)
+     * @ORM\Column(name="fun_fact", type="string", length=255, nullable=true)
      */
     private $funFact;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="fun_twitter", type="string", length=140)
+     * @ORM\Column(name="fun_twitter", type="string", length=140, nullable=true)
      */
     private $funTwitter;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="fun_facebook", type="string", length=255)
+     * @ORM\Column(name="fun_facebook", type="string", length=255, nullable=true)
      */
     private $funFacebook;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="twitter_text", type="string", length=140, nullable=true)
+     */
+    private $twitterText;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="facebook_text", type="string", length=255, nullable=true)
+     */
+    private $facebookText;
 
 
     /**
@@ -120,5 +141,51 @@ class GTSfunfact
     public function getFunFacebook()
     {
         return $this->funFacebook;
+    }
+
+    /**
+     * Set twitterText
+     *
+     * @param string $twitterText
+     * @return GTSfunfact
+     */
+    public function setTwitterText($twitterText)
+    {
+        $this->twitterText = $twitterText;
+
+        return $this;
+    }
+
+    /**
+     * Get twitterText
+     *
+     * @return string 
+     */
+    public function getTwitterText()
+    {
+        return $this->twitterText;
+    }
+
+    /**
+     * Set facebookText
+     *
+     * @param string $facebookText
+     * @return GTSfunfact
+     */
+    public function setFacebookText($facebookText)
+    {
+        $this->facebookText = $facebookText;
+
+        return $this;
+    }
+
+    /**
+     * Get facebookText
+     *
+     * @return string 
+     */
+    public function getFacebookText()
+    {
+        return $this->facebookText;
     }
 }

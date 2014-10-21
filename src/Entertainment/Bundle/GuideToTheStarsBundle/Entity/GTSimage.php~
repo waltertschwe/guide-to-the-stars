@@ -12,6 +12,13 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class GTSimage
 {
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="Entertainment\Bundle\GuideToTheStarsBundle\Entity\GTSstar")
+     * @ORM\JoinColumn(name="star_id", referencedColumnName="id")
+     **/
+    private $star;
+    
     /**
      * @var integer
      *
@@ -24,37 +31,51 @@ class GTSimage
     /**
      * @var string
      *
-     * @ORM\Column(name="image_title", type="string", length=255)
+     * @ORM\Column(name="image_title", type="string", length=255, nullable=true)
      */
     private $imageTitle;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="image_url", type="string", length=255)
+     * @ORM\Column(name="image_url", type="string", length=255, nullable=true)
      */
     private $imageUrl;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="image_name", type="string", length=255)
+     * @ORM\Column(name="image_name", type="string", length=255, nullable=true)
      */
     private $imageName;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="image_caption", type="string", length=255)
+     * @ORM\Column(name="image_caption", type="string", length=255, nullable=true)
      */
     private $imageCaption;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="image_credit", type="string", length=255)
+     * @ORM\Column(name="image_credit", type="string", length=255, nullable=true)
      */
     private $imageCredit;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="twitter_text", type="string", length=140, nullable=true)
+     */
+    private $twitterText;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="facebook_text", type="string", length=255, nullable=true)
+     */
+    private $facebookText;
 
 
     /**
@@ -180,5 +201,51 @@ class GTSimage
     public function getImageCredit()
     {
         return $this->imageCredit;
+    }
+
+    /**
+     * Set twitterText
+     *
+     * @param string $twitterText
+     * @return GTSimage
+     */
+    public function setTwitterText($twitterText)
+    {
+        $this->twitterText = $twitterText;
+
+        return $this;
+    }
+
+    /**
+     * Get twitterText
+     *
+     * @return string 
+     */
+    public function getTwitterText()
+    {
+        return $this->twitterText;
+    }
+
+    /**
+     * Set facebookText
+     *
+     * @param string $facebookText
+     * @return GTSimage
+     */
+    public function setFacebookText($facebookText)
+    {
+        $this->facebookText = $facebookText;
+
+        return $this;
+    }
+
+    /**
+     * Get facebookText
+     *
+     * @return string 
+     */
+    public function getFacebookText()
+    {
+        return $this->facebookText;
     }
 }

@@ -12,6 +12,13 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class GTSfunfact
 {
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="Entertainment\Bundle\GuideToTheStarsBundle\Entity\GTSstar")
+     * @ORM\JoinColumn(name="star_id", referencedColumnName="id")
+     **/
+    private $star;
+    
     /**
      * @var integer
      *
@@ -134,5 +141,74 @@ class GTSfunfact
     public function getFunFacebook()
     {
         return $this->funFacebook;
+    }
+
+    /**
+     * Set twitterText
+     *
+     * @param string $twitterText
+     * @return GTSfunfact
+     */
+    public function setTwitterText($twitterText)
+    {
+        $this->twitterText = $twitterText;
+
+        return $this;
+    }
+
+    /**
+     * Get twitterText
+     *
+     * @return string 
+     */
+    public function getTwitterText()
+    {
+        return $this->twitterText;
+    }
+
+    /**
+     * Set facebookText
+     *
+     * @param string $facebookText
+     * @return GTSfunfact
+     */
+    public function setFacebookText($facebookText)
+    {
+        $this->facebookText = $facebookText;
+
+        return $this;
+    }
+
+    /**
+     * Get facebookText
+     *
+     * @return string 
+     */
+    public function getFacebookText()
+    {
+        return $this->facebookText;
+    }
+
+    /**
+     * Set star
+     *
+     * @param \Entertainment\Bundle\GuideToTheStarsBundle\Entity\GTSstar $star
+     * @return GTSfunfact
+     */
+    public function setStar(\Entertainment\Bundle\GuideToTheStarsBundle\Entity\GTSstar $star = null)
+    {
+        $this->star = $star;
+
+        return $this;
+    }
+
+    /**
+     * Get star
+     *
+     * @return \Entertainment\Bundle\GuideToTheStarsBundle\Entity\GTSstar 
+     */
+    public function getStar()
+    {
+        return $this->star;
     }
 }
