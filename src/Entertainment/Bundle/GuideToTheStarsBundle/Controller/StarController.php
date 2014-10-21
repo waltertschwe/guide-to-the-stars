@@ -9,6 +9,10 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Session\Session;
 
 use Entertainment\Bundle\GuideToTheStarsBundle\Entity\GTSstar;
+use Entertainment\Bundle\GuideToTheStarsBundle\Entity\GTSvideo;
+use Entertainment\Bundle\GuideToTheStarsBundle\Entity\GTSimage;
+use Entertainment\Bundle\GuideToTheStarsBundle\Entity\GTSquote;
+use Entertainment\Bundle\GuideToTheStarsBundle\Entity\GTSfunfact;
 
 class StarController extends Controller
 {
@@ -126,8 +130,7 @@ class StarController extends Controller
         $selectedCategories = array();
         foreach ($dbCategories as $category) {
             $val = $category['category_id'];
-            array_push($selectedCategories, $val);
-            
+            array_push($selectedCategories, $val);    
         }
        
         $request = $this->get('request');
@@ -136,7 +139,6 @@ class StarController extends Controller
             $star->setStarName($request->request->get('star-name'));
             $star->setStarDescription($request->request->get('star-description'));
             $getCategories = $request->request->get('category-check');
-            
             
             if(isset($getCategories)) {
                 ## delete old categories
@@ -194,7 +196,26 @@ class StarController extends Controller
              ->getRepository('EntertainmentGuideToTheStarsBundle:GTSstar')
              ->find(array('id' => $starId));
         
-        
+        $request = $this->get('request');
+        if ($request->isMethod('POST')) {
+            $contentType = $request->request->get('submit');
+            $em = $this->getDoctrine()->getManager();
+            switch ($contentType) {
+                case 'video-submit':
+                    $asset = new GTSvideo();
+                    
+                    break;
+                case 'image-submit':
+                     $asset = new GTSimage();
+                    break;
+                case 'quote-submit':
+                     $asset = new GTSquote();
+                    break;
+                case 'fact-submit':
+                     $asset = new GTSfuncfact();
+                    break;  
+            }
+        }
         
         return $this->render(
             'EntertainmentGuideToTheStarsBundle:Star:content.html.twig',
