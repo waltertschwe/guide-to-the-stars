@@ -38,20 +38,6 @@ class GTSfunfact
     /**
      * @var string
      *
-     * @ORM\Column(name="fun_twitter", type="string", length=140, nullable=true)
-     */
-    private $funTwitter;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="fun_facebook", type="string", length=255, nullable=true)
-     */
-    private $funFacebook;
-    
-    /**
-     * @var string
-     *
      * @ORM\Column(name="twitter_text", type="string", length=140, nullable=true)
      */
     private $twitterText;
@@ -104,52 +90,6 @@ class GTSfunfact
     public function getFunFact()
     {
         return $this->funFact;
-    }
-
-    /**
-     * Set funTwitter
-     *
-     * @param string $funTwitter
-     * @return GTSfunfact
-     */
-    public function setFunTwitter($funTwitter)
-    {
-        $this->funTwitter = $funTwitter;
-
-        return $this;
-    }
-
-    /**
-     * Get funTwitter
-     *
-     * @return string 
-     */
-    public function getFunTwitter()
-    {
-        return $this->funTwitter;
-    }
-
-    /**
-     * Set funFacebook
-     *
-     * @param string $funFacebook
-     * @return GTSfunfact
-     */
-    public function setFunFacebook($funFacebook)
-    {
-        $this->funFacebook = $funFacebook;
-
-        return $this;
-    }
-
-    /**
-     * Get funFacebook
-     *
-     * @return string 
-     */
-    public function getFunFacebook()
-    {
-        return $this->funFacebook;
     }
 
     /**

@@ -234,11 +234,24 @@ class StarController extends Controller
                     break;
                 case 'quote-submit':
                     $asset = new GTSquote();
-                    $asset->setStar($star);
+                    $credit = $request->request->get('quote-credit');
+                    $quote = $request->request->get('quote');
+                    
+                    ## image asset
+                    $tmpFileName = $request->files->get('quote-image');
+                    $userFileName = $_FILES['quote-image']['name'];
+                    $basePath = $this->get('kernel')->getRootDir();
+                    move_uploaded_file($tmpFileName, $basePath."/event-images/".$userFileName);
+                    
+                    $asset->setQuoteCredit($credit);
+                    $asset->setQuoteText($quote);
+                    $asset->setQuoteImage($userFileName);
+                   
                     break;
                 case 'fact-submit':
-                    $asset = new GTSfuncfact();
-                    $asset->setStar($star);
+                    $asset = new GTSfunfact();
+                    $fact = $request->request->get('fact-content');
+                    $asset->setFunFact($fact);
                     break;  
             }
             
@@ -291,8 +304,5 @@ class StarController extends Controller
          
          return $position;
          
-        
     }
- 
-
 }
