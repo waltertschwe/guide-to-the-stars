@@ -62,6 +62,15 @@ class GTSfunfact
      * @ORM\Column(name="facebook_text", type="string", length=255, nullable=true)
      */
     private $facebookText;
+    
+     /**
+     * @var integer
+     *
+     * @ORM\Column(name="position", type="integer", nullable=true)
+     *
+     */
+    private $position;
+    
 
 
     /**
@@ -210,5 +219,28 @@ class GTSfunfact
     public function getStar()
     {
         return $this->star;
+    }
+
+    /**
+     * Set position
+     *
+     * @param integer $position
+     * @return GTSfunfact
+     */
+    public function setPosition($position)
+    {
+        $this->position = $position;
+
+        return $this;
+    }
+
+    /**
+     * Get position
+     *
+     * @return integer 
+     */
+    public function getPosition()
+    {
+        return $this->position;
     }
 }

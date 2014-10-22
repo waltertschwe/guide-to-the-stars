@@ -196,6 +196,8 @@ class StarController extends Controller
              ->getRepository('EntertainmentGuideToTheStarsBundle:GTSstar')
              ->find(array('id' => $starId));
         
+        $position = $this->nextPosition($starId);
+       
         $request = $this->get('request');
         if ($request->isMethod('POST')) {
             $contentType = $request->request->get('submit');
@@ -205,17 +207,45 @@ class StarController extends Controller
                     $asset = new GTSvideo();
                     $videoId = $request->request->get('video-id');
                     $videoEmbed = $request->request->get('video-embed');
+                  
+                    $asset->setVideoId($videoId);
+                    $asset->setVideoEmbed($videoEmbed);
+                   
                     break;
                 case 'image-submit':
                     $asset = new GTSimage();
+                    $title = $request->request->get('image-title');
+                    $url = $request->request->get('image-url');
+                    $caption = $request->request->get('image-caption');
+                    $credit = $request->request->get('image-credit');
+                    
+                    ## image asset
+                    $tmpFileName = $request->files->get('image-name');
+                    $userFileName = $_FILES['image-name']['name'];
+                    $basePath = $this->get('kernel')->getRootDir();
+                    move_uploaded_file($tmpFileName, $basePath."/event-images/".$userFileName);
+                  
+                    $asset->setImageTitle($title);
+                    $asset->setImageName($userFileName);
+                    $asset->setImageUrl($url);
+                    $asset->setImageCaption($caption);
+                    $asset->setImageCredit($credit);
+            
                     break;
                 case 'quote-submit':
                     $asset = new GTSquote();
+                    $asset->setStar($star);
                     break;
                 case 'fact-submit':
                     $asset = new GTSfuncfact();
+                    $asset->setStar($star);
                     break;  
             }
+            
+            $asset->setStar($star);
+            $asset->setPosition($position);
+            $em->persist($asset);
+            $em->flush();
         }
         
         return $this->render(
@@ -224,4 +254,45 @@ class StarController extends Controller
         );
         
     }
+
+
+    public function nextPosition($starId) 
+    {
+         
+         ## Refactor to one query
+         $conn = $this->get('database_connection');
+         $sql = "SELECT COUNT(*) AS videoTotal FROM GTSvideo WHERE star_id = " . $starId;
+         $videoArr = $conn->fetchAll($sql);
+         $videoTotal = $videoArr[0]['videoTotal'];
+         
+         $sql = "SELECT COUNT(*) AS quoteTotal FROM GTSquote WHERE star_id = " . $starId;
+         $quoteArr = $conn->fetchAll($sql);
+         $quoteTotal = $quoteArr[0]['quoteTotal'];
+         
+         $sql = "SELECT COUNT(*) AS factTotal FROM GTSfunfact WHERE star_id = " . $starId;
+         $factArr = $conn->fetchAll($sql);
+         $factTotal = $factArr[0]['factTotal'];
+         
+         $sql = "SELECT COUNT(*) AS imageTotal FROM GTSimage WHERE star_id = " . $starId;
+         $imageArr = $conn->fetchAll($sql);
+         $imageTotal = $imageArr[0]['imageTotal'];
+       
+         $totalAssets = $videoTotal + $quoteTotal + $factTotal + $imageTotal;
+         $position = $totalAssets + 1;
+        
+         /*
+         echo "videoTotal = " . $videoTotal;
+         echo "<br/>quoteTotal = " . $quoteTotal;
+         echo "<br/>fact Total = " . $factTotal;
+         echo "<br/>imageTotal = " . $imageTotal;
+         echo "<br/>totalAssets = " . $totalAssets;
+         echo "<br/>position = " . $position;
+        */
+         
+         return $position;
+         
+        
+    }
+ 
+
 }

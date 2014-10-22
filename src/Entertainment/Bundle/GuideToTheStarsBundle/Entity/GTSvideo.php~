@@ -23,11 +23,11 @@ class GTSvideo
     /**
      * @var integer
      *
-     * @ORM\Column(name="video_id", type="integer")
+     * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $videoId;
+    private $id;
 
     /**
      * @var string
@@ -39,9 +39,9 @@ class GTSvideo
     /**
      * @var string
      *
-     * @ORM\Column(name="asset_id", type="string", length=255, nullable=true)
+     * @ORM\Column(name="video_id", type="string", length=255, nullable=true)
      */
-    private $assetId;
+    private $videoId;
 
     /**
      * @var string
@@ -56,6 +56,15 @@ class GTSvideo
      * @ORM\Column(name="facebook_text", type="string", length=255, nullable=true)
      */
     private $facebookText;
+    
+     /**
+     * @var integer
+     *
+     * @ORM\Column(name="position", type="integer", nullable=true)
+     *
+     */
+    private $position;
+    
 
 
     /**
@@ -204,5 +213,28 @@ class GTSvideo
     public function getStar()
     {
         return $this->star;
+    }
+
+    /**
+     * Set position
+     *
+     * @param integer $position
+     * @return GTSvideo
+     */
+    public function setPosition($position)
+    {
+        $this->position = $position;
+
+        return $this;
+    }
+
+    /**
+     * Get position
+     *
+     * @return integer 
+     */
+    public function getPosition()
+    {
+        return $this->position;
     }
 }
