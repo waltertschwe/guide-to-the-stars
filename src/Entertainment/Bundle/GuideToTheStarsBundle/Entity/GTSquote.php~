@@ -27,6 +27,21 @@ class GTSquote
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
+    
+       /**
+     * @var string
+     *
+     * @ORM\Column(name="title", type="string", length=255)
+     */
+    private $title;
+    
+      /**
+     * @var string
+     *
+     * @ORM\Column(name="type", type="string", length=255)
+     */
+    private $type;
+    
 
     /**
      * @var string

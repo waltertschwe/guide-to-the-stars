@@ -27,6 +27,21 @@ class GTSfunfact
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
+    
+       /**
+     * @var string
+     *
+     * @ORM\Column(name="title", type="string", length=255)
+     */
+    private $title;
+    
+      /**
+     * @var string
+     *
+     * @ORM\Column(name="type", type="string", length=255)
+     */
+    private $type;
+    
 
     /**
      * @var string
@@ -182,5 +197,51 @@ class GTSfunfact
     public function getPosition()
     {
         return $this->position;
+    }
+
+    /**
+     * Set title
+     *
+     * @param string $title
+     * @return GTSfunfact
+     */
+    public function setTitle($title)
+    {
+        $this->title = $title;
+
+        return $this;
+    }
+
+    /**
+     * Get title
+     *
+     * @return string 
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    /**
+     * Set type
+     *
+     * @param string $type
+     * @return GTSfunfact
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * Get type
+     *
+     * @return string 
+     */
+    public function getType()
+    {
+        return $this->type;
     }
 }

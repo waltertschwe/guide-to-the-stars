@@ -206,7 +206,33 @@
   </div>
 </div>
 </div>
-  <div class="col-xs-12 col-md-8">.col-xs-12 .col-md-8</div>
+  <div class="col-xs-12 col-md-8">
+<div class="container">
+<div class="row">
+	<div class="col-md-8">
+<ul id="sortable">
+	{% for key, asset in assets %}
+		<li id=""><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>
+		    <a href="">{{ key }}</a>
+	        <a href=""><span style="padding: 10px 10px 0; float: right;" class="glyphicon glyphicon-trash float: right;"></span>
+	        </a>
+	    </li>	
+	{% endfor %}
+</ul>
+</div>
+<div class="col-md-2">
+    <button id="savepostion" name="submit" type="submit" class="btn btn-lg btn-success">Save Order &raquo;</button>
+    <div class="spacer"></div>
+</div>
+</div>
+</div>
+  	
+  	
+  
+  	
+  	
+  	
+  </div>
 </div>
 </div>
 {% endblock %}

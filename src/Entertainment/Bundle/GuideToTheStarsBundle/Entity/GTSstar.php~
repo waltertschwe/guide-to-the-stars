@@ -30,8 +30,28 @@ class GTSstar
     *      joinColumns={@ORM\JoinColumn(name="star_id", referencedColumnName="id")},
     *      inverseJoinColumns={@ORM\JoinColumn(name="category_id", referencedColumnName="id")})
     */
-   
+      
     private $category;
+    
+    /**
+    * @ORM\OneToMany(targetEntity="Entertainment\Bundle\GuideToTheStarsBundle\Entity\GTSvideo", mappedBy="star")
+    **/
+    private $gtsVideos;
+    
+    /**
+    * @ORM\OneToMany(targetEntity="Entertainment\Bundle\GuideToTheStarsBundle\Entity\GTSimage", mappedBy="star")
+    **/
+    private $gtsImages;
+    
+    /**
+    * @ORM\OneToMany(targetEntity="Entertainment\Bundle\GuideToTheStarsBundle\Entity\GTSquote", mappedBy="star")
+    **/
+    private $gtsQuotes;
+    
+    /**
+    * @ORM\OneToMany(targetEntity="Entertainment\Bundle\GuideToTheStarsBundle\Entity\GTSfunfact", mappedBy="star")
+    **/
+    private $gtsFacts;
        
     /**
      * @var integer
@@ -203,5 +223,138 @@ class GTSstar
     public function getImageLargeName()
     {
         return $this->imageLargeName;
+    }
+
+
+    /**
+     * Add gtsVideos
+     *
+     * @param \Entertainment\Bundle\GuideToTheStarsBundle\Entity\GTSvideo $gtsVideos
+     * @return GTSstar
+     */
+    public function addGtsVideo(\Entertainment\Bundle\GuideToTheStarsBundle\Entity\GTSvideo $gtsVideos)
+    {
+        $this->gtsVideos[] = $gtsVideos;
+
+        return $this;
+    }
+
+    /**
+     * Remove gtsVideos
+     *
+     * @param \Entertainment\Bundle\GuideToTheStarsBundle\Entity\GTSvideo $gtsVideos
+     */
+    public function removeGtsVideo(\Entertainment\Bundle\GuideToTheStarsBundle\Entity\GTSvideo $gtsVideos)
+    {
+        $this->gtsVideos->removeElement($gtsVideos);
+    }
+
+    /**
+     * Get gtsVideos
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getGtsVideos()
+    {
+        return $this->gtsVideos;
+    }
+
+    /**
+     * Add gtsImages
+     *
+     * @param \Entertainment\Bundle\GuideToTheStarsBundle\Entity\GTSimage $gtsImages
+     * @return GTSstar
+     */
+    public function addGtsImage(\Entertainment\Bundle\GuideToTheStarsBundle\Entity\GTSimage $gtsImages)
+    {
+        $this->gtsImages[] = $gtsImages;
+
+        return $this;
+    }
+
+    /**
+     * Remove gtsImages
+     *
+     * @param \Entertainment\Bundle\GuideToTheStarsBundle\Entity\GTSimage $gtsImages
+     */
+    public function removeGtsImage(\Entertainment\Bundle\GuideToTheStarsBundle\Entity\GTSimage $gtsImages)
+    {
+        $this->gtsImages->removeElement($gtsImages);
+    }
+
+    /**
+     * Get gtsImages
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getGtsImages()
+    {
+        return $this->gtsImages;
+    }
+
+    /**
+     * Add gtsQuotes
+     *
+     * @param \Entertainment\Bundle\GuideToTheStarsBundle\Entity\GTSquote $gtsQuotes
+     * @return GTSstar
+     */
+    public function addGtsQuote(\Entertainment\Bundle\GuideToTheStarsBundle\Entity\GTSquote $gtsQuotes)
+    {
+        $this->gtsQuotes[] = $gtsQuotes;
+
+        return $this;
+    }
+
+    /**
+     * Remove gtsQuotes
+     *
+     * @param \Entertainment\Bundle\GuideToTheStarsBundle\Entity\GTSquote $gtsQuotes
+     */
+    public function removeGtsQuote(\Entertainment\Bundle\GuideToTheStarsBundle\Entity\GTSquote $gtsQuotes)
+    {
+        $this->gtsQuotes->removeElement($gtsQuotes);
+    }
+
+    /**
+     * Get gtsQuotes
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getGtsQuotes()
+    {
+        return $this->gtsQuotes;
+    }
+
+    /**
+     * Add gtsFacts
+     *
+     * @param \Entertainment\Bundle\GuideToTheStarsBundle\Entity\GTSfunfact $gtsFacts
+     * @return GTSstar
+     */
+    public function addGtsFact(\Entertainment\Bundle\GuideToTheStarsBundle\Entity\GTSfunfact $gtsFacts)
+    {
+        $this->gtsFacts[] = $gtsFacts;
+
+        return $this;
+    }
+
+    /**
+     * Remove gtsFacts
+     *
+     * @param \Entertainment\Bundle\GuideToTheStarsBundle\Entity\GTSfunfact $gtsFacts
+     */
+    public function removeGtsFact(\Entertainment\Bundle\GuideToTheStarsBundle\Entity\GTSfunfact $gtsFacts)
+    {
+        $this->gtsFacts->removeElement($gtsFacts);
+    }
+
+    /**
+     * Get gtsFacts
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getGtsFacts()
+    {
+        return $this->gtsFacts;
     }
 }

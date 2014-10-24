@@ -259,11 +259,41 @@ class StarController extends Controller
             $asset->setPosition($position);
             $em->persist($asset);
             $em->flush();
+             
         }
         
+        $videos = $star->getGtsVideos();
+        $images = $star->getGtsImages();
+        $facts = $star->getGtsFacts();
+        $quotes = $star->getGtsQuotes();
+        
+        $assets = array();
+        
+        foreach($videos as $video) {
+            $position = $video->getPosition();
+            $assets[$position] = $video;
+        }
+        
+        foreach($images as $image) {
+            $position = $image->getPosition();
+            $assets[$position] = $image;
+        }
+        
+        foreach($facts as $fact) {
+            $position = $fact->getPosition();
+            $assets[$position] = $fact;
+        }
+        
+        foreach($quotes as $quote) {
+            $position = $quote->getPosition();
+            $assets[$position] = $quote;
+        }
+        
+        krsort($assets);
+         
         return $this->render(
             'EntertainmentGuideToTheStarsBundle:Star:content.html.twig',
-            array('event' => $event, 'star' => $star)
+            array('event' => $event, 'star' => $star, 'assets' => $assets)
         );
         
     }
