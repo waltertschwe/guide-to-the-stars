@@ -1,6 +1,12 @@
 {% extends '::base.html.twig' %}
 {% block body %}
 {{ include('::nav.html.twig') }}
+{% for flashMessage in app.session.flashbag.get('notice') %}
+<div class="alert alert-success">  
+	<a class="close" data-dismiss="alert">×</a>  
+        {{ flashMessage }}
+</div>
+{% endfor %}
 <div class="container">
 <ol class="breadcrumb">
   <li>  
@@ -45,8 +51,14 @@
       </div>
       <div class="modal-body">
         <form id="form-video" name="form-video" method="post" action="" class="form-horizontal" role="form">
+        <input type="hidden" value="video" name="type" />
         <div class="container">
 		     <div class="row">
+		     	<div class="form-group">
+	         			<div class="col-sm-6">
+	         				<input class="form-control input-lg" type="text" name="title" size="255" placeholder="Video Title (CMS only)"/>
+	         		   </div>
+	            </div>
 		     	<div class="form-group">
 	         			<div class="col-sm-6">
 	         				<input class="form-control input-lg" type="text" name="video-id" id="video-id" size="255" placeholder="Video ID (Brightcove or Vignette)"/>
@@ -90,8 +102,14 @@
       </div>
       <div class="modal-body">
       <form id="form-tout" name="form-tout" method="post" action="" class="form-horizontal" role="form" enctype="multipart/form-data">
+      <input type="hidden" value="image" name="type" />
        <div class="container">
 		     <div class="row">
+		     	<div class="form-group">
+	         			<div class="col-sm-6">
+	         				<input class="form-control input-lg" type="text" name="title" size="255" placeholder="Image Title (CMS only)"/>
+	         		   </div>
+	            </div>
 	      		 <div class="form-group">
 				     <div class="col-sm-6">
 					      <input class="form-control input-lg" type="text" name="image-title" id="quote" size="255" placeholder="Title"/>
@@ -138,8 +156,14 @@
       </div>
       <div class="modal-body">
       	 <form id="" method="post" action="" class="form-horizontal" role="form" enctype="multipart/form-data">
+      	 <input type="hidden" value="quote" name="type" />
       	 <div class="container">
 		     <div class="row">
+		     	<div class="form-group">
+	         			<div class="col-sm-6">
+	         				<input class="form-control input-lg" type="text" name="title" size="255" placeholder="Quote Title (CMS only)"/>
+	         		   </div>
+	            </div>
 	             <div class="form-group">
 			         <div class="col-sm-6">
 				         <input class="form-control input-lg" type="text" name="quote-credit" id="quote-credit" size="255" placeholder="Quote Credit"/>
@@ -176,8 +200,14 @@
       </div>
       <div class="modal-body">
       <form id="fact-form" name="fact-form" method="post" action="" class="form-horizontal" role="form">
+      <input type="hidden" value="fact" name="type" />
        <div class="container">
 		     <div class="row">
+		     	<div class="form-group">
+	         			<div class="col-sm-6">
+	         				<input class="form-control input-lg" type="text" name="title" size="255" placeholder="Fun Fact Title (CMS only)"/>
+	         		   </div>
+	            </div>
 	             <div class="form-group">
 			         <div class="col-sm-6">
 			         	 <textarea name="fact-content" class="form-control" rows="3" placeHolder="Fun Fact"></textarea>
@@ -206,6 +236,8 @@
   </div>
 </div>
 </div>
+<form id="form-order-stars" name="form-order-stars" method="post" action="" class="form-horizontal" role="form">
+  <input type="hidden" name="form-order-stars" value="1" />
   <div class="col-xs-12 col-md-8">
 <div class="container">
 <div class="row">
@@ -213,7 +245,7 @@
 <ul id="sortable">
 	{% for key, asset in assets %}
 		<li id=""><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>
-		    <a href="">{{ key }}</a>
+		    <a href="">{{ asset.title }}</a>
 	        <a href=""><span style="padding: 10px 10px 0; float: right;" class="glyphicon glyphicon-trash float: right;"></span>
 	        </a>
 	    </li>	
@@ -221,17 +253,12 @@
 </ul>
 </div>
 <div class="col-md-2">
-    <button id="savepostion" name="submit" type="submit" class="btn btn-lg btn-success">Save Order &raquo;</button>
+    <button id="reorder-stars" name="submit" type="submit" class="btn btn-lg btn-success">Save Order &raquo;</button>
     <div class="spacer"></div>
 </div>
+</form>
 </div>
 </div>
-  	
-  	
-  
-  	
-  	
-  	
   </div>
 </div>
 </div>

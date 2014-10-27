@@ -56,6 +56,23 @@ $(document).ready(function() {
             }       
       	});
    	});
+   	$('#reorder-stars').click(function(event){
+   		 alert("here in re-order stars");
+	     var data = $("ul#sortable").sortable("serialize");
+	     $.ajax({
+	     	url: "{{ path('entertainment_guidetothestars_star_ajaxorder') }}",
+	     	type: "POST",
+	     	data: data,
+	     	//dataType: "json",
+	     	success : function(theResponse){
+				location.reload();
+			},
+    		error: function(XMLHttpRequest, textStatus, errorThrown) { 
+       		    alert("Status: " + textStatus); alert("Error: " + errorThrown); 
+            }       
+    	});
+   	});  	
+   	
     $('.collapse').collapse()
     $( "#site-state" ).change(function() {
     	var siteState =  $(this).find('option:selected').val();

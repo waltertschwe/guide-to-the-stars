@@ -3,6 +3,9 @@
 namespace Entertainment\Bundle\GuideToTheStarsBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
@@ -51,7 +54,7 @@ class StarController extends Controller
             $star = new GTSstar();
             $star->setStarName($request->request->get('star-name'));
             $star->setStarDescription($request->request->get('star-description'));
-                        
+                                    
             ## Handle uploaded Files
             $tmpImageBubble = $request->files->get('star-bubble');
             $tmpImageLarge = $request->files->get('star-large');
@@ -200,65 +203,77 @@ class StarController extends Controller
        
         $request = $this->get('request');
         if ($request->isMethod('POST')) {
-            $contentType = $request->request->get('submit');
-            $em = $this->getDoctrine()->getManager();
-            switch ($contentType) {
-                case 'video-submit':
-                    $asset = new GTSvideo();
-                    $videoId = $request->request->get('video-id');
-                    $videoEmbed = $request->request->get('video-embed');
-                  
-                    $asset->setVideoId($videoId);
-                    $asset->setVideoEmbed($videoEmbed);
-                   
-                    break;
-                case 'image-submit':
-                    $asset = new GTSimage();
-                    $title = $request->request->get('image-title');
-                    $url = $request->request->get('image-url');
-                    $caption = $request->request->get('image-caption');
-                    $credit = $request->request->get('image-credit');
-                    
-                    ## image asset
-                    $tmpFileName = $request->files->get('image-name');
-                    $userFileName = $_FILES['image-name']['name'];
-                    $basePath = $this->get('kernel')->getRootDir();
-                    move_uploaded_file($tmpFileName, $basePath."/event-images/".$userFileName);
-                  
-                    $asset->setImageTitle($title);
-                    $asset->setImageName($userFileName);
-                    $asset->setImageUrl($url);
-                    $asset->setImageCaption($caption);
-                    $asset->setImageCredit($credit);
             
-                    break;
-                case 'quote-submit':
-                    $asset = new GTSquote();
-                    $credit = $request->request->get('quote-credit');
-                    $quote = $request->request->get('quote');
-                    
-                    ## image asset
-                    $tmpFileName = $request->files->get('quote-image');
-                    $userFileName = $_FILES['quote-image']['name'];
-                    $basePath = $this->get('kernel')->getRootDir();
-                    move_uploaded_file($tmpFileName, $basePath."/event-images/".$userFileName);
-                    
-                    $asset->setQuoteCredit($credit);
-                    $asset->setQuoteText($quote);
-                    $asset->setQuoteImage($userFileName);
-                   
-                    break;
-                case 'fact-submit':
-                    $asset = new GTSfunfact();
-                    $fact = $request->request->get('fact-content');
-                    $asset->setFunFact($fact);
-                    break;  
-            }
-            
-            $asset->setStar($star);
-            $asset->setPosition($position);
-            $em->persist($asset);
-            $em->flush();
+            $isOrder = $request->request->get('form-order-stars');
+            if($isOrder) {
+                
+  
+  
+  
+            } else {
+               
+                $contentType = $request->request->get('submit');
+                $em = $this->getDoctrine()->getManager();
+                switch ($contentType) {
+                    case 'video-submit':
+                        $asset = new GTSvideo();
+                        $videoId = $request->request->get('video-id');
+                        $videoEmbed = $request->request->get('video-embed');
+                      
+                        $asset->setVideoId($videoId);
+                        $asset->setVideoEmbed($videoEmbed);
+                       
+                        break;
+                    case 'image-submit':
+                        $asset = new GTSimage();
+                        $title = $request->request->get('image-title');
+                        $url = $request->request->get('image-url');
+                        $caption = $request->request->get('image-caption');
+                        $credit = $request->request->get('image-credit');
+                        
+                        ## image asset
+                        $tmpFileName = $request->files->get('image-name');
+                        $userFileName = $_FILES['image-name']['name'];
+                        $basePath = $this->get('kernel')->getRootDir();
+                        move_uploaded_file($tmpFileName, $basePath."/event-images/".$userFileName);
+                      
+                        $asset->setImageTitle($title);
+                        $asset->setImageName($userFileName);
+                        $asset->setImageUrl($url);
+                        $asset->setImageCaption($caption);
+                        $asset->setImageCredit($credit);
+                
+                        break;
+                    case 'quote-submit':
+                        $asset = new GTSquote();
+                        $credit = $request->request->get('quote-credit');
+                        $quote = $request->request->get('quote');
+                        
+                        ## image asset
+                        $tmpFileName = $request->files->get('quote-image');
+                        $userFileName = $_FILES['quote-image']['name'];
+                        $basePath = $this->get('kernel')->getRootDir();
+                        move_uploaded_file($tmpFileName, $basePath."/event-images/".$userFileName);
+                        
+                        $asset->setQuoteCredit($credit);
+                        $asset->setQuoteText($quote);
+                        $asset->setQuoteImage($userFileName);
+                       
+                        break;
+                    case 'fact-submit':
+                        $asset = new GTSfunfact();
+                        $fact = $request->request->get('fact-content');
+                        $asset->setFunFact($fact);
+                        break;  
+                }
+                
+                $asset->setTitle($request->request->get('title'));
+                $asset->setType($request->request->get('type'));
+                $asset->setStar($star);
+                $asset->setPosition($position);
+                $em->persist($asset);
+                $em->flush();
+            }    
              
         }
         
@@ -297,6 +312,50 @@ class StarController extends Controller
         );
         
     }
+
+   /**
+     * @Route("/stars/ajax-order")
+     * @Template()
+     */
+    public function ajaxOrderAction() 
+    {
+        
+        $data = $_POST;
+        
+        if($data) {
+            $logger = $this->get('logger');
+            $logger->info("I AM HERE IN AJAXPOSITION ACTION");
+            $logger->info(var_export($data, true));
+        /*    
+            $em = $this->getDoctrine()->getManager();
+            
+            
+            foreach($data as $eventId => $imageIds) {
+                $logger->info("eventId = " . $eventId);
+                $totalImages = count($imageIds);
+                $logger->info("total image ids = " . $totalImages);
+                foreach($imageIds as $imageId) {
+                     
+                    $image = $em->getRepository('EntertainmentArrivalsBundle:Gallery')
+                                ->find(array ('eventId' => $eventId,  
+                                              'id' => $imageId));
+                   
+                    $image->setPosition($totalImages);
+                    $logger->info("IMAGE OBJECT = " . var_export($image, true));
+                    $totalImages--;
+                    $em->flush();
+                    
+                }
+            }
+            */
+        }
+
+        $session = new Session();
+        $session->getFlashBag()->add('notice', 'Success! The Arrivlas ordering has been updated.');
+       
+        return new Response("positions updated");
+    }
+    
 
 
     public function nextPosition($starId) 
