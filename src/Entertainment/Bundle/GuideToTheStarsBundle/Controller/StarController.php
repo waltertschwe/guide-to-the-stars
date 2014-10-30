@@ -200,19 +200,20 @@ class StarController extends Controller
              ->find(array('id' => $starId));
         
         $position = $this->nextPosition($starId);
-       
         $request = $this->get('request');
+        $session = $this->container->get('session');
+        
+        if(empty($session)) {
+            $session = new Session();
+            $session->set('order', '0');  
+        }
         
         if ($request->isMethod('POST')) {
             
-            $isOrder = $request->request->get('form-order-stars');
-            if($isOrder) {
-                
-  
-  
-  
-            } else {
-               
+            $ajaxOrdering = $session->get('order');
+            
+            if(!$ajaxOrdering) {
+                $session->set('order', '0');  
                 $contentType = $request->request->get('submit');
                 $em = $this->getDoctrine()->getManager();
                 switch ($contentType) {
@@ -372,49 +373,13 @@ class StarController extends Controller
             
         }
         
-        
-        /*        $data = $_POST;
-          
-        if($data) {
-           $logger->info("I HAVE DATA");
-           $logger->info("DATA COUNT = " . $dataLength);
-           $logger->info(var_export($data, true));
-        } else {
-           $logger->info("NO DATA"); 
-        }
-         */
-      
-        /*    
-            $em = $this->getDoctrine()->getManager();
-            
-            
-            foreach($data as $eventId => $imageIds) {
-                $logger->info("eventId = " . $eventId);
-                $totalImages = count($imageIds);
-                $logger->info("total image ids = " . $totalImages);
-                foreach($imageIds as $imageId) {
-                     
-                    $image = $em->getRepository('EntertainmentArrivalsBundle:Gallery')
-                                ->find(array ('eventId' => $eventId,  
-                                              'id' => $imageId));
-                   
-                    $image->setPosition($totalImages);
-                    $logger->info("IMAGE OBJECT = " . var_export($image, true));
-                    $totalImages--;
-                    $em->flush();
-                    
-                }
-            }
-            */
-       // }
-
-        //$session = new Session();
-       // $session->getFlashBag()->add('notice', 'Success! The Arrivlas ordering has been updated.');
+        $session = new Session();
+        $session->getFlashBag()->add('notice', 'Success! The Arrivlas ordering has been updated.');
+        $session->set('order', '1');
        
         return new Response("positions updated");
     }
     
-
 
     public function nextPosition($starId) 
     {

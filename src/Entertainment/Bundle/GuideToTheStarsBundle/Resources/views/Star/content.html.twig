@@ -52,6 +52,7 @@
       <div class="modal-body">
         <form id="form-video" name="form-video" method="post" action="" class="form-horizontal" role="form">
         <input type="hidden" value="video" name="type" />
+        <input type="hidden" value="1" name="asset-create" />
         <div class="container">
 		     <div class="row">
 		     	<div class="form-group">
@@ -103,6 +104,7 @@
       <div class="modal-body">
       <form id="form-tout" name="form-tout" method="post" action="" class="form-horizontal" role="form" enctype="multipart/form-data">
       <input type="hidden" value="image" name="type" />
+      <input type="hidden" value="1" name="asset-create" />
        <div class="container">
 		     <div class="row">
 		     	<div class="form-group">
@@ -157,6 +159,7 @@
       <div class="modal-body">
       	 <form id="" method="post" action="" class="form-horizontal" role="form" enctype="multipart/form-data">
       	 <input type="hidden" value="quote" name="type" />
+      	 <input type="hidden" value="1" name="asset-create" />
       	 <div class="container">
 		     <div class="row">
 		     	<div class="form-group">
@@ -201,6 +204,7 @@
       <div class="modal-body">
       <form id="fact-form" name="fact-form" method="post" action="" class="form-horizontal" role="form">
       <input type="hidden" value="fact" name="type" />
+      <input type="hidden" value="1" name="asset-create" />
        <div class="container">
 		     <div class="row">
 		     	<div class="form-group">
@@ -236,27 +240,24 @@
   </div>
 </div>
 </div>
-<!--<form id="form-order-stars" name="form-order-stars" method="post" action="" class="form-horizontal" role="form"> 
-  <input type="hidden" name="form-order-stars" value="1" /> -->
-  <div class="col-xs-12 col-md-8">
+<div class="col-xs-12 col-md-8">
 <div class="container">
 <div class="row">
 	<div class="col-md-8">
 <ul id="sortable">
-	{% for key, asset in assets %}
-		<li data-id="{{asset.type}}_{{ asset.id}}" id="{{ asset.id }}"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>
-		    <a href="">{{ asset.title }}</a>
-	        <a href=""><span style="padding: 10px 10px 0; float: right;" class="glyphicon glyphicon-trash float: right;"></span>
-	        </a>
-	    </li>	
-	{% endfor %}
+{% for key, asset in assets %}
+	<li data-id="{{asset.type}}_{{ asset.id}}" id="{{ asset.id }}"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>
+	    <a href="">{{ asset.title }}</a>
+        <a href=""><span style="padding: 10px 10px 0; float: right;" class="glyphicon glyphicon-trash float: right;"></span>
+        </a>
+    </li>	
+{% endfor %}
 </ul>
 </div>
 <div class="col-md-2">
     <button id="reorder" name="submit" type="submit" class="btn btn-lg btn-success">Save Order &raquo;</button>
     <div class="spacer"></div>
 </div>
-<!-- </form> --> 
 </div>
 </div>
   </div>
