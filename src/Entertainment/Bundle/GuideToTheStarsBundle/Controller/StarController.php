@@ -211,7 +211,6 @@ class StarController extends Controller
         if ($request->isMethod('POST')) {
             
             $ajaxOrdering = $session->get('order');
-            
             if(!$ajaxOrdering) {
                 $session->set('order', '0');  
                 $contentType = $request->request->get('submit');
@@ -269,17 +268,21 @@ class StarController extends Controller
                         break;  
                 }
                 
-                $asset->setTitle($request->request->get('title'));
-                $asset->setType($request->request->get('type'));
-                $asset->setStar($star);
-                $asset->setPosition($position);
-                $em->persist($asset);
-                $em->flush();
+                if(!empty($asset)) {
+                    $asset->setTitle($request->request->get('title'));
+                    $asset->setType($request->request->get('type'));
+                    $asset->setStar($star);
+                    $asset->setPosition($position);
+                    $em->persist($asset);
+                    $em->flush();
+                }
                
             }    
              
         }
-        
+
+        $session->set('order', '0');  
+     
         $videos = $star->getGtsVideos();
         $images = $star->getGtsImages();
         $facts = $star->getGtsFacts();
@@ -319,7 +322,7 @@ class StarController extends Controller
    /**
      * @Route("/stars/ajax-order")
      * @Template()
-     */
+    */
     public function ajaxOrderAction() 
     {
         $logger = $this->get('logger');
@@ -404,17 +407,21 @@ class StarController extends Controller
        
          $totalAssets = $videoTotal + $quoteTotal + $factTotal + $imageTotal;
          $position = $totalAssets + 1;
-        
-         /*
-         echo "videoTotal = " . $videoTotal;
-         echo "<br/>quoteTotal = " . $quoteTotal;
-         echo "<br/>fact Total = " . $factTotal;
-         echo "<br/>imageTotal = " . $imageTotal;
-         echo "<br/>totalAssets = " . $totalAssets;
-         echo "<br/>position = " . $position;
-        */
          
          return $position;
          
     }
+
+    /**
+     * @Route("/stars/json-test")
+     * @Template()
+    */
+
+    public function contentJSONAction () {
+        $response = new Response(json_encode(array('name' => $name)));
+        $response->headers->set('Content-Type', 'application/json');
+
+        return $response;
+    }
+
 }

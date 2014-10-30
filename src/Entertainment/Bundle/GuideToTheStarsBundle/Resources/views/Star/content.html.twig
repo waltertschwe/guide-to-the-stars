@@ -247,7 +247,7 @@
 <ul id="sortable">
 {% for key, asset in assets %}
 	<li data-id="{{asset.type}}_{{ asset.id}}" id="{{ asset.id }}"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>
-	    <a href="">{{ asset.title }}</a>
+		<a href="" data-id="{{ asset.id}}" data-toggle="modal" data-target="#{{ asset.type}}Type" class="{{asset.type}}">{{ asset.title }}</a>
         <a href=""><span style="padding: 10px 10px 0; float: right;" class="glyphicon glyphicon-trash float: right;"></span>
         </a>
     </li>	
