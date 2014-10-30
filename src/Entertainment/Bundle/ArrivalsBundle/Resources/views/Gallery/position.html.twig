@@ -12,14 +12,13 @@
 <div class="page-header">
 	<h1><a href="{{ path('entertainment_redcarpet_event_dashboard', {'eventId': event.id}) }}">{{ event.eventName }}</a> - Current Arrivals
 	<a href="{{ path('entertainment_arrivals_gallery_create', {'eventId': event.id}) }}"><button type="button" class="btn btn-lg btn-danger" >Create Arrival &raquo;</button></a>	
-	</h1>
-	 
+	</h1> 
 </div>
 </div>
 <div class="container">
 <div class="row">
 	<div class="col-md-8">
-<ul id="sortable">
+<ul id="sortable-stars">
 {% for image in images %}
 	<li id="{{ image.event.eventId }}_{{image.id}}"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>
 	 <a href="{{ path('entertainment_arrivals_gallery_update', {'arrivalId': image.id}) }}">{{image.title}}</a>

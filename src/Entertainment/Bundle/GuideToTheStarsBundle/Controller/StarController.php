@@ -191,7 +191,7 @@ class StarController extends Controller
     * @Route("/stars/{eventId}/content/{starId}")
     */
     public function addContentAction($eventId, $starId) {
-         $event = $this->getDoctrine()
+        $event = $this->getDoctrine()
             ->getRepository('EntertainmentRedCarpetBundle:Event')
             ->find($eventId);
         
@@ -202,6 +202,7 @@ class StarController extends Controller
         $position = $this->nextPosition($starId);
        
         $request = $this->get('request');
+        
         if ($request->isMethod('POST')) {
             
             $isOrder = $request->request->get('form-order-stars');
@@ -211,7 +212,7 @@ class StarController extends Controller
   
   
             } else {
-               
+               /*
                 $contentType = $request->request->get('submit');
                 $em = $this->getDoctrine()->getManager();
                 switch ($contentType) {
@@ -273,6 +274,7 @@ class StarController extends Controller
                 $asset->setPosition($position);
                 $em->persist($asset);
                 $em->flush();
+                */
             }    
              
         }
@@ -319,13 +321,65 @@ class StarController extends Controller
      */
     public function ajaxOrderAction() 
     {
+        $logger = $this->get('logger');
+        $logger->info("I AM HERE IN AJAXPOSITION ACTION");
         
-        $data = $_POST;
+        $orderArray = $_REQUEST['starsArr'];
+        $totalPositions = count($orderArray);
+        $logger->info(var_export($orderArray, true));
         
+        $em = $this->getDoctrine()->getManager();
+        
+        foreach($orderArray as $key => $value) {
+            $logger->info("Content Data = " . $value);
+            $data = explode("_", $value);
+            $contentType = $data[0];
+            $contentId = $data[1];
+            
+            $logger->info("Content Type = " . $contentType);
+            $logger->info("Content Id = " . $contentId);
+           
+            switch ($contentType) {
+              case "video":
+                  $asset = $this->getDoctrine()
+                    ->getRepository('EntertainmentGuideToTheStarsBundle:GTSvideo')
+                    ->find($contentId);
+                
+                break;
+              case "quote":
+                  $asset = $this->getDoctrine()
+                    ->getRepository('EntertainmentGuideToTheStarsBundle:GTSquote')
+                    ->find($contentId);
+                
+                break;
+              case "image":
+                  $asset = $this->getDoctrine()
+                    ->getRepository('EntertainmentGuideToTheStarsBundle:GTSimage')
+                    ->find($contentId);
+                
+                break;   
+               
+            }
+            
+            $asset->setPosition($totalPositions);
+            $em->flush();
+            $totalPositions--;
+       
+            
+        }
+        
+        
+        /*        $data = $_POST;
+          
         if($data) {
-            $logger = $this->get('logger');
-            $logger->info("I AM HERE IN AJAXPOSITION ACTION");
-            $logger->info(var_export($data, true));
+           $logger->info("I HAVE DATA");
+           $logger->info("DATA COUNT = " . $dataLength);
+           $logger->info(var_export($data, true));
+        } else {
+           $logger->info("NO DATA"); 
+        }
+         */
+      
         /*    
             $em = $this->getDoctrine()->getManager();
             
@@ -348,10 +402,10 @@ class StarController extends Controller
                 }
             }
             */
-        }
+       // }
 
-        $session = new Session();
-        $session->getFlashBag()->add('notice', 'Success! The Arrivlas ordering has been updated.');
+        //$session = new Session();
+       // $session->getFlashBag()->add('notice', 'Success! The Arrivlas ordering has been updated.');
        
         return new Response("positions updated");
     }

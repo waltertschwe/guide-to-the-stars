@@ -75,6 +75,13 @@ class GTSstar
      * @ORM\Column(name="star_description", type="text")
      */
     private $starDescription;
+    
+    /**
+    * @var string
+    *
+    * @ORM\Column(name="position", type="string", length=255, nullable=true)
+    */
+    private $position;
 
     /**
      * Get id

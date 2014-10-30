@@ -39,10 +39,13 @@ $(document).ready(function() {
      $(function() {
 		$( "#sortable" ).sortable();
 		$( "#sortable" ).disableSelection();
+		$( "#sortable-stars" ).sortable();
+		$( "#sortable-stars" ).disableSelection();
 	 });
-	 
+
 	 $('#savepostion').click(function(event){
 	     var data = $("ul#sortable").sortable("serialize");
+	     alert(data);
 	     $.ajax({
 	     	url: "{{ path('entertainment_arrivals_gallery_ajaxposition') }} ",
 	     	type: "POST",
@@ -56,23 +59,32 @@ $(document).ready(function() {
             }       
       	});
    	});
-   	$('#reorder-stars').click(function(event){
-   		 alert("here in re-order stars");
-	     var data = $("ul#sortable").sortable("serialize");
-	     $.ajax({
-	     	url: "{{ path('entertainment_guidetothestars_star_ajaxorder') }}",
+
+	 $('#reorder').click(function(event){
+	    // var data = $("ul#sortable-stars").sortable("serialize");
+	    // alert(data);
+	    var stars = [];
+		$('#sortable li').each(function(){
+            var thisAssetID = $(this).attr('data-id');
+            stars.push(thisAssetID);
+		});
+		alert(stars);
+	    $.ajax({
+	     	url: "{{ path('entertainment_guidetothestars_star_ajaxorder') }} ",
 	     	type: "POST",
-	     	data: data,
+	     	data: {starsArr:stars},
 	     	//dataType: "json",
 	     	success : function(theResponse){
+	     		alert("success");
 				location.reload();
 			},
     		error: function(XMLHttpRequest, textStatus, errorThrown) { 
        		    alert("Status: " + textStatus); alert("Error: " + errorThrown); 
             }       
-    	});
-   	});  	
-   	
+      	});
+      	
+   	});
+ 	
     $('.collapse').collapse()
     $( "#site-state" ).change(function() {
     	var siteState =  $(this).find('option:selected').val();
