@@ -212,7 +212,7 @@ class StarController extends Controller
   
   
             } else {
-               /*
+               
                 $contentType = $request->request->get('submit');
                 $em = $this->getDoctrine()->getManager();
                 switch ($contentType) {
@@ -274,7 +274,7 @@ class StarController extends Controller
                 $asset->setPosition($position);
                 $em->persist($asset);
                 $em->flush();
-                */
+               
             }    
              
         }
@@ -345,19 +345,23 @@ class StarController extends Controller
                     ->getRepository('EntertainmentGuideToTheStarsBundle:GTSvideo')
                     ->find($contentId);
                 
-                break;
+                  break;
               case "quote":
                   $asset = $this->getDoctrine()
                     ->getRepository('EntertainmentGuideToTheStarsBundle:GTSquote')
                     ->find($contentId);
                 
-                break;
+                  break;
               case "image":
                   $asset = $this->getDoctrine()
                     ->getRepository('EntertainmentGuideToTheStarsBundle:GTSimage')
                     ->find($contentId);
-                
-                break;   
+                   break;
+              case "fact":
+                  $asset = $this->getDoctrine()
+                    ->getRepository('EntertainmentGuideToTheStarsBundle:GTSfunfact')
+                    ->find($contentId);
+                   break;      
                
             }
             
