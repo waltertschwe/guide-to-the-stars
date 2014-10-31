@@ -418,6 +418,7 @@ class StarController extends Controller
     */
 
     public function contentJSONAction () {
+        $name = array('foo' => 'bar');
         $response = new Response(json_encode(array('name' => $name)));
         $response->headers->set('Content-Type', 'application/json');
 
